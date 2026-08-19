@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>The AEO Site-Readiness Playbook | David Luther</title>
-<meta name="description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access audited first, JSON-LD in dependency order, llms.txt written as a citation-shaping asset, semantic HTML, and answer-ready copy. This site deploys every technique it describes.">
+<meta name="description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access audited first, JSON-LD in dependency order, llms.txt written as a citation-shaping asset, answer-ready copy, and the underlying data published under a machine-readable licence. This site deploys every technique it describes.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/aeo-site-playbook/">
 <meta property="og:site_name" content="David Luther">
 <meta property="og:title" content="The AEO Site-Readiness Playbook | David Luther">
-<meta property="og:description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access audited first, JSON-LD in dependency order, llms.txt written as a citation-shaping asset, semantic HTML, and answer-ready copy. This site deploys every technique it describes.">
+<meta property="og:description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access audited first, JSON-LD in dependency order, llms.txt written as a citation-shaping asset, answer-ready copy, and the underlying data published under a machine-readable licence. This site deploys every technique it describes.">
 <meta property="og:url" content="https://davidhluther.github.io/case-studies/aeo-site-playbook/">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
@@ -24,10 +24,10 @@
   "headline": "The AEO Site-Readiness Playbook",
   "datePublished": "2026-08-19",
   "dateModified": "2026-08-19",
-  "description": "A practical playbook for AI-answer readiness: crawler policy for AI user agents, page-level JSON-LD, an llms.txt with citation preferences, semantic HTML, and answer-ready meta descriptions, demonstrated live on this site.",
+  "description": "A practical playbook for AI-answer readiness: crawler policy for AI user agents, page-level JSON-LD, an llms.txt with citation preferences, answer-ready copy, and publishing the underlying data under a machine-readable licence, demonstrated live on this site and on the author's public weather project.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/aeo-site-playbook/",
-  "about": ["Answer Engine Optimization", "llms.txt", "JSON-LD", "Structured Data", "Technical SEO"],
+  "about": ["Answer Engine Optimization", "llms.txt", "JSON-LD", "Structured Data", "Technical SEO", "Open Data Licensing"],
   "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
 }
 </script>
@@ -70,7 +70,8 @@
       <li><a href="#step-3-llms-txt">Step 3: llms.txt</a></li>
       <li><a href="#step-4-semantic-html">Step 4: Semantic HTML</a></li>
       <li><a href="#step-5-gate-the-pdf">Step 5: Gate the PDF</a></li>
-      <li><a href="#step-6-weight-discipline">Step 6: Weight discipline</a></li>
+      <li><a href="#step-6-publish-the-data">Step 6: Publish the data</a></li>
+      <li><a href="#step-7-weight-discipline">Step 7: Weight discipline</a></li>
       <li><a href="#the-proof-structure">The proof structure</a></li>
     </ol>
   </nav>
@@ -86,7 +87,8 @@
 
   <h2 id="step-3-llms-txt">Step 3: llms.txt as a citation-shaping asset</h2>
   <p>An llms.txt file usually gets described as a sitemap for AI, which undersells it. Schema makes individual pages extractable, while llms.txt makes the organization legible, and it's the one place you can tell AI systems how to talk about you. The Corpay deployment carried canonical product descriptions in the company's own framing, an explicit target-audience section, differentiators, and a citation-preferences block stating how the brand should be attributed. For a company whose legacy and acquired sub-brand names still circulate in training data, that block addresses an observable attribution problem directly.</p>
-  <p>The honest framing, recorded at deployment time, was that no AI platform had officially confirmed reading these files, adoption was accelerating anyway, and publishing one costs minutes. It shipped ahead of every tracked competitor. This site's own <a href="/llms.txt">llms.txt</a> follows the pattern, citation preferences included. I'll note the counterexample myself, since honesty is the house style. On my own weather site I evaluated llms.txt and declined it, because that site's AEO surface didn't justify the file. The playbook is a decision framework, and sometimes the decision is no.</p>
+  <p>The honest framing, recorded at deployment time, was that no AI platform had officially confirmed reading these files, adoption was accelerating anyway, and publishing one costs minutes. It shipped ahead of every tracked competitor. This site's own <a href="/llms.txt">llms.txt</a> follows the pattern, citation preferences included.</p>
+  <p>I'll note the counterexample myself, since honesty is the house style. On my own weather site I evaluated llms.txt and declined it, and it still doesn't have one. The reason is worth stating precisely, because that site is not short of machine-readable surface, as the next step but one shows. llms.txt earns its place by making an <em>organization</em> legible, meaning the product lines, the framing, and the attribution problems worth heading off. A one-person satirical weather site has none of that to disambiguate. What it had to offer machines was data, so it published the data instead. The playbook is a decision framework, and sometimes the decision is no.</p>
 
   <h2 id="step-4-semantic-html">Step 4: Semantic HTML and answer-ready copy</h2>
   <p>Retrieval systems chunk pages (<a href="/case-studies/rag-knowledge-base/">here's how, mechanically</a>), and chunks travel without their surroundings. Concrete writing rules follow. Headings state the claim, because a heading is the chunk's label in the index. Meta descriptions read as complete, citable sentences about what the page establishes. Sections stand alone, since a paragraph that depends on three paragraphs of prior context loses the citation to one that doesn't. And the markup uses real semantics, meaning article, nav, heading hierarchy, and lists that are lists. Extraction quality follows markup quality.</p>
@@ -95,11 +97,18 @@
   <p>Lead-gen instinct says gate the good stuff, and for answer engines that instinct is fatal. The publish shape that works: the designed whitepaper PDF stays behind the form, while the pillar page, glossary, answer blocks, and chart pack stay ungated and crawlable. Gating the canonical answer surface is permanently off the table, because a page an assistant can't retrieve is a page that doesn't exist to it.</p>
   <p>Two sequencing rules travel with this. Measurement prompts enter the tracking pool before publication, since a post-publication baseline can't be reconstructed, and indexation on the engine that feeds assistant retrieval gets treated as a prerequisite rather than a traffic channel, with a measured publish-to-first-citation lag distribution setting the evaluation windows. You can't grade content on a timeline the retrieval layer never agreed to.</p>
 
-  <h2 id="step-6-weight-discipline">Step 6: Weight discipline</h2>
+  <h2 id="step-6-publish-the-data">Step 6: Publish the data itself, licensed</h2>
+  <p>The previous step says don't gate the answers. The step past it is to hand over the underlying data, on terms a machine can read, and my weather site is where I did that rather than only recommending it. Its accuracy record ships as <code>Dataset</code> JSON-LD on the scoreboard and on every town page, carrying a Creative Commons Attribution 4.0 license URL in the markup, so the licence travels with the structured data instead of sitting in a footer nobody parses.</p>
+  <p>Underneath that sits a public JSON API of five endpoints covering the consensus forecast, today's verdict, the season scoreboard, a single day's result, and the town registry. Every response is stamped with <code>license</code>, <code>attribution</code>, and <code>source</code> fields, so a system that picks up one payload three hops from the origin still carries the credit terms with it. Fetch any of them and you can check that yourself. There are RSS feeds per town as well, four each, and an embeddable widget for anyone who wants the forecast on their own page.</p>
+  <p>Two decisions in there are the ones I would defend in an interview. The widget is server-rendered from data already committed to the repo, makes no view-time requests, and has every analytics script deliberately suppressed, because it runs on other people's pages and an embed should cost the host one iframe and no third-party calls. Its footer attribution doubles as the required backlink, which is what makes the licence self-enforcing rather than aspirational.</p>
+  <p>The second is a gate. A town only enters the API once it has crossed the same track-record threshold the site uses on its own pages, so a thin sample is never dressed up as a dataset. That restraint is the difference between publishing data and publishing volume, and it is the same instinct as <a href="/case-studies/scoring-rubric/">the scoring rubric's</a> refusal to rank a source before it has enough scored days to rank. Publishing eighteen towns, each with its own coordinates, its own forecasts, and its own graded record, is only worth something if each one is genuinely distinct. That site's own published analysis of the paid local incumbent found 66 listed locations resolving to three distinct written forecasts, which is the failure mode this discipline exists to avoid.</p>
+  <p>None of it is a claim you have to take on trust. The repo is public, the site is live, and 581 tests run against the pipeline that produces all of it.</p>
+
+  <h2 id="step-7-weight-discipline">Step 7: Weight discipline</h2>
   <p>This site is HTML, one stylesheet, and six subsetted font files. No JavaScript, no tracking, no framework. Every technique above works better when the page is trivially fetchable and parseable. View source on any page here and you're looking at exactly what a crawler gets.</p>
 
   <h2 id="the-proof-structure">The proof structure</h2>
-  <p>The playbook's claims are checkable against this site in about two minutes, through <a href="/robots.txt">robots.txt</a>, <a href="/llms.txt">llms.txt</a>, view-source on any page, and <a href="/sitemap.xml">sitemap.xml</a>. What this site can't demonstrate is the enterprise half, meaning the sequencing politics, the verification gates, and the pipeline integration, which is why the Corpay methodology sits alongside the worked example.</p>
+  <p>The playbook's claims are checkable against this site in about two minutes, through <a href="/robots.txt">robots.txt</a>, <a href="/llms.txt">llms.txt</a>, view-source on any page, and <a href="/sitemap.xml">sitemap.xml</a>. Step 6 is checkable on a different site, which is the point of citing it, since <a href="https://davessweater.com/api">its API</a> and its licensed markup are live and inspectable without my involvement. What this site can't demonstrate is the enterprise half, meaning the sequencing politics, the verification gates, and the pipeline integration, which is why the Corpay methodology sits alongside the worked example.</p>
 
   <p class="claim">A playbook that doesn't run on its author's own site is a hypothesis.</p>
 

@@ -18,7 +18,7 @@ AEO work:
 - [Running AEO as an operating system](https://davidhluther.github.io/case-studies/aeo-operating-system/) covers the freshness-gated artifact pipeline, a 34-skill brand-parameterized analysis engine, evidence governance, cost accounting, executive reporting, and agent orchestration
 - [AI-visibility measurement](https://davidhluther.github.io/case-studies/ai-visibility-measurement/) covers a frozen 28-prompt battery across four AI assistants, prompt-pool noise correction, evidence grading, and AI-traffic analytics forensics
 - [Content engine](https://davidhluther.github.io/case-studies/content-engine/) covers a nine-source buyer-language taxonomy, consolidation-first roadmapping, a redundancy gate, TF-IDF internal linking, and machine-enforced writing quality
-- [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy, with this site as the worked example
+- [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, answer-ready copy, gating the PDF rather than the answers, and publishing the underlying data as licensed machine-readable output (Dataset JSON-LD, a public JSON API stamping license and attribution into every response, per-town RSS feeds, and an analytics-free embeddable widget), with this site and davessweater.com as the worked examples
 
 The lab:
 - [The lab](https://davidhluther.github.io/lab/) indexes the six self-built case studies and the shared infrastructure behind them
