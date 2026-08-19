@@ -274,8 +274,16 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.35rem 2rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
+  margin: 0 -1rem;
+  position: relative;
+  transition: background-color 200ms ease;
 }
+
+.study-list h3 a::before { content: ""; position: absolute; inset: 0; }
+.study-list li:hover { background: var(--surface); }
+.study-list li:hover h3 a, .study-list li:hover .fig { color: var(--accent); }
+.study-list li:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
 
 @media (min-width: 900px) {
   .study-list li { grid-template-columns: 8rem 1fr 11rem; }
@@ -284,7 +292,12 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   .study-list p { grid-column: 2; }
 }
 
-.study-list .tag { padding-top: 0.42rem; }
+.study-list .tag {
+  padding-top: 0.42rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 0.55rem;
+  align-self: start;
+}
 
 .study-list h3 {
   margin: 0;
@@ -331,7 +344,17 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
 
 .sys-list dt { font-weight: 600; }
 
-.sys-list dt span { font-weight: 400; margin-left: 0.6rem; }
+.sys-list dt span {
+  font-weight: 400;
+  margin-left: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.08rem 0.55rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  vertical-align: 0.12em;
+  white-space: nowrap;
+}
 
 .sys-list dd { margin: 0.15rem 0 0; color: var(--text-2); font-size: 0.95rem; }
 
@@ -341,11 +364,17 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: 1.1rem 2rem;
-  border-top: 1px solid var(--rule-strong);
   border-bottom: 1px solid var(--rule);
-  padding: 1.15rem 0 1.25rem;
+  padding: 0 0 1.25rem;
   margin: 2.2rem 0 0.5rem;
 }
+
+.fact-grid > div {
+  border-top: 2px solid var(--rule-strong);
+  padding-top: 0.85rem;
+}
+
+a { transition: color 150ms ease, text-decoration-color 150ms ease; }
 
 .fact-grid .n {
   display: block;
