@@ -441,7 +441,13 @@ figure.diagram figcaption {
 .toc a:hover { color: var(--accent); }
 
 /* ---- section shift ---- */
-.sys-intro { margin: 2.8rem 0 0.6rem; color: var(--text-2); font-size: 0.97rem; }
+.sys-intro {
+  margin: 4.5rem 0 0.8rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--text-2);
+  font-size: 0.97rem;
+}
 
 /* ---- article furniture ---- */
 
