@@ -62,34 +62,28 @@
   <p class="lede">Anyone can paste a prompt into ChatGPT and screenshot the answer. Building an instrument you can defend in front of a CMO is a different job, and I do it twice: once as a solo-built system I own end to end, and once at S&amp;P 500 scale.</p>
 
   <div class="fact-grid">
-    <div><span class="n">28</span><span class="l">frozen prompts, six groups</span></div>
-    <div><span class="n">4</span><span class="l">assistants, consumer UIs</span></div>
-    <div><span class="n">112</span><span class="l">answer cells per month</span></div>
-    <div><span class="n">17</span><span class="l">analysis modules downstream</span></div>
+    <div><span class="n">28</span><span class="l">questions, asked identically every month</span></div>
+    <div><span class="n">4</span><span class="l">AI assistants, asked as a real user would</span></div>
+    <div><span class="n">112</span><span class="l">answers scored each month</span></div>
+    <div><span class="n">17</span><span class="l">analysis tools that read the results</span></div>
   </div>
 
-  <h2>The Pigasus battery: A frozen instrument</h2>
-  <p>For my consultancy I built an AI-visibility instrument around a frozen 28-prompt battery, run monthly against ChatGPT, Claude, Perplexity, and Gemini. The prompts mirror how buyers actually approach a category, in six groups.</p>
+  <h2>The Pigasus battery: The same 28 questions, every month</h2>
+  <p>For my consultancy I track AI visibility the way you'd run a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and every month all four major assistants, ChatGPT, Claude, Perplexity, and Gemini, get the exact same 28, word for word. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's.</p>
 
   <figure class="diagram">
-    <svg viewBox="0 0 760 180" role="img" aria-label="The battery as a grid: 28 prompts in six groups crossed with four assistants, 112 cells">
+    <svg viewBox="0 0 660 150" role="img" aria-label="The battery as a grid: 28 questions in six groups crossed with four assistants, 112 answers a month">
       <g font-size="10.5" fill="var(--text-2)">
-        <text x="86" y="14">LD 01-07</text>
-        <text x="222" y="14">PF 01-05</text>
-        <text x="337" y="14">CE 01-04</text>
-        <text x="436" y="14">CN 01-04</text>
-        <text x="532" y="14">AI 01-03</text>
-        <text x="617" y="14">BV 01-05</text>
+        <text x="80" y="14">LD 01-07</text>
+        <text x="216" y="14">PF 01-05</text>
+        <text x="316" y="14">CE 01-04</text>
+        <text x="398" y="14">CN 01-04</text>
+        <text x="480" y="14">AI 01-03</text>
+        <text x="544" y="14">BV 01-05</text>
         <text x="4" y="46">ChatGPT</text>
         <text x="4" y="76">Claude</text>
         <text x="4" y="106">Perplexity</text>
         <text x="4" y="136">Gemini</text>
-      </g>
-      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <!-- 28 cols x 4 rows of cells, grouped with gaps -->
-        <g>
-          <!-- row template drawn as rects per group; groups: 7,5,4,4,3,5 -->
-        </g>
       </g>
       <g stroke="var(--diagram-ink)" stroke-width="0.8" fill="none">
         <g id="r1">
@@ -105,24 +99,11 @@
           <rect x="80" y="118" width="126" height="22"/><rect x="216" y="118" width="90" height="22"/><rect x="316" y="118" width="72" height="22"/><rect x="398" y="118" width="72" height="22"/><rect x="480" y="118" width="54" height="22"/><rect x="544" y="118" width="90" height="22"/>
         </g>
       </g>
-      <g font-size="9.5" fill="var(--text-2)">
-        <text x="80" y="162">local discovery</text>
-        <text x="216" y="162">problem-first</text>
-        <text x="316" y="162">category ed.</text>
-        <text x="398" y="162">continuity</text>
-        <text x="480" y="162">AI enable.</text>
-        <text x="544" y="162">brand (excluded from headline)</text>
-      </g>
-      <g fill="var(--accent)" opacity="0.85">
-        <rect x="655" y="29.5" width="19" height="19"/>
-        <rect x="655" y="119.5" width="19" height="19"/>
-      </g>
-      <text x="655" y="162" font-size="9.5" fill="var(--text-2)">&#9632; scored per cell</text>
     </svg>
-    <figcaption>Each month fills 112 cells. Per cell, four things get scored: named or not, at what position, which domains were actually cited, and every competitor offered as an answer.</figcaption>
+    <figcaption>The groups, left to right: local discovery, problem-first, category education, continuity, AI enablement, and brand checks, which stay out of the headline number. Each of the 112 answers gets scored four ways: named or not, at what position, which domains were actually cited, and every competitor offered instead.</figcaption>
   </figure>
 
-  <p>The groups do different jobs. Local discovery asks "is there anyone near me who does X," with typos deliberately left in, because the typos are what make a prompt read as a person rather than a search marketer. Problem-first prompts describe symptoms with no category vocabulary at all, where getting cited matters more than getting named. Category education asks what the category does and costs before any brand enters the conversation. Continuity and AI-enablement carry the forward-looking questions this category's buyers have started asking. Brand-and-verification prompts get scored as disambiguation tests and stay out of the headline number, since naming a brand you just typed proves nothing. Three control prompts are deliberately unwinnable, kept as a tripwire for geo-inference and category literacy.</p>
+  <p>Each group does a different job. Local discovery asks "is there anyone near me who does X," with typos deliberately left in, because the typos are what make a prompt read as a person rather than a search marketer. Problem-first prompts describe symptoms with no category vocabulary at all, where getting cited matters more than getting named. Category education asks what the category does and costs before any brand enters the conversation. Continuity and AI-enablement carry the forward-looking questions this category's buyers have started asking. Brand-and-verification prompts get scored as disambiguation tests and stay out of the headline number, since naming a brand you just typed proves nothing. Three control prompts are deliberately unwinnable, kept as a tripwire for geo-inference and category literacy.</p>
   <p>Prompt IDs freeze forever once published. A prompt is never edited, only retired in place with a note, so the series stays comparable month over month. The screening that cut 62 candidate prompts down to 28 is preserved in an appendix, cut by cut.</p>
 
   <h3>Protocol before tooling</h3>
@@ -130,7 +111,7 @@
   <p>Misses get classified too. A miss is a visibility gap, a category-belief gap, or a resolved-to-the-wrong-kind-of-answer, and those three read very differently in a client conversation.</p>
 
   <h3>The API runner refuses to run</h3>
-  <p>A Python runner queries the four vendor APIs directly as a supplementary track, filed under a separate tag so API-collected answers can never contaminate the consumer-UI series. The two are different instruments. The API has no browsing layer, no memory, and no consumer geo-inference, and pretending otherwise would corrupt the series quietly.</p>
+  <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track. Those answers get filed separately and never mix with the app-collected ones, because the API version of an assistant is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
   <p>The runner's best feature is what it won't do. It refuses to run against an unfrozen prompt set, and it refuses to spend money on any provider whose model ID hasn't been human-verified against live docs.</p>
   <pre><code>class Provider:
     name: str            # short tag used in the raw filename (&lt;name&gt;-api)
@@ -145,7 +126,7 @@
   <p>At Corpay I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal. The methodology is the interesting part anyway.</p>
 
   <h3>Prompt-pool noise correction</h3>
-  <p>AI-visibility platforms blend prompts a human curated with a much larger machine-generated pool inferred from a short niche description. The generated pool drifts toward raw search demand, which for a B2B finance brand means consumer personal-finance questions its buyers never ask. Every metric built on that denominator is diluted, and the dilution masquerades as a finding ("we're invisible in AI") rather than what it is, a measurement artifact.</p>
+  <p>The commercial AI-visibility platforms don't just track the questions you wrote. They auto-generate hundreds more from a short description of your business and blend everything into one pool. Those generated questions drift toward whatever people search for most, which for a B2B finance brand means consumer personal-finance questions its actual buyers never ask. Every metric built on that blended pool comes out diluted, and the dilution masquerades as a finding ("we're invisible in AI") rather than what it is, a measurement artifact.</p>
   <p>The correction treats pool composition as a named dimension of every metric, with composable filters. Restrict to the curated corpus. Exclude branded prompts. Strip off-ICP prompts with a classifier whose blocklist was derived empirically, from watching which off-market companies surfaced as "competitors" in the diluted report. The artifact class is memorable once you've seen it. A blended pool can surface an off-ICP consumer-finance incumbent as a top cited brand in a B2B payments category purely through pool noise, on prompts its buyers would never type. Two rules carry the weight. Nothing gets replaced, so the original series keeps running unchanged and cleaned figures publish alongside it under a separate key. And every figure must name its pool inline, because an unlabeled metric is not citable. The flattering number and the unflattering one ship side by side. They answer different questions, and a reader deserves both.</p>
 
   <h3>Evidence grading, two axes</h3>
