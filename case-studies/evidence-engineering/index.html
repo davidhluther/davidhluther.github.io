@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=5">
+<link rel="stylesheet" href="/css/main.css?v=6">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,8 +48,6 @@
   <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
-      <a href="/#aeo">AEO work</a>
-      <a href="/#lab">The lab</a>
       <a href="/about/">About</a>
       <a href="https://github.com/davidhluther">GitHub</a>
     </nav>
@@ -70,6 +68,42 @@
 
   <h2>Newsletters are a discovery layer, not a source</h2>
   <p>The weekly industry intake treats every newsletter and roundup as a pointer, never as a source. Every substantive item's primary source gets read before the item is allowed to mean anything. That rule earned its keep immediately. On the first instrumented run, four of seven items had drifted from what their primary sources actually said, twice badly enough that acting on the newsletter's version would have produced a wrong decision. The drift itself gets quoted in the output, summary next to source, because "this aggregator paraphrases loosely" is a finding worth accumulating about a publication.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 720 132" role="img" aria-label="Intake flow left to right: a newsletter item points to a primary source, the source earns an A to D grade, the grade lands in the baseline file, and the tier travels into the deliverable">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="5" y="56" width="146" height="46"/>
+        <rect x="166" y="56" width="118" height="46"/>
+        <rect x="299" y="56" width="72" height="46"/>
+        <rect x="386" y="56" width="134" height="46"/>
+        <rect x="535" y="56" width="174" height="46"/>
+      </g>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <path d="M151 79 H159 M284 79 H292 M371 79 H379 M520 79 H528"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="159,75.5 159,82.5 166,79"/>
+        <polygon points="292,75.5 292,82.5 299,79"/>
+        <polygon points="379,75.5 379,82.5 386,79"/>
+        <polygon points="528,75.5 528,82.5 535,79"/>
+      </g>
+      <g font-size="10.5" fill="var(--text-2)">
+        <text x="31" y="74">newsletter item</text>
+        <text x="181" y="74">primary source</text>
+        <text x="307" y="83">A-D grade</text>
+        <text x="412" y="74">baseline file</text>
+        <text x="587" y="74">deliverable</text>
+      </g>
+      <g font-size="9.5" fill="var(--text-2)">
+        <text x="12" y="92">a pointer, not a source</text>
+        <text x="174" y="92">read first, always</text>
+        <text x="393" y="92">with retraction table</text>
+        <text x="542" y="92">tier travels with the figure</text>
+      </g>
+      <text x="79" y="34" font-size="9.5" fill="var(--accent)">drift check: 4 of 7 diverged</text>
+    </svg>
+    <figcaption>Nothing means anything until the primary source is read. The grade assigned there rides with the figure all the way into the deliverable.</figcaption>
+  </figure>
 
   <h2>A baseline, not a pile of notes</h2>
   <p>Platform-usage and buyer-behavior figures, the numbers everyone in this field repeats at each other, live in one edit-in-place baseline file rather than in scattered notes. It refreshes monthly, and the refresh re-grades: a mid-tier figure becomes bottom-tier the day its primary source goes offline, because a figure whose primary is gone isn't a fact with history, it's a rumor with a citation. Killed figures move to a retraction table instead of being deleted, so a zombie statistic can't creep back in six weeks later looking new.</p>

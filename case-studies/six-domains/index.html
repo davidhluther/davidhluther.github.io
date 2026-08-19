@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=5">
+<link rel="stylesheet" href="/css/main.css?v=6">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,8 +48,6 @@
   <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
-      <a href="/#aeo">AEO work</a>
-      <a href="/#lab">The lab</a>
       <a href="/about/">About</a>
       <a href="https://github.com/davidhluther">GitHub</a>
     </nav>
@@ -72,6 +70,61 @@
   <p>A home orchestrator routes every new topic through a written routing table, and six workstream orchestrators each hold a charter, a session registry, and an open-dispatch ledger. The orchestrators frame work and dispatch it; dedicated agent sessions do it. Handoffs travel as self-contained briefs written into the receiving repository, on the assumption the receiving session knows nothing, and the dispatch payload itself stays deliberately thin, because we measured what fat prompts do to the receiving agent's context window and stopped paying that tax.</p>
   <p>Status flows the same disciplined way. An orchestrator reads a workstream's ledger and git history rather than interrupting a running session to ask, which sounds like etiquette and is actually throughput.</p>
   <p>The scale is concrete rather than conceptual. Seventeen git repositories, about eighty authored agent skills, sixty-three custom slash commands, and a hundred self-contained dispatch briefs written in twenty-four days, all coordinated through ledgers a session can read without asking anyone. Memory is scoped per workspace by construction, which is why the briefs exist. A handoff that depends on shared conversation memory is a handoff that fails the day the fleet grows.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 720 330" role="img" aria-label="A home orchestrator holding a routing table fans out to six domain boxes, each labeled with its own confidentiality wall, and one improvement inbox runs back to the router">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="10" y="116" width="130" height="46"/>
+        <rect x="396" y="4" width="300" height="40"/>
+        <rect x="396" y="50" width="300" height="40"/>
+        <rect x="396" y="96" width="300" height="40"/>
+        <rect x="396" y="142" width="300" height="40"/>
+        <rect x="396" y="188" width="300" height="40"/>
+        <rect x="396" y="234" width="300" height="40"/>
+      </g>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <path d="M146 139 L346 24 H388"/>
+        <path d="M146 139 L346 70 H388"/>
+        <path d="M146 139 L346 116 H388"/>
+        <path d="M146 139 L346 162 H388"/>
+        <path d="M146 139 L346 208 H388"/>
+        <path d="M146 139 L346 254 H388"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="388,20.5 388,27.5 396,24"/>
+        <polygon points="388,66.5 388,73.5 396,70"/>
+        <polygon points="388,112.5 388,119.5 396,116"/>
+        <polygon points="388,158.5 388,165.5 396,162"/>
+        <polygon points="388,204.5 388,211.5 396,208"/>
+        <polygon points="388,250.5 388,257.5 396,254"/>
+      </g>
+      <g fill="none" stroke="var(--accent)" stroke-width="1">
+        <rect x="10" y="292" width="686" height="26"/>
+        <path d="M75 292 V170"/>
+      </g>
+      <polygon points="71.5,170 78.5,170 75,163" fill="var(--accent)"/>
+      <g font-size="10.5" fill="var(--text-2)">
+        <text x="21" y="137">Home orchestrator</text>
+        <text x="406" y="19">Enterprise AEO</text>
+        <text x="406" y="65">Consultancy + clients</text>
+        <text x="406" y="111">Nonprofit board</text>
+        <text x="406" y="157">Civic roles</text>
+        <text x="406" y="203">Public data product</text>
+        <text x="406" y="249">Personal ops</text>
+        <text x="299" y="309">improvement inbox</text>
+      </g>
+      <g font-size="9.5" fill="var(--text-2)">
+        <text x="38" y="155">routing table</text>
+        <text x="406" y="36">methodology out, data never</text>
+        <text x="406" y="82">client repos keep no remote</text>
+        <text x="406" y="128">pattern-level only in public</text>
+        <text x="406" y="174">public record only</text>
+        <text x="406" y="220">public by design</text>
+        <text x="406" y="266">local-only git, never leaves the machine</text>
+      </g>
+    </svg>
+    <figcaption>One router, six walls. Every domain runs its own orchestrator, and lessons travel back through one reviewed inbox while the data stays where it belongs.</figcaption>
+  </figure>
 
   <h2>Rules with incident reports attached</h2>
   <p>The OS's constitution is short, and every clause exists because something specific went wrong. A blanket "just go for it" was once applied as commits across four repositories, overriding an earlier do-not-commit, so per-repo commit confirmation became constitutional: a general go-ahead authorizes exactly the repo under discussion. An orchestrator once dropped a level, ran a deep audit inline, and wrecked its own context, so the charters name that failure mode and prescribe the self-check ("if you find yourself many steps deep, stop, write a brief, dispatch"). A branch-cleanup command once reported a merge that hadn't happened, so ancestry checks are mandated in cleanup briefs. The rules carry their incidents the way a scar carries its story, and that's what keeps a future session from loosening them casually.</p>

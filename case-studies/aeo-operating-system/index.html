@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=5">
+<link rel="stylesheet" href="/css/main.css?v=6">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,8 +48,6 @@
   <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
-      <a href="/#aeo">AEO work</a>
-      <a href="/#lab">The lab</a>
       <a href="/about/">About</a>
       <a href="https://github.com/davidhluther">GitHub</a>
     </nav>
@@ -72,6 +70,44 @@
   <p>Recurring analysis programs usually re-pull expensive metered data every cycle, can't be diffed across cycles, and can't trace a number in a leadership deck back to the API response that produced it. The spine of this program is one discipline. Every stage writes a dated, self-describing artifact to a known folder, and downstream stages read artifacts instead of re-pulling.</p>
   <p>Around that sit exactly four handoff contracts, and each binds a pair of agent roles the way a good process doc binds two teams: collector to analyst, gatekeeper to analyst, analyst to synthesizer, and skill to orchestrator. A shared baseline snapshot gets pulled once per cycle. A freshness gate decides refresh-versus-reuse per analytical lens, where every threshold derives from a single cadence constant times a per-lens decay multiplier, so fast-moving lenses re-run often, structural lenses re-run rarely, and changing the cadence in one place re-derives the whole system. The synthesis layer is read-only and never calls an API. And skills propose register updates that an orchestrator merges at a checkpoint, never directly.</p>
   <p>The practical consequence is that a "full" audit is usually a partial re-pull. The gate routes only decayed lenses to refresh and hands everything else its existing artifacts. Cost control expressed as architecture, not as discipline. Nothing is ever overwritten, so every cycle stays diffable, and a new contributor can reconstruct the data flow from the directory tree alone.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 720 150" role="img" aria-label="Four pipeline roles left to right, collector, gatekeeper, analyst and synthesizer, each pair joined by a dated artifact, ending in a leadership deliverable">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="4" y="54" width="84" height="40"/>
+        <rect x="296" y="54" width="84" height="40"/>
+        <rect x="442" y="54" width="84" height="40"/>
+      </g>
+      <rect x="150" y="54" width="84" height="40" fill="none" stroke="var(--accent)" stroke-width="1"/>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <rect x="107" y="67" width="24" height="14"/>
+        <rect x="253" y="67" width="24" height="14"/>
+        <rect x="399" y="67" width="24" height="14"/>
+        <path d="M88 74 H107 M131 74 H143 M234 74 H253 M277 74 H289 M380 74 H399 M423 74 H435 M526 74 H552"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="143,70.5 143,77.5 150,74"/>
+        <polygon points="289,70.5 289,77.5 296,74"/>
+        <polygon points="435,70.5 435,77.5 442,74"/>
+        <polygon points="552,70.5 552,77.5 560,74"/>
+      </g>
+      <g font-size="10.5" fill="var(--text-2)">
+        <text x="18" y="78">Collector</text>
+        <text x="160" y="78">Gatekeeper</text>
+        <text x="316" y="78">Analyst</text>
+        <text x="449" y="78">Synthesizer</text>
+        <text x="568" y="78">leadership deliverable</text>
+      </g>
+      <g font-size="9.5" fill="var(--text-2)">
+        <text x="79" y="42">dated artifact</text>
+        <text x="225" y="42">dated artifact</text>
+        <text x="371" y="42">dated artifact</text>
+        <text x="129" y="114">fresh? reuse : refresh</text>
+        <text x="401" y="114">read-only, never calls an API</text>
+      </g>
+    </svg>
+    <figcaption>Every stage writes a dated artifact and the next stage reads it. The gate decides reuse versus refresh, and the synthesis layer can only read.</figcaption>
+  </figure>
 
   <h2>One engine, many brands</h2>
   <p>The analysis layer is 34 skills, every one parameterized by a brand identifier against a profile registry. A brand's profile file is the single governance source of truth, carrying its markets, report identifiers, per-market data-trust status, competitor sets, cadence configuration, and remapping rules. Onboarding a new brand means registering a profile against a written checklist, not copying code.</p>

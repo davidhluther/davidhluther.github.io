@@ -96,7 +96,7 @@ body {
 /* ---- the grid ---- */
 
 .page {
-  max-width: 74rem;
+  max-width: 68rem;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
@@ -109,7 +109,7 @@ body {
 
 @media (min-width: 900px) {
   .grid { grid-template-columns: repeat(12, 1fr); }
-  .col-copy { grid-column: 1 / 9; }
+  .col-copy { grid-column: 3 / 11; }
   .col-full { grid-column: 1 / 13; }
   .col-display { grid-column: 1 / 12; }
 }
@@ -117,13 +117,13 @@ body {
 .measure { max-width: 62ch; }
 
 @media (min-width: 900px) {
-  article.grid > * { grid-column: 1 / 9; }
-  article.grid > h1 { grid-column: 1 / 12; }
-  article.grid > .lede { grid-column: 1 / 10; }
+  article.grid > * { grid-column: 3 / 11; }
+  article.grid > h1 { grid-column: 2 / 12; }
+  article.grid > .lede { grid-column: 3 / 11; }
   article.grid > .fact-grid, article.grid > .next-prev,
   article.grid > .build-notes, article.grid > table,
   article.grid > .table-scroll { grid-column: 1 / 13; }
-  article.grid > figure.diagram { grid-column: 1 / 12; }
+  article.grid > figure.diagram { grid-column: 2 / 12; }
   article.grid > .claim { grid-column: 2 / 12; }
 }
 
