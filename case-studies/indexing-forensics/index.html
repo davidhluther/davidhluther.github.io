@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Thirty-Four Pages Google Never Discovered | David Luther</title>
+<meta name="description" content="A technical SEO investigation into 34 pages Google crawled the site around but never found: separating a crawling problem from a discovery problem, tracing the cause to a sitemap with no lastmod on any data-driven URL, and then checking the timeline closely enough to prove the fix could not have caused the recovery that followed.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/indexing-forensics/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="Thirty-Four Pages Google Never Discovered | David Luther">
+<meta property="og:description" content="A technical SEO investigation into 34 pages Google crawled the site around but never found: separating a crawling problem from a discovery problem, tracing the cause to a sitemap with no lastmod on any data-driven URL, and then checking the timeline closely enough to prove the fix could not have caused the recovery that followed.">
+<meta property="og:url" content="https://davidhluther.github.io/case-studies/indexing-forensics/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=7">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Thirty-Four Pages Google Never Discovered",
+  "datePublished": "2026-08-19",
+  "dateModified": "2026-08-19",
+  "description": "Case study in technical SEO forensics: distinguishing a crawling failure from a discovery failure, diagnosing a sitemap that emitted no lastmod on data-driven URLs, choosing content dates over build dates, and applying a causal-claim gate that disqualified the author's own fix as the explanation for the recovery.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/indexing-forensics/",
+  "about": ["Technical SEO", "Google Search Console", "XML Sitemaps", "Index Coverage", "Causal Inference"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "The lab", "item": "https://davidhluther.github.io/#lab" },
+    { "@type": "ListItem", "position": 3, "name": "Thirty-Four Pages Google Never Discovered", "item": "https://davidhluther.github.io/case-studies/indexing-forensics/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <h1>Thirty-Four Pages Google Never Discovered</h1>
+  <p class="lede">I shipped 34 new pages to my weather site and Google never found them. Working out why took a day. Working out what actually fixed it took longer, and ended with me disqualifying my own fix as the explanation, which is the part of this story worth your time.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">34</span><span class="l">pages launched, none discovered</span></div>
+    <div><span class="n">0</span><span class="l">weather queries in the month before</span></div>
+    <div><span class="n">209</span><span class="l">distinct queries in the three weeks after</span></div>
+    <div><span class="n">18</span><span class="l">days my fix arrived too late to matter</span></div>
+  </div>
+
+  <h2>A crawling problem and a discovery problem look identical from the dashboard</h2>
+  <p><a href="https://davessweater.com">Dave's Sweater</a> expanded from one town to eighteen in late July, which meant a forecast page and a forecast-accuracy board for each of the seventeen new towns, plus a hub and a road-conditions page. Days after launch, Search Console reported the lot of them as "URL is unknown to Google."</p>
+  <p>The first job is telling apart two failures that produce the same red status. Either Google can't fetch your pages, or Google doesn't know they exist. The homepage settled it, being both indexed and crawled the same day. Crawling was healthy. Googlebot had been on the site repeatedly and simply never learned that 34 other URLs had appeared. That reframes the whole investigation, because everything you'd check for a crawling problem, meaning robots rules, response codes, and render blocking, is now off the table.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 720 208" role="img" aria-label="Diagnostic split: can Google fetch the pages, and does Google know they exist; the homepage answers the first, the sitemap answers the second">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="76" width="150" height="52"/>
+        <path d="M156 102 H206"/>
+        <rect x="206" y="18" width="200" height="52"/>
+        <rect x="206" y="134" width="200" height="52" stroke="var(--accent)" stroke-width="1.5"/>
+        <path d="M196 102 V44 H206 M196 102 V160 H206"/>
+        <path d="M406 44 H466 M406 160 H466"/>
+      </g>
+      <g font-size="13" fill="var(--diagram-ink)">
+        <text x="20" y="98" font-weight="500">34 pages,</text>
+        <text x="20" y="116" font-weight="500">status unknown</text>
+        <text x="220" y="40" font-weight="500">Can Google fetch them?</text>
+        <text x="220" y="58" fill="var(--text-2)" font-size="11">homepage crawled same day</text>
+        <text x="220" y="156" font-weight="500">Does Google know they exist?</text>
+        <text x="220" y="174" fill="var(--text-2)" font-size="11">sitemap last downloaded before launch</text>
+        <text x="474" y="48" font-weight="500" fill="var(--text-2)">yes, healthy</text>
+        <text x="474" y="164" font-weight="500">no, and that is the bug</text>
+      </g>
+    </svg>
+    <figcaption>Two failures, one red status. Answering the top branch first is what makes the bottom branch worth investigating, and it retires robots rules, response codes, and rendering as suspects before you spend a day on them.</figcaption>
+  </figure>
+
+  <h2>The sitemap was telling Google that nothing had changed</h2>
+  <p>Search Console records when it last downloaded your sitemap, and that timestamp predated the new pages entirely. A sitemap Google won't re-fetch can't announce anything.</p>
+  <p>The cause was in the generator. Every data-driven URL, meaning the homepage, the accuracy boards, the town pages, and the roads page, was emitted with a <code>changefreq</code> and a <code>priority</code> and nothing else. Google ignores both, and has said so for years. Only the blog posts carried a <code>lastmod</code>, because those had a hand-entered publication date to draw on, so five of the roughly 55 URLs had a date and the rest had none. On a site that commits fresh forecast data every single day, the sitemap was reporting no change, ever.</p>
+
+  <h2>The obvious fix was the wrong one</h2>
+  <p>Stamp everything with the build date and every URL gets a fresh <code>lastmod</code> daily. It's one line, and it's a lie. This site rebuilds whenever data commits, so a build-date stamp says "all 57 pages changed today" every day, including the pages that haven't changed since March. Google learns the field is noise and stops weighting it, which leaves you worse off than the empty field you started with. The generator's own comment had rejected exactly this before the bug existed, which is the sort of thing that only helps if you go back and read your own reasoning.</p>
+  <p>A data-driven page does have an honest modification date. It's sitting in the repo, as the newest file in that page's own data directory.</p>
+  <pre><code>const comparisonDates = new Map&lt;string, string | null&gt;();
+for (const t of towns) comparisonDates.set(t.slug, await latestComparisonDate(t.slug));
+
+function stamp(value?: string | null): { lastModified?: Date } {
+  if (!value) return {};
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? {} : { lastModified: d };
+}</code></pre>
+  <p>Town pages take their own latest scored comparison. The homepage and the Boone board take Boone's. The hub takes the newest across every town it lists, and the roads page takes its artifact's generated timestamp. Pages that genuinely have no modification date keep the empty field, because the honest answer for /about is that it didn't change just because the site rebuilt.</p>
+  <p>Fetch <a href="https://davessweater.com/sitemap.xml">the live sitemap</a> and you can count it yourself: 45 of 57 URLs carry a date, and the twelve that don't are the twelve that shouldn't, /shop and /about and the resources hub among them.</p>
+
+  <h2>Two more findings, one of which was a dud</h2>
+  <p>The road-conditions page turned out to be orphaned, down to a single inbound link across the whole site. Git blame put it on a nav trim seven weeks earlier that had pulled the roads entry out of the header along with some genuinely stale entries. Nobody noticed, because the page kept working perfectly for anyone who had its URL.</p>
+  <p>The other one looked much worse and wasn't. A pile of <code>www</code> URLs sitting alongside their non-<code>www</code> twins in the performance data is the classic signature of a live duplication problem. This one was a corpse. It drew 929 impressions in the month I checked, essentially all of them on a July fireworks report that had gone viral locally before the canonical was settled, and 2 in the trailing week. Decaying, not duplicating.</p>
+  <p> I wrote it up as ruled out and moved on. Chasing it would have burned a day on a problem that was already solving itself.</p>
+
+  <h2>The finding that mattered was a question nobody had asked</h2>
+  <p>While reading a month of query data for the sitemap diagnosis, something else showed up. Every query the site earned in the month to 28 July was a brand search for the site itself, a fireworks question, or a Highland Games question. Twenty-one distinct queries, and not one of them was about the weather.</p>
+  <p>That is a strange result for a weather site. The forecast is the product, the accuracy tracker is the differentiator, and search was returning nothing for either. Everything the site had earned came from two one-off event reports and people typing its name. The town pages were built precisely to fix that, and they were the pages Google couldn't see.</p>
+
+  <h2>What happened next, and why I don't get to take credit</h2>
+  <p>Three weeks later the query profile is unrecognizable. 209 distinct queries, and the overwhelming majority are town weather searches: "weather north wilkesboro," "spruce pine nc weather," "banner elk forecast," "beech mountain temp." The pages Search Console had called unknown are now the site's best performers, led by Foscoe at 476 impressions, Spruce Pine at 201, and Banner Elk at 135. Inspect the Foscoe URL today and it comes back "Submitted and indexed," last crawled 18 August, rich results passing on breadcrumbs and dataset markup.</p>
+  <p>So the sitemap fix worked. Except it didn't, and the dates are what give it away.</p>
+  <p>Town impressions are flat zero through 29 July, then 13 on the 30th, 70 on the 31st, and 119 by 1 August. The sitemap fix was written on 28 July but sat on a branch. It squash-merged to main and reached production on 17 August, which is eighteen days after the recovery had already started and two days before I pulled this data. A change that wasn't live cannot have caused anything.</p>
+  <p>The likeliest candidate is a different change that shipped the same week, which rebuilt the header's town picker and put internal links to every town page in the site header. That is a real discovery mechanism and the timing fits. It is also, by my own <a href="/case-studies/ai-visibility-measurement/">evidence rules</a>, a hypothesis rather than a finding. I have timing and a plausible mechanism, I don't have exclusivity, and a hypothesis doesn't get to become the headline. What I can state is the negative, and the negative is solid. My fix was not the cause.</p>
+  <p class="claim">The most useful thing an audit produced here was a disqualification, and it disqualified the author's own work.</p>
+  <p>The fix stays in, incidentally. It corrected a real defect, it's the right long-term behavior for a site that publishes daily, and its value shows up the next time content changes and Google needs telling. It just doesn't get to wear a result it didn't earn.</p>
+
+  <h2>Why this matters for AEO</h2>
+  <p>Discovery is upstream of everything an answer engine does with you. A page that assistants never learn exists cannot be retrieved, cited, or summarized, and no amount of schema, llms.txt, or answer-ready copy operates on a URL that was never found. The <a href="/case-studies/aeo-site-playbook/">readiness playbook</a> assumes discovery has happened; this is what it looks like when that assumption is wrong.</p>
+  <p>The transferable habit isn't the sitemap detail. It's the discipline of separating two failures that share a symptom before spending a day on either, and then holding your own fix to the same causal standard you'd hold a vendor's. AEO reporting runs on exactly this temptation. You ship a content change, visibility rises the following month, and the deck writes itself. Check the dates anyway. The version of me that didn't pull the deployment timeline had a much better story and a false one, and in a field this young, being the person whose attributions survive scrutiny is worth more than being the person with the impressive chart.</p>
+  <p>The open question is whether the town pages hold. Average position sits around 12, which is page two, and the clicks are still near zero even where impressions are healthy. Being discovered turns out to be the easy half.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> All of it is verifiable. The sitemap generator and its reasoning are public in the <a href="https://github.com/davidhluther/davessweater">repo</a>, the deployment dates are in its git history, and <a href="https://davessweater.com/sitemap.xml">the live sitemap</a> can be counted by anyone. Search Console figures pulled 19 August 2026, comparing 28 June to 28 July against 29 July to 19 August.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/scoring-rubric/">The measurement instrument on the same site</a>
+    <a href="/case-studies/aeo-site-playbook/">The site-readiness playbook</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+  </div>
+</footer>
+</body>
+</html>
