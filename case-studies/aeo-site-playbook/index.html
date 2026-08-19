@@ -6,6 +6,9 @@
 <title>AEO Site-Readiness Playbook | David Luther</title>
 <meta name="description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access, JSON-LD structured data, llms.txt with citation preferences, semantic HTML, and answer-ready copy. This portfolio site deploys every technique it describes.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/aeo-site-playbook/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {
@@ -70,7 +73,9 @@
   <p>This site is plain HTML and one stylesheet. No framework, no JavaScript, no fonts to download, no tracking. That's not asceticism; it's the observation that every technique above works better when the page is trivially fetchable and parseable. View source on any page here and you're looking at exactly what a crawler gets.</p>
 
   <h2>The proof structure</h2>
-  <p>The playbook's claims are checkable against this site in about two minutes: <a href="/robots.txt">robots.txt</a> for crawler policy, <a href="/llms.txt">llms.txt</a> for the organization file, view-source on any page for JSON-LD and semantic markup, and <a href="/sitemap.xml">sitemap.xml</a> for clean URLs. A playbook that doesn't run on its author's own site is a hypothesis.</p>
+  <p>The playbook's claims are checkable against this site in about two minutes: <a href="/robots.txt">robots.txt</a> for crawler policy, <a href="/llms.txt">llms.txt</a> for the organization file, view-source on any page for JSON-LD and semantic markup, and <a href="/sitemap.xml">sitemap.xml</a> for clean URLs.</p>
+
+  <p class="claim">A playbook that doesn't run on its author's own site is a hypothesis.</p>
 
   <nav class="next-prev" aria-label="More case studies">
     <a href="/case-studies/self-grading-forecast/">&larr; Self-grading forecast</a>
@@ -81,6 +86,7 @@
 
 <footer class="site">
   <div class="wrap">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
   </div>

@@ -6,6 +6,9 @@
 <title>AI-Visibility Measurement Case Study | David Luther</title>
 <meta name="description" content="How to measure a brand's visibility in AI answers without fooling yourself: a frozen 28-prompt battery run against ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction and provenance disciplines that separate real citation share from measurement artifacts.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/ai-visibility-measurement/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {
@@ -81,7 +84,9 @@
   <p>The measurement program runs on a CI/CD pipeline with hard separation between the data layer and the synthesis layer. Scheduled jobs pull vendor APIs and commit raw responses to a cache; narrative generation runs strictly from cache, where zero API spend is guaranteed by the absence of a network session, not by a flag. The LLM that drafts executive narrative is treated as an untrusted component: its model choice was settled by an A/B test in which the cheaper model fabricated a number, and every generated figure passes a mechanical grounding check against source data before anything publishes. A run that fails a gate publishes nothing; a run that concludes "blocked" publishes the verdict, because that's a valid result. The companion job that watches CMS publishing authenticates with a read-only delivery credential, so it is structurally incapable of publishing: humans publish, automation notices.</p>
 
   <h2>The through-line</h2>
-  <p>Every number carries its provenance: source, window, pull time, and which pool or basis produced it. A figure without that lineage doesn't get cited in a deliverable, no matter how good it looks. AI visibility is a new channel with immature tooling and enormous appetite for headline numbers, which makes measurement honesty the whole game. The instrument you can defend beats the number you wish were true.</p>
+  <p>Every number carries its provenance: source, window, pull time, and which pool or basis produced it. A figure without that lineage doesn't get cited in a deliverable, no matter how good it looks. AI visibility is a new channel with immature tooling and enormous appetite for headline numbers, which makes measurement honesty the whole game.</p>
+
+  <p class="claim">The instrument you can defend beats the number you wish were true.</p>
 
   <nav class="next-prev" aria-label="More case studies">
     <a href="/case-studies/rag-knowledge-base/">&larr; RAG knowledge base</a>
@@ -92,6 +97,7 @@
 
 <footer class="site">
   <div class="wrap">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
   </div>

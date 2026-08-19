@@ -6,6 +6,9 @@
 <title>Self-Grading Forecast Model Case Study | David Luther</title>
 <meta name="description" content="A traffic forecast model that grades its own predictions daily: a GitHub Actions predict-then-grade loop, traceable cold-start fallbacks, Brier-scored jam probabilities, and ToS-driven scope decisions. Part of davessweater.com, built by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/self-grading-forecast/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {
@@ -73,8 +76,10 @@ br = tm.brier(prob, observed_jammed)</code></pre>
     <li><strong>A whole comparison lane was dropped before it was built.</strong> A planned "grade the big mapping provider too" lane had a workable free quota, but the provider's terms likely barred storing and publishing derived ETAs. The lane was cut proactively rather than risking it.</li>
   </ul>
 
+  <p class="claim">You predict what answer engines will surface, you check what they actually surfaced, and your credibility rests on how honestly the two are reconciled.</p>
+
   <h2>Why this matters for AEO</h2>
-  <p>AEO is a forecasting-and-measurement discipline wearing a marketing hat: you predict what answer engines will surface, you check what they actually surfaced, and your credibility rests on how honestly the two are reconciled. A model that grades itself daily, records the basis of every number, and cuts scope when the data rights aren't there is the same muscle, and this one is on <a href="https://github.com/davidhluther/davessweater">public GitHub</a> where you can read every commit.</p>
+  <p>AEO is a forecasting-and-measurement discipline wearing a marketing hat. A model that grades itself daily, records the basis of every number, and cuts scope when the data rights aren't there is the same muscle, and this one is on <a href="https://github.com/davidhluther/davessweater">public GitHub</a> where you can read every commit.</p>
 
   <nav class="next-prev" aria-label="More case studies">
     <a href="/case-studies/ai-visibility-measurement/">&larr; AI-visibility measurement</a>
@@ -85,6 +90,7 @@ br = tm.brier(prob, observed_jammed)</code></pre>
 
 <footer class="site">
   <div class="wrap">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
   </div>

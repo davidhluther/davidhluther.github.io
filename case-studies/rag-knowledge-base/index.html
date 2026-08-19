@@ -6,6 +6,9 @@
 <title>RAG Knowledge Base Case Study | David Luther</title>
 <meta name="description" content="Architecture of a retrieval-augmented generation system over a 15,302-chunk private corpus: token-windowed chunking, 1,024-dimension Voyage embeddings, Postgres pgvector with HNSW, a PL/pgSQL retrieval function, and citation-first design. Built solo by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/rag-knowledge-base/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {
@@ -91,8 +94,10 @@ $$;</code></pre>
     <li><strong>Offline fallback.</strong> The same cached embeddings power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> when the network path isn't available.</li>
   </ul>
 
+  <p class="claim">This is the machinery answer engines run on: chunking, embedding, retrieval, synthesis, citation.</p>
+
   <h2>Why this matters for AEO</h2>
-  <p>This is the machinery answer engines run on: chunking, embedding, retrieval, synthesis, citation. Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. That intuition is the difference between AEO as checklist and AEO as engineering discipline.</p>
+  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. That intuition is the difference between AEO as checklist and AEO as engineering discipline.</p>
 
   <nav class="next-prev" aria-label="More case studies">
     <a href="/case-studies/hybrid-retrieval/">&larr; Hybrid retrieval engine</a>
@@ -103,6 +108,7 @@ $$;</code></pre>
 
 <footer class="site">
   <div class="wrap">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
   </div>

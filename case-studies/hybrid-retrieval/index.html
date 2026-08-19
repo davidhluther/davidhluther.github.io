@@ -6,6 +6,9 @@
 <title>Hybrid Retrieval Engine Case Study | David Luther</title>
 <meta name="description" content="How a BM25-plus-vector hybrid search engine with reciprocal rank fusion outperformed keyword search: 72% of true top-10 results were missing at least one literal query word, and 83% were unreachable by plain keyword search. Built by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/hybrid-retrieval/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {
@@ -81,11 +84,13 @@
   </ul>
   <p>Four of the ten queries had <em>zero</em> passages containing all their words: naive keyword search returns nothing at all for 40% of realistic queries, while the hybrid engine returns ten ranked passages for every one. A 45-check automated test suite covers the stemmer, bigram formation, the expansion layer, cache behavior, ranking, and a semantic-recall case, running against a synthetic fixture so tests touch no real corpus, network, or keys.</p>
 
+  <p class="claim">When 83% of what a well-tuned retriever surfaces is unreachable by the literal query string, keyword-era assumptions are quantifiably obsolete.</p>
+
   <h2>Documented limits</h2>
   <p>The composed-vector channel is a bag-of-centroids approximation: it degrades when query terms are rare, or so common their centroids collapse toward the corpus mean. The seed channel depends on the lexical channel finding at least one usable seed. A query whose every term is absent from the lexicon retrieves nothing useful. These limits are written into the module's documentation, because a search instrument you can't trust the failure modes of isn't an instrument.</p>
 
   <h2>Why this matters for AEO</h2>
-  <p>Answer engines are retrieval systems. When 83% of what a well-tuned retriever surfaces is unreachable by the literal query string, keyword-era assumptions about how content gets found are quantifiably obsolete. Content strategy for AI visibility has to target concepts and their neighborhoods, not strings. I make that argument to marketing leadership with confidence because I measured it in a system I built end to end.</p>
+  <p>Answer engines are retrieval systems, and content strategy for AI visibility has to target concepts and their neighborhoods, not strings. I make that argument to marketing leadership with confidence because I measured it in a system I built end to end.</p>
 
   <nav class="next-prev" aria-label="More case studies">
     <a href="/#case-studies">&larr; All case studies</a>
@@ -96,6 +101,7 @@
 
 <footer class="site">
   <div class="wrap">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
   </div>
