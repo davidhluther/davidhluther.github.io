@@ -11,7 +11,8 @@ David Luther is a marketing leader and hands-on search engineer with fourteen ye
 The site is organized in two sections. "The AEO work" covers the enterprise program, and "The lab" covers self-built systems with public code.
 
 AEO work:
-- [Home](https://davidhluther.github.io/) has the positioning and both indexes
+- [The AEO work](https://davidhluther.github.io/aeo/) indexes the six enterprise case studies and the shared infrastructure behind them
+- [Home](https://davidhluther.github.io/) has the positioning and links into both sections
 - [Six domains, one operating system](https://davidhluther.github.io/case-studies/six-domains/) covers the chartered multi-agent hierarchy, post-incident rules, a security-vetting pipeline for third-party agent skills, structural confidentiality walls, and the cross-project improvement loop
 - [Evidence engineering](https://davidhluther.github.io/case-studies/evidence-engineering/) covers primary-source verification with measured newsletter drift, a standing baseline with a retraction table, and an A-to-D provenance ladder that travels with every figure
 - [Running AEO as an operating system](https://davidhluther.github.io/case-studies/aeo-operating-system/) covers the freshness-gated artifact pipeline, a 34-skill brand-parameterized analysis engine, evidence governance, cost accounting, executive reporting, and agent orchestration
@@ -20,6 +21,7 @@ AEO work:
 - [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy, with this site as the worked example
 
 The lab:
+- [The lab](https://davidhluther.github.io/lab/) indexes the five self-built case studies and the shared infrastructure behind them
 - [Indexing forensics](https://davidhluther.github.io/case-studies/indexing-forensics/) covers a technical SEO investigation into 34 pages Google never discovered, separating a crawling failure from a discovery failure, the sitemap lastmod root cause, and a causal-claim gate that disqualified the author's own fix as the explanation for the recovery
 - [Scoring rubric design](https://davidhluther.github.io/case-studies/scoring-rubric/) covers a 100-point forecast-accuracy rubric revised four times in public across 529 scored days, the measurement pathologies each revision fixed, source-blindness verification, and idempotent re-scoring of all history
 - [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone

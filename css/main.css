@@ -161,11 +161,18 @@ header.site .brand {
 header.site nav a:not(.brand) {
   color: var(--text-2);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0;
 }
 
-header.site nav a:not(.brand):hover,
-header.site nav a[aria-current="page"]:not(.brand) { color: var(--accent); }
+header.site nav a:not(.brand):hover { color: var(--accent); }
+
+header.site nav a[aria-current="page"]:not(.brand) {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
 
 main { padding: 2.2rem 0 4rem; }
 
