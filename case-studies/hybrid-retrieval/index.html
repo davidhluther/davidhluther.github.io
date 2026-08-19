@@ -49,7 +49,7 @@
   </div>
 
   <h2>Why I built it</h2>
-  <p>My consultancy's knowledge base (the <a href="/case-studies/rag-knowledge-base/">RAG case study</a> covers it) has an online query path that needs the network twice, once to embed the query and once to hit the vector index. I wanted a search that works with the network off, over embeddings already cached locally, and still reaches passages that share no wording with the query.</p>
+  <p>My consultancy's knowledge base (the <a href="/case-studies/rag-knowledge-base/">RAG case study</a> covers it) has an online query path that needs the network twice, once to embed the query and once to hit the vector index. I wanted a search that works with the network off, over the 15,302 embeddings already cached in the offline index, and still reaches passages that share no wording with the query.</p>
   <p>That constraint forced the design. BM25 runs offline trivially. Vector search normally requires embedding the incoming query, and that's an API call. Working around it produced the engine's most distinctive piece.</p>
 
   <h2>The three channels</h2>

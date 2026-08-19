@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A RAG Knowledge Base Over a 15,000-Chunk Private Corpus | David Luther</title>
-<meta name="description" content="Architecture of a retrieval-augmented generation system over a 15,302-chunk private corpus. Token-windowed chunking, 1,024-dimension Voyage embeddings, Postgres pgvector with HNSW, a PL/pgSQL retrieval function, and citation-first design, built solo by David Luther.">
+<title>A RAG Knowledge Base Over a 23,000-Chunk Private Corpus | David Luther</title>
+<meta name="description" content="Architecture of a retrieval-augmented generation system over a 23,615-chunk private corpus. Token-windowed chunking, 1,024-dimension Voyage embeddings, Postgres pgvector with HNSW, a hand-written SQL retrieval function, and citation-first design, built solo by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/rag-knowledge-base/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,8 +14,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "A RAG Knowledge Base Over a 15,000-Chunk Private Corpus",
-  "description": "Case study of a solo-built retrieval-augmented generation system: ingestion from video transcripts and slides, token-windowed chunking, batched embeddings with cost caps, pgvector with HNSW indexing, PL/pgSQL retrieval, and a citation-first schema.",
+  "headline": "A RAG Knowledge Base Over a 23,000-Chunk Private Corpus",
+  "description": "Case study of a solo-built retrieval-augmented generation system: ingestion from video transcripts and slides, token-windowed chunking, batched embeddings with cost caps, pgvector with HNSW indexing, SQL retrieval, and a citation-first schema.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/rag-knowledge-base/",
   "about": ["Retrieval-Augmented Generation", "pgvector", "Vector Databases", "Embeddings", "PostgreSQL"],
@@ -38,14 +38,14 @@
 
 <main class="page">
 <article class="grid">
-  <h1>A RAG Knowledge Base Over a 15,000-Chunk Private Corpus</h1>
+  <h1>A RAG Knowledge Base Over a 23,000-Chunk Private Corpus</h1>
   <p class="lede">Video lectures and slides in, cited answers out. Every stage is idempotent, every cost gets capped before it's spent, and every retrieved passage traces to a source timestamp.</p>
 
   <div class="fact-grid">
-    <div><span class="n">15,302</span><span class="l">unique chunks in the corpus</span></div>
+    <div><span class="n">23,615</span><span class="l">chunks in the live corpus</span></div>
     <div><span class="n">1,024</span><span class="l">embedding dimensions (voyage-3-large)</span></div>
     <div><span class="n">400/60</span><span class="l">token window and overlap</span></div>
-    <div><span class="n">60+</span><span class="l">lectures processed incrementally</span></div>
+    <div><span class="n">847</span><span class="l">lectures processed incrementally</span></div>
   </div>
 
   <h2>What it is</h2>
@@ -84,10 +84,10 @@
   </figure>
 
   <p>Scene detection deserves a word. A slide shown for ten minutes of video becomes one frame after perceptual-hash dedup, and the optional Claude caption for diagrams runs once per unique slide instead of once per frame. Tesseract handles the plain slide text. Cheap, boring, and it cut the captioning bill by an order of magnitude.</p>
-  <p>The manifest is what made the project survivable. Sixty-plus lectures got processed incrementally across working sessions, and a rerun after any failure reprocessed only the lectures whose content hashes changed.</p>
+  <p>The manifest is what made the project survivable. Hundreds of lectures got processed incrementally across working sessions, and a rerun after any failure reprocessed only the lectures whose content hashes changed.</p>
 
   <h2>Retrieval, citation-first</h2>
-  <p>All retrieval flows through a single PL/pgSQL function against an HNSW index. It takes a query embedding, a result count, and a JSONB metadata filter for scoping.</p>
+  <p>All retrieval flows through a single hand-written SQL function (declared <code>language sql stable</code>) against an HNSW index. It takes a query embedding, a result count, and a JSONB metadata filter for scoping.</p>
   <pre><code>create or replace function match_chunks(
   query_embedding vector(1024),
   match_count int default 8,
@@ -116,7 +116,7 @@ $$;</code></pre>
   <p>The pipeline, schema, and docs are structured for a public repo while transcripts, images, and embeddings live outside it, enforced by redundant gitignores and a private database project. Confidentiality as architecture rather than policy. The same cached embeddings also power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> for when the network path isn't there.</p>
 
   <h2>Why this matters for AEO</h2>
-  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 15,302 chunks of someone else's prose.</p>
+  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 23,615 chunks of someone else's prose.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team. Python, Tesseract, and Postgres/pgvector on a managed database's free tier. Embedding is the only real spend, and every run is gated by a hard pre-run cost cap.</p></div>
 

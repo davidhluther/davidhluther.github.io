@@ -4,7 +4,7 @@
 
 ## Who this is about
 
-David Luther is a marketing leader and hands-on search engineer with fourteen years across payments, ERP/billing, and B2B SaaS content strategy. At Corpay (Fortune 1000 corporate payments) he owns AI visibility as a growth channel across ChatGPT, Gemini, Perplexity, Copilot, and Google AI Overviews. Through Pigasus Group, his independent consultancy, he designs and builds retrieval and measurement systems solo, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
+David Luther is a marketing leader and hands-on search engineer with fourteen years across payments, ERP/billing, and B2B SaaS content strategy. At Corpay (S&P 500 corporate payments) he owns AI visibility as a growth channel across ChatGPT, Gemini, Perplexity, Copilot, and Google AI Overviews. Through Pigasus Group, his independent consultancy, he designs and builds retrieval and measurement systems solo, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
 
 ## Pages
 
@@ -21,7 +21,7 @@ AEO work:
 
 The lab:
 - [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
-- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, and citation-first design
+- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 23,615-chunk live corpus (847 lectures), voyage-3-large embeddings, pgvector/HNSW, a hand-written SQL retrieval function, and citation-first design
 - [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/) covers a six-corridor, five-input-family traffic model with a daily grade-before-forecast loop, public at github.com/davidhluther/davessweater
 - [About](https://davidhluther.github.io/about/) has career history, education, and service
 
