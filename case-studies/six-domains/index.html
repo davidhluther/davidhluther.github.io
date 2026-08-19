@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Six Domains, One Operating System | David Luther</title>
+<meta name="description" content="How one person runs an enterprise AEO channel, a consultancy, a nonprofit board role, civic work, a public data product, and personal ops through a persistent multi-agent operating system: chartered orchestrators, self-contained briefs, post-incident constitutional rules, a security-vetting pipeline for third-party agent skills, and an improvement loop that turns one project's lesson into every project's default.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/six-domains/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Six Domains, One Operating System",
+  "description": "Case study of a personal multi-agent operating system: chartered orchestrator hierarchy, assume-zero-knowledge briefs, post-incident rules, structural confidentiality walls, remote fleet operations, a third-party skill security-vetting pipeline, and a cross-project improvement loop.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/six-domains/",
+  "about": ["AI Agents", "Multi-Agent Systems", "AI Governance", "Operations", "Claude Code"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <h1>Six Domains, One Operating System</h1>
+  <p class="lede">An enterprise AEO channel, a consultancy with client engagements, a nonprofit board seat, a portfolio of civic roles, a public data product, and personal operations. One person runs all six through a persistent multi-agent operating system, and this page is how it actually works.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">6</span><span class="l">domains, each with its own chartered orchestrator</span></div>
+    <div><span class="n">7</span><span class="l">third-party agent skills security-vetted before install</span></div>
+    <div><span class="n">4</span><span class="l">parallel audit agents per vetting pass</span></div>
+    <div><span class="n">1</span><span class="l">improvement inbox feeding every domain</span></div>
+  </div>
+
+  <h2>The shape of it</h2>
+  <p>A home orchestrator routes every new topic through a written routing table, and six workstream orchestrators each hold a charter, a session registry, and an open-dispatch ledger. The orchestrators frame work and dispatch it; dedicated agent sessions do it. Handoffs travel as self-contained briefs written into the receiving repository, on the assumption the receiving session knows nothing, and the dispatch payload itself stays deliberately thin, because we measured what fat prompts do to the receiving agent's context window and stopped paying that tax.</p>
+  <p>Status flows the same disciplined way. An orchestrator reads a workstream's ledger and git history rather than interrupting a running session to ask, which sounds like etiquette and is actually throughput.</p>
+
+  <h2>Rules with incident reports attached</h2>
+  <p>The OS's constitution is short, and every clause exists because something specific went wrong. A blanket "just go for it" was once applied as commits across four repositories, overriding an earlier do-not-commit, so per-repo commit confirmation became constitutional: a general go-ahead authorizes exactly the repo under discussion. An orchestrator once dropped a level, ran a deep audit inline, and wrecked its own context, so the charters name that failure mode and prescribe the self-check ("if you find yourself many steps deep, stop, write a brief, dispatch"). A branch-cleanup command once reported a merge that hadn't happened, so ancestry checks are mandated in cleanup briefs. The rules carry their incidents the way a scar carries its story, and that's what keeps a future session from loosening them casually.</p>
+  <p>Cost policy is constitutional too. The top-tier model is held for routing and judgment, dispatched agents run a tier down by default and two tiers down for mechanical work, and exceptions get named. Same ladder, whether the work is enterprise measurement or a weather site.</p>
+
+  <h2>Walls that hold because they're structural</h2>
+  <p>Six domains means six confidentiality postures, and the system enforces them by construction rather than by memory. Employer and personal work never share data resources; methodology crosses that wall only as skill, rubric, and schema ports. Client workspaces keep no remote by design. The personal domain is local-only git that never leaves the machine. And the public data product is exactly that, public, which is its own discipline. An orchestration layer that enforces boundaries is, I'd argue, the thing a company actually needs to see before letting agents loose on its own data.</p>
+  <p>The fleet is also operable from a phone. Orchestrators enable remote attach when they convene, each orchestrator home keeps a private-remote fallback, and a documented remote-control mode has run real multi-day stretches, with actions that need hands at a keyboard parked in ledgers rather than dropped.</p>
+
+  <h2>Third-party capability, vetted like a dependency</h2>
+  <p>Agent skills from the open-source ecosystem are useful and unaudited, which is a bad combination to install blind. So seven third-party skills went through a vetting pipeline before touching the system. Four audit agents reviewed each one in parallel, statically only, treating any instruction-shaped text inside the skill as a finding to report rather than an instruction to follow, and producing tiered verdicts.</p>
+  <p>Then the install got hardened beyond what the audits required. Everything pinned to the audited commit. One skill had granted itself standing shell permissions in its own manifest; that grant was stripped. A browser tool shipped with its sandbox disabled; the sandbox was restored, with an environment-variable escape hatch for the rare case that needs it. Silent first-use downloads became deliberate one-time setup steps. Telemetry and author-triggered self-update paths were disabled. And a manifest travels with the install recording every SHA, patch, and exclusion, under a standing policy that an update is a re-review, not a pull.</p>
+  <p>The pipeline caught one live vulnerability: a prompt-injection path where untrusted page content could flow into a permissions-bypassed subagent and reach code execution. Closed by configuration before first use. The upstream projects are reputable and the issues were configuration-level; the point isn't the findings, it's that a one-person shop can afford a supply-chain review process, because the reviewers are agents too.</p>
+
+  <p class="claim">An update is a re-review, not a pull.</p>
+
+  <h2>The improvement loop</h2>
+  <p>One project's lesson becomes every project's default through a reviewed inbox that any workstream can file into and an orchestrator sweeps on convene. Three examples of the loop closing. A copy linter built for the weather site, after shipped violations kept surviving human review, found 156 findings on its first run and got promoted to a shared engine with pluggable per-framework extraction. A 60-topic content batch that burned roughly a quarter of its research spend on redundant topics became a shared pre-brief screening skill, with its thresholds pinned by tests to the exact batch that motivated it. And a JSX whitespace-swallowing bug found on one site became a styleguide mechanics rule for every project that renders prose through JSX.</p>
+  <p>That's the compounding story. The <a href="/case-studies/aeo-operating-system/">enterprise engine</a> nests inside this system as one workstream among six, and the gates described there, evidence ladders, cost reports, redundancy checks, mostly started life as some other domain's postmortem.</p>
+
+  <h2>Why this matters for a senior AEO role</h2>
+  <p>Every company standing up an AEO program is about to run a fleet of agents against its own brand, data, and publishing pipeline, and most will learn governance by incident. This system is what learning-by-incident looks like after the incidents, written down, with the walls holding across six domains that must never leak into each other. Which parts of it survive contact with an actual org chart is the question I'd want to spend a first quarter answering.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> The whole system is mine, built and run with Claude Code across every domain. Its infrastructure is git repositories, markdown charters, and agent sessions. Infrastructure cost, effectively zero; the spend is model usage, governed by the ladder.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/#aeo">All AEO work</a>
+    <a href="/case-studies/aeo-operating-system/">Next: the enterprise engine</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+  </div>
+</footer>
+</body>
+</html>

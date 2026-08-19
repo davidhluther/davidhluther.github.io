@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running AEO as an Operating System | David Luther</title>
+<meta name="description" content="How a one-person AEO program runs at Fortune 1000 scale: a freshness-gated artifact pipeline, a client-parameterized 34-skill analysis engine, evidence governance with confidence ladders, cost accounting on every run, executive reporting built on capabilities rather than activities, and an enablement hub that removes the single point of failure.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/aeo-operating-system/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Running AEO as an Operating System",
+  "description": "Case study of AEO program operations at enterprise scale: freshness-gated artifact pipelines, parameterized analysis engines, evidence governance, cost accounting, executive strategic framing, and organizational enablement.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/aeo-operating-system/",
+  "about": ["Answer Engine Optimization", "Marketing Operations", "Competitive Intelligence", "Program Management", "AI Agents"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <h1>Running AEO as an Operating System</h1>
+  <p class="lede">The measurement, content, and site-readiness work each have their own case studies. This one is about the layer that makes them a program instead of a pile of projects: how one person runs an enterprise AEO channel with Claude Code as the staff, and how the whole thing was built to outlive its builder.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">34</span><span class="l">analysis skills in the strategy engine, all brand-parameterized</span></div>
+    <div><span class="n">4</span><span class="l">handoff contracts between pipeline layers</span></div>
+    <div><span class="n">4</span><span class="l">rungs on the evidence ladder, hypothesis barred from action</span></div>
+    <div><span class="n">1</span><span class="l">cadence constant that derives every freshness threshold</span></div>
+  </div>
+
+  <h2>The spine: Artifacts, not re-pulls</h2>
+  <p>Recurring analysis programs usually re-pull expensive metered data every cycle, can't be diffed across cycles, and can't trace a number in a leadership deck back to the API response that produced it. The spine of this program is one discipline. Every stage writes a dated, self-describing artifact to a known folder, and downstream stages read artifacts instead of re-pulling.</p>
+  <p>Around that sit exactly four handoff contracts. A shared baseline snapshot gets pulled once per cycle. A freshness gate decides refresh-versus-reuse per analytical lens, where every threshold derives from a single cadence constant times a per-lens decay multiplier, so fast-moving lenses re-run often, structural lenses re-run rarely, and changing the cadence in one place re-derives the whole system. The synthesis layer is read-only and never calls an API. And skills propose register updates that an orchestrator merges at a checkpoint, never directly.</p>
+  <p>The practical consequence is that a "full" audit is usually a partial re-pull. The gate routes only decayed lenses to refresh and hands everything else its existing artifacts. Cost control expressed as architecture, not as discipline. Nothing is ever overwritten, so every cycle stays diffable, and a new contributor can reconstruct the data flow from the directory tree alone.</p>
+
+  <h2>One engine, many brands</h2>
+  <p>The analysis layer is 34 skills, every one parameterized by a brand identifier against a profile registry. A brand's profile file is the single governance source of truth, carrying its markets, report identifiers, per-market data-trust status, competitor sets, cadence configuration, and remapping rules. Onboarding a new brand means registering a profile against a written checklist, not copying code.</p>
+  <p>The alternative was copying the skill files per brand, and I argued against it in writing, because a sibling brand's forked validator had already drifted silently once. An improvement made for one brand benefiting all of them isn't a process commitment here. It falls out of the architecture. The employer/personal boundary is structural too: outside brands never touch employer-paid data resources, and methodology flows outward only as skill, rubric, and schema ports. My consultancy's <a href="/case-studies/ai-visibility-measurement/">battery suite</a> is that portability demonstrated, the same analytical grammar re-derived for a small-N, locale-true context.</p>
+
+  <h2>Evidence governance with teeth</h2>
+  <p>Everything client-facing or executive-facing passes a gate. Findings land on a four-rung confidence ladder, from confirmed through likely and unverified down to hypothesis, and a hypothesis cannot become an action item; it routes to an investigation queue instead. Causal claims face four extra tests covering timing, magnitude, exclusivity, and mechanism. Borrowed statistics get a second, orthogonal axis, an A-through-D tier for the outside study itself, assigned by reading the primary source. A finding marked confirmed that rests on a bottom-tier statistic isn't confirmed, and vendor-funded research measuring the vendor's own category caps at mid-tier regardless of methodology. The full evidence pipeline, drift measurement and retraction tables included, has <a href="/case-studies/evidence-engineering/">its own case study</a>.</p>
+  <p>Learning compounds through a typed feedback register. Mid-cycle discoveries, like a source that turned out unexpectedly rich or two audits that contradict each other, get logged with a type, a confidence, and a routing target, and downstream analyses read the register on their next run. The asymmetry is the design: skills are strictly read-only against it, and writes go through a schema-validated CLI run by the operator, so the shared memory can't be poisoned by an unreviewed agent run.</p>
+
+  <p class="claim">Every number carries its provenance, and a figure without that lineage is not citable in a deliverable.</p>
+
+  <h2>Cost as a required output, not a postmortem</h2>
+  <p>Metered vendor units get treated like money. The balance endpoint gets checked before a large pull, units consumed get recorded in every artifact's metadata, and every run produces a mandatory cost report, calls by endpoint multiplied by documented row costs. An expensive pattern is visible on the run that introduced it rather than at the end of the billing period. One documented lesson records that fanning several briefs out in parallel exhausted the unit ceiling, with the two remedies written down beside it. CI authenticates with metered credentials rather than subscription credentials on purpose, so pipeline spend is attributable and separated from interactive work.</p>
+
+  <h2>The executive layer</h2>
+  <p>Programs die in translation, so the reporting layer got the same engineering as the data layer. The weekly leadership dashboard runs each source independently, computes deltas from stored snapshots rather than recomputation (a source outage can't manufacture a fake change), and renders to three surfaces from one data layer: a sheet for analysts, a live app for stakeholders, and a static file that survives being pasted into a deck. The executive app treats a metric as a record, carrying label, unit, basis, source, and caveats, with nulls rendering as "n/a, see note" and never as zero. While its verified data layer was still being built, it ran on unmistakably fake sample data with a watermark keyed to a flag in the data file, so nothing real-looking could ship early.</p>
+  <p>The strategic framing got engineered too. The program is presented to leadership as capabilities gained rather than activities completed, mapped onto the marketing organization's own stated priorities, with the bridge built from a problem executives already understood: paid demand generation saturating on push, while intent-native discovery compounds on pull. And every time that argument appears in the source material, it carries its own caveat, labeled a strategic argument rather than a causal claim. The evidence discipline applied to my own advocacy, which is where it's hardest.</p>
+
+  <h2>Working through agents, on the record</h2>
+  <p>This engine is one workstream inside a larger personal agent OS (<a href="/case-studies/six-domains/">Six Domains, One Operating System</a> tells that story). Within this workstream, the program runs as chartered orchestrator sessions dispatching work to dedicated agent sessions, one per lane: strategy and intelligence, content production, platform, measurement, and brand onboarding. Handoffs are self-contained briefs written into the receiving repository on the assumption the receiving session knows nothing. Structured like work orders: mission, binding rules in order, verified environment facts marked don't-re-derive, a data contract, and a landing procedure. A model-cost ladder is policy, holding the expensive model for judgment and dispatching mechanical work down-tier. The charter names its own failure mode, an orchestrator that drops a level and wrecks its context doing inline work, because that happened once and got written down.</p>
+  <p>The whole methodology is also written up as a transferable kit: a rebuild-from-scratch guide, an annotated data-flow map, a worked example of a real cycle, and an empty scaffold tree with templated configs. Another team could stand this up without me. That's deliberate, and it's the same instinct behind the internal enablement hub, a plain-language education layer for the wider marketing organization, where every page carries a source reference and a last-verified date, the repo stays canon, and a figure that hasn't passed source vetting doesn't appear at all. The goal, in my own words from the planning doc, was so not everything is held in my head.</p>
+
+  <h2>What a senior AEO role gets from this</h2>
+  <p>Channel ownership that survives an audit. The measurement produces defensible numbers, the content engine produces citable pages, and this layer makes both of those repeatable, transferable, cost-accounted, and legible to a CEO. One person ran all of it, with Claude Code as the engineering staff, which I'd argue is the actual shape of senior AEO work now. The open question I carry into any bigger org is which of these gates hold at team scale and which need to become someone's job.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Built at Corpay by me, hands on keyboard, with Claude Code as the staff. Python, GitHub Actions, and vendor APIs metered behind hard gates. The specific performance numbers live in my resume; every mechanism above is described exactly as it runs.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/six-domains/">Six Domains, One Operating System</a>
+    <a href="/case-studies/ai-visibility-measurement/">Next: AI-visibility measurement</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+  </div>
+</footer>
+</body>
+</html>

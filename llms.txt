@@ -8,13 +8,21 @@ David Luther is a marketing leader and hands-on search engineer with fourteen ye
 
 ## Pages
 
-- [Home](https://davidhluther.github.io/) has the positioning, the case-study index, and a systems index of fourteen production systems
-- [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
-- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, and citation-first design
+The site is organized in two sections. "The AEO work" covers the enterprise program, and "The lab" covers self-built systems with public code.
+
+AEO work:
+- [Home](https://davidhluther.github.io/) has the positioning and both indexes
+- [Six domains, one operating system](https://davidhluther.github.io/case-studies/six-domains/) covers the chartered multi-agent hierarchy, post-incident rules, a security-vetting pipeline for third-party agent skills, structural confidentiality walls, and the cross-project improvement loop
+- [Evidence engineering](https://davidhluther.github.io/case-studies/evidence-engineering/) covers primary-source verification with measured newsletter drift, a standing baseline with a retraction table, and an A-to-D provenance ladder that travels with every figure
+- [Running AEO as an operating system](https://davidhluther.github.io/case-studies/aeo-operating-system/) covers the freshness-gated artifact pipeline, a 34-skill brand-parameterized analysis engine, evidence governance, cost accounting, executive reporting, and agent orchestration
 - [AI-visibility measurement](https://davidhluther.github.io/case-studies/ai-visibility-measurement/) covers a frozen 28-prompt battery across four AI assistants, prompt-pool noise correction, evidence grading, and AI-traffic analytics forensics
 - [Content engine](https://davidhluther.github.io/case-studies/content-engine/) covers a nine-source buyer-language taxonomy, consolidation-first roadmapping, a redundancy gate, TF-IDF internal linking, and machine-enforced writing quality
-- [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/) covers a daily predict-then-grade loop in GitHub Actions with Brier scoring, public at github.com/davidhluther/davessweater
 - [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy, with this site as the worked example
+
+The lab:
+- [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
+- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, and citation-first design
+- [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/) covers a six-corridor, five-input-family traffic model with a daily grade-before-forecast loop, public at github.com/davidhluther/davessweater
 - [About](https://davidhluther.github.io/about/) has career history, education, and service
 
 ## Intended audience

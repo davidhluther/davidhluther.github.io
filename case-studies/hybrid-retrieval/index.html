@@ -9,7 +9,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=3">
+<link rel="stylesheet" href="/css/main.css?v=4">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,17 +28,16 @@
   <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
-      <a href="/#case-studies">Case studies</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
       <a href="/about/">About</a>
       <a href="https://github.com/davidhluther">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a>
     </nav>
   </div>
 </header>
 
 <main class="page">
 <article class="grid">
-  <p class="kicker">Case study &middot; Pigasus Group</p>
   <h1>A Hybrid Retrieval Engine That Keyword Search Couldn't Match</h1>
   <p class="lede">Three retrieval channels and one rank fusion, built to answer a question every search marketer should be asking. How much does semantic retrieval actually find that keywords miss? I measured it, and the number surprised me.</p>
 
@@ -68,11 +67,11 @@
         <path d="M510 143 H580"/>
       </g>
       <g font-size="12" fill="var(--diagram-ink)">
-        <text x="24" y="44" font-weight="500">L &middot; Lexical</text>
+        <text x="24" y="44" font-weight="500">L &#124; Lexical</text>
         <text x="24" y="62" fill="var(--text-2)" font-size="11">BM25 + stems + bigrams + synonyms</text>
-        <text x="24" y="136" font-weight="500">C &middot; Composed vector</text>
+        <text x="24" y="136" font-weight="500">C &#124; Composed vector</text>
         <text x="24" y="154" fill="var(--text-2)" font-size="11">IDF-weighted term centroids</text>
-        <text x="24" y="228" font-weight="500">S &middot; Seed neighborhood</text>
+        <text x="24" y="228" font-weight="500">S &#124; Seed neighborhood</text>
         <text x="24" y="246" fill="var(--text-2)" font-size="11">neighbors of top lexical hits</text>
         <text x="344" y="124" font-weight="500">RRF fusion</text>
         <text x="344" y="142" fill="var(--text-2)" font-size="11">k = 60</text>
@@ -131,8 +130,10 @@
   <h2>Why this matters for AEO</h2>
   <p>Answer engines are retrieval systems. I make the concepts-over-strings argument to marketing leadership with some confidence, because I measured it in an engine I built end to end, and the measurement is reproducible from the eval file.</p>
 
+  <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team. Python and NumPy, no search infrastructure, no vendor index. It runs on a laptop, and reproducing the eval costs nothing.</p></div>
+
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/#case-studies">All case studies</a>
+    <a href="/#lab">All lab projects</a>
     <a href="/case-studies/rag-knowledge-base/">Next: the RAG knowledge base</a>
   </nav>
 </article>
@@ -141,8 +142,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
-    <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
   </div>
 </footer>
 </body>

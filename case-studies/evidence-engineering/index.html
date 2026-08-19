@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence Engineering for a Field That Runs on Hype | David Luther</title>
+<meta name="description" content="A working system for deciding what to believe in a fast-moving field: primary-source verification with measured newsletter drift, a standing baseline file with a retraction table and monthly re-grading, an A-to-D provenance ladder that travels with every figure, and a semantic pass that catches paraphrased statistics.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/evidence-engineering/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Evidence Engineering for a Field That Runs on Hype",
+  "description": "Case study of an evidence pipeline for AEO: measured drift between newsletters and their primary sources, a standing baseline with a retraction table, an A-to-D provenance ladder that travels with figures into deliverables, and semantic screening of quantity language.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/evidence-engineering/",
+  "about": ["Evidence", "Fact-Checking", "Answer Engine Optimization", "Research Methodology", "Information Quality"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <h1>Evidence Engineering for a Field That Runs on Hype</h1>
+  <p class="lede">AEO is the discipline of what machines believe. This is my working system for deciding what I believe, and it exists because the field's information supply chain is measurably unreliable.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">4 of 7</span><span class="l">newsletter items drifted from their primary sources, first instrumented run</span></div>
+    <div><span class="n">A-D</span><span class="l">provenance tier on every borrowed figure</span></div>
+    <div><span class="n">1</span><span class="l">standing baseline file, with a retraction table</span></div>
+    <div><span class="n">4</span><span class="l">widely circulated figures killed in one CEO-deck vetting pass</span></div>
+  </div>
+
+  <h2>Newsletters are a discovery layer, not a source</h2>
+  <p>The weekly industry intake treats every newsletter and roundup as a pointer, never as a source. Every substantive item's primary source gets read before the item is allowed to mean anything. That rule earned its keep immediately. On the first instrumented run, four of seven items had drifted from what their primary sources actually said, twice badly enough that acting on the newsletter's version would have produced a wrong decision. The drift itself gets quoted in the output, summary next to source, because "this aggregator paraphrases loosely" is a finding worth accumulating about a publication.</p>
+
+  <h2>A baseline, not a pile of notes</h2>
+  <p>Platform-usage and buyer-behavior figures, the numbers everyone in this field repeats at each other, live in one edit-in-place baseline file rather than in scattered notes. It refreshes monthly, and the refresh re-grades: a mid-tier figure becomes bottom-tier the day its primary source goes offline, because a figure whose primary is gone isn't a fact with history, it's a rumor with a citation. Killed figures move to a retraction table instead of being deleted, so a zombie statistic can't creep back in six weeks later looking new.</p>
+  <p>New intake gets checked against the baseline in the same run. A conflict gets called out with a which-wins ruling rather than left for two contradictory numbers to coexist, and a supersession gets baked immediately. The baseline is the thing I trust; everything else is candidate evidence auditioning for it.</p>
+
+  <h2>The ladder, and why it travels</h2>
+  <p>Every borrowed figure carries an A-through-D provenance tier, assigned by reading the primary source rather than by inference. A named research firm quoted inside an aggregator doesn't inherit the firm's tier; follow the link or downgrade. Research published by a vendor selling the thing it measured caps at mid-tier regardless of how clean the methodology looks. And the tier travels with the figure into deliverables, so a number in an executive summary arrives wearing its own reliability grade, and a reader can weight it without trusting my synthesis.</p>
+  <p>The vetting pass for one CEO-facing deck killed four widely circulated figures, including a sample size that existed only on a vendor's blog post, cited everywhere as if it were a study. Nothing about that deck was weaker for the deletions. It was stronger, because every number that survived could be defended to the most skeptical person in the room.</p>
+
+  <p class="claim">A figure whose primary source is gone isn't a fact with history, it's a rumor with a citation.</p>
+
+  <h2>The semantic pass</h2>
+  <p>Numeric screens miss the most common way a statistic escapes scrutiny, which is paraphrase. "Nearly half" carries the same claim as "47%" and sails past any check that greps for digits. So the screen is semantic: read the sentence, extract the claim, match on the claim, and audit quantity language along with numerals. This produces false positives by design, and clearing them is part of the job rather than a reason to narrow the pattern. The same semantic discipline runs inside the <a href="/case-studies/aeo-operating-system/">enterprise engine's</a> evidence gate, where it screens findings before they can become action items.</p>
+
+  <h2>The public twin</h2>
+  <p>The private half of this system decides what I believe; the public half proves the posture isn't performance. My <a href="/case-studies/self-grading-forecast/">forecast model</a> publishes falsifiable predictions and grades them daily in the open, which is the same epistemics running in the opposite direction: not "check what you consume" but "make what you produce checkable." A field full of confident numbers needs both.</p>
+
+  <h2>Why this matters for AEO</h2>
+  <p>Answer engines synthesize from whatever the information supply chain hands them, drift and zombie statistics included, and an AEO program's job includes deciding which industry claims to build strategy on. I don't know a way to do that responsibly without something like this pipeline. I also don't claim mine is finished. The drift measurement has one instrumented run behind it, and whether the rate holds across months is exactly the kind of claim the system says I shouldn't make yet.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Built and run by me with Claude Code: a weekly intake skill, a baseline file with its retraction table, and grading rules enforced at synthesis time. The costliest component is reading primary sources, which is the point.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/ai-visibility-measurement/">AI-visibility measurement</a>
+    <a href="/case-studies/content-engine/">Next: the content engine</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+  </div>
+</footer>
+</body>
+</html>

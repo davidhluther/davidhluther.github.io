@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Traffic Forecast Model That Grades Its Own Homework | David Luther</title>
-<meta name="description" content="A traffic forecast model that grades its own predictions daily: a GitHub Actions predict-then-grade loop, traceable cold-start fallbacks, Brier-scored jam probabilities, and terms-of-service-driven scope decisions. Part of davessweater.com, built by David Luther.">
+<meta name="description" content="A traffic forecast model that grades its own predictions daily: six sensor-verified corridors, four capture windows, event and demand multipliers from five data families, Brier-scored jam probabilities, and a GitHub Actions loop that grades before it forecasts. Built solo with Claude Code for $0 a month.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/self-grading-forecast/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=3">
+<link rel="stylesheet" href="/css/main.css?v=4">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "A Traffic Forecast Model That Grades Its Own Homework",
-  "description": "Case study of a self-grading forecast system: daily predict-then-grade loop in GitHub Actions, congestion-ratio model with declared priors, Brier scoring, a public consensus-forecast API and widget, and compliance-driven data-scope decisions.",
+  "description": "Case study of a self-grading forecast system: daily predict-then-grade loop in GitHub Actions, congestion-ratio model with declared priors over five input families, Brier scoring, provenance-verified sensors and events, and compliance-driven data-scope decisions.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/self-grading-forecast/",
   "about": ["Forecasting", "GitHub Actions", "Model Evaluation", "Brier Score", "Data Engineering"],
@@ -28,82 +28,105 @@
   <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
-      <a href="/#case-studies">Case studies</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
       <a href="/about/">About</a>
       <a href="https://github.com/davidhluther">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a>
     </nav>
   </div>
 </header>
 
 <main class="page">
 <article class="grid">
-  <p class="kicker">Case study &middot; <a href="https://github.com/davidhluther/davessweater">davessweater (public repo)</a></p>
   <h1>A Traffic Forecast Model That Grades Its Own Homework</h1>
-  <p class="lede">Most forecasts are never checked against what happened. This one checks itself every morning before it's allowed to make a new prediction, and the repo is public, so you can watch it learn.</p>
+  <p class="lede">Most forecasts are never checked against what happened. This one checks itself every morning before it's allowed to make a new prediction, and the <a href="https://github.com/davidhluther/davessweater">repo is public</a>, so you can watch it learn. One person built it, with Claude Code, and it runs for nothing.</p>
 
   <div class="fact-grid">
-    <div><span class="n">4&times;</span><span class="l">daily actuals captures via GitHub Actions</span></div>
-    <div><span class="n">6</span><span class="l">road corridors modeled</span></div>
-    <div><span class="n">2</span><span class="l">scores per prediction, ratio error and Brier</span></div>
-    <div><span class="n">100%</span><span class="l">of predictions graded against actuals</span></div>
+    <div><span class="n">6</span><span class="l">corridors, every sensor pin hand-verified</span></div>
+    <div><span class="n">4</span><span class="l">capture windows daily (8a, 12p, 5p, 7p ET)</span></div>
+    <div><span class="n">5</span><span class="l">input families feeding the multipliers</span></div>
+    <div><span class="n">$0</span><span class="l">monthly cost in API and compute</span></div>
   </div>
 
   <h2>The site around it</h2>
-  <p><a href="https://davessweater.com">Dave's Sweater</a> is my satirical local-weather site for Boone, NC, and the public face of an idea I keep applying elsewhere. Forecasts should be accountable. The site's weather tracker scores real forecast providers against verified actuals on a 100-point rubric, month after month, in public, with the rubric's recalibrations dated in the code comments. Its free consensus forecast ships through a public API and an embeddable widget that loads no analytics, licensed CC BY 4.0. The traffic model extends the same accountability discipline to a harder domain.</p>
+  <p><a href="https://davessweater.com">Dave's Sweater</a> is my satirical local-weather site for Boone, NC, and the public face of an idea I keep applying elsewhere. Forecasts should be accountable. The site's Right Ray / Wrong Ray tracker scores real forecast providers against verified actuals on a 100-point rubric, month after month, in public, and the rubric's recalibrations carry dates and reasons in the code comments. Its consensus forecast ships through a public API and an embeddable widget that loads no analytics, licensed CC BY 4.0. The traffic model extends the accountability discipline to a domain with no ground-truth provider to borrow.</p>
+
+  <h2>What the model actually eats</h2>
+  <p>"Three factors and a clamp" describes the formula, and it undersells the system. Each factor is fed by its own data family, each with its own capture pipeline, freshness rules, and documented provenance.</p>
+
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Input family</th><th>Source and mechanics</th><th>Feeds</th></tr></thead>
+    <tbody>
+      <tr><td>Traffic actuals</td><td>TomTom flow-segment API, sampled at six hand-verified sensor pins, four times daily. 24 of the 2,500 free daily calls.</td><td>Baselines and grading</td></tr>
+      <tr><td>Event registry</td><td>Curated local events, each entry carrying a provenance block with source URL and verification date. Unverifiable details get flagged, never guessed.</td><td>Event multiplier</td></tr>
+      <tr><td>Athletics feed</td><td>App State schedules via live ICS/RSS, because a home football game moves this town's roads like nothing else.</td><td>Event multiplier</td></tr>
+      <tr><td>Demand index</td><td>The site's own Busy-ness Index, a 14-day tourism-demand score built from hotel pricing share, rental fill rate, a signed events score, and a weekend bump.</td><td>Tourist-corridor nudges</td></tr>
+      <tr><td>Weather forecast</td><td>The site's 5-day forecast layer, contributing a heavy-precipitation and snow factor.</td><td>Weather multiplier</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The six corridors are the roads that actually govern life here. The US-321 bypass and King Street through downtown, NC-105 at the US-321 split and south at Foscoe, Valley Boulevard in Blowing Rock, and US-421 out at Deep Gap. Every sensor pin was reverse-geocoded and road-class-verified before use, under a standing rule the repo calls "no eyeballed pins." The rule exists because the first-guess pins all landed on side streets. Right math, wrong input, and the model would have learned the traffic patterns of a parking lot.</p>
+  <p>One more capture detail I'm fond of, because it's the kind that silently ruins models. The flow API defaults to km/h. The capture requests mph explicitly, a mismatch caught during live verification rather than after a season of quietly absurd baselines.</p>
 
   <h2>The model, kept deliberately legible</h2>
-  <p>The model predicts a per-corridor congestion ratio (current speed over free-flow speed) at four fixed daily windows across six Boone-area corridors. Version zero is three factors and a clamp.</p>
+  <p>The model predicts a per-corridor congestion ratio (current speed over free-flow speed) at the four daily windows.</p>
   <pre><code>def predict_ratio(baseline: float, event_mult: float, weather_mult: float) -&gt; float:
     return clamp_ratio(baseline * event_mult * weather_mult)</code></pre>
-  <p>The baseline is the mean observed ratio for that corridor, weekday class, and time window. Event multipliers are declared v0 priors rather than tuned constants. College football home games, academic move-in weekends, and town events each carry a first-guess magnitude that the grading loop exists to correct. Weather contributes a single heavy-precipitation factor, and a logistic function turns the predicted ratio into a jam probability.</p>
+  <p>The baseline is the mean observed ratio for that corridor, weekday class, and window, where weekday classes separate ordinary weekdays from Fridays, Saturdays, and Sundays because a mountain tourist town has four different kinds of day. Event multipliers are declared v0 priors rather than tuned constants. A home football game costs primary corridors nearly half their flow (0.55) with spillover elsewhere (0.80), move-in and commencement weekends carry 0.65, other major town events 0.75, and the Busy-ness Index nudges tourist corridors when the town reads slammed. Outflow events like fall break run above 1.0, because an emptying town drives faster. Weather contributes 0.85 under heavy precipitation or snow. Every one of those magnitudes is a first guess the grading loop exists to correct, and they're labeled that way in the source.</p>
   <p>Cold starts fall through an explicit chain, and every prediction records which level produced its baseline, so any number traces to its basis.</p>
   <pre><code>def baseline_lookup(baselines, corridor, wclass, window):
     """(value, basis) via the fallback chain:
       cell -&gt; corridor_window -&gt; corridor -&gt; 1.0 (default)."""</code></pre>
+  <p>A logistic function turns each predicted ratio into a jam probability, which is what makes honest scoring possible. A probability can be wrong by a measurable amount; a vibe can't.</p>
 
   <h2>The predict-then-grade loop</h2>
 
   <figure class="diagram">
-    <svg viewBox="0 0 760 170" role="img" aria-label="Daily loop: four actuals captures, then on the first run of the day, grade yesterday before forecasting today and tomorrow">
+    <svg viewBox="0 0 760 150" role="img" aria-label="Daily loop: capture actuals four times daily, grade yesterday, then forecast today and tomorrow">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <rect x="6" y="24" width="150" height="56"/>
-        <rect x="232" y="24" width="160" height="56" stroke="var(--accent)" stroke-width="1.5"/>
-        <rect x="468" y="24" width="160" height="56"/>
-        <path d="M156 52 H232 M392 52 H468"/>
-        <path d="M548 80 V128 H86 V80" stroke-dasharray="4 4"/>
+        <rect x="6" y="30" width="180" height="56"/>
+        <rect x="262" y="30" width="180" height="56" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="518" y="30" width="236" height="56"/>
+        <path d="M186 58 H262 M442 58 H518"/>
+        <path d="M352 86 V122 H96 V86" stroke-dasharray="4 4"/>
       </g>
-      <g font-size="12" fill="var(--diagram-ink)">
-        <text x="20" y="46" font-weight="500">capture actuals</text>
-        <text x="20" y="64" fill="var(--text-2)" font-size="10.5">TomTom flow, 4x daily</text>
-        <text x="246" y="46" font-weight="500">grade yesterday</text>
-        <text x="246" y="64" fill="var(--text-2)" font-size="10.5">ratio error + Brier, idempotent</text>
-        <text x="482" y="46" font-weight="500">forecast today + tomorrow</text>
-        <text x="482" y="64" fill="var(--text-2)" font-size="10.5">only after grading</text>
+      <g font-size="13" fill="var(--diagram-ink)">
+        <text x="20" y="54" font-weight="500">capture actuals</text>
+        <text x="20" y="72" fill="var(--text-2)" font-size="11">4x daily</text>
+        <text x="276" y="54" font-weight="500">grade yesterday</text>
+        <text x="276" y="72" fill="var(--text-2)" font-size="11">ratio error + Brier</text>
+        <text x="532" y="54" font-weight="500">forecast today + tomorrow</text>
+        <text x="532" y="72" fill="var(--text-2)" font-size="11">only after grading</text>
       </g>
-      <text x="240" y="122" font-size="10.5" fill="var(--text-2)">scores fold into a running file: overall, per corridor, event vs. ordinary, weekday class</text>
-      <text x="6" y="158" font-size="10.5" fill="var(--text-2)">Gate is state-based ("does today's forecast exist?"), not wall-clock. GitHub's cron drift broke the wall-clock version silently.</text>
+      <text x="120" y="140" font-size="11" fill="var(--text-2)">graded scores feed the next day's baselines</text>
     </svg>
-    <figcaption>Grading always runs before the new forecast is written. The order is the accountability.</figcaption>
+    <figcaption>Grading always runs before the new forecast is written; the order is the accountability. Scores fold idempotently into a running file, broken out overall, per corridor, event day versus ordinary, and by weekday class. The daily gate is state-based ("does today's forecast file exist yet?") rather than wall-clock, a fix from a real bug: GitHub's cron drift slid past the old wall-clock window and the loop stopped forecasting silently, every signal still green.</figcaption>
   </figure>
 
   <p>Grading computes an absolute ratio error and a Brier score on the jam probability.</p>
   <pre><code>observed_jammed = obs_ratio &lt; tm.JAM_THRESHOLD
 ae = tm.abs_error(pred_ratio, obs_ratio)
 br = tm.brier(prob, observed_jammed)</code></pre>
-  <p>The silent-skip bug deserves its confession. An earlier version gated the daily forecast on a wall-clock hour, GitHub's cron delays drifted past the window, and the loop quietly stopped forecasting with every signal still green. The fix gates on state instead, asking whether today's forecast file exists yet. The bug and the fix are both in the public history, which is where I think they belong.</p>
+  <p>The model's first graded call, for the record, was King Street's 5 p.m. window, at a jam probability of 0.79. It has been graded on every prediction since, with error broken out by corridor and condition so I can see exactly which prior is most wrong. Whether the football multiplier survives its first season intact, I genuinely don't know yet. That's the fun of it.</p>
+
+  <h2>The machinery around the loop</h2>
+  <p>Six GitHub Actions workflows run the whole site's data layer, and their division of labor is the engineering. The daily weather capture chains into the comparison run via <code>workflow_run</code>. The traffic capture fires on four crons at the demand windows. A freshness sentinel runs after the captures specifically to catch a silently skipped cron, because the silent-skip bug above taught the repo that green isn't the same as done. A screenshot workflow accepts an iPhone-only data source through <code>repository_dispatch</code>, fired by an iOS Shortcut posting to the GitHub API, which is the no-server way to get Apple Weather into a static pipeline. And a function-budget gate runs a fast static model plus a ground-truth build on every PR that touches routes, born from a ten-day outage where deploys failed <em>after</em> "Build Completed" and production silently served a stale build. Python throughout is standard-library only, one deliberate exception aside.</p>
 
   <h2>The scope decisions that mattered</h2>
-  <p>Two of this project's best engineering decisions were about what <em>not</em> to ship. An audit of the traffic-data provider's terms found that committing flow snapshots and derived layers to a public, permissively licensed repo exceeded what the license allowed, so the entire dataset moved to a private companion repo mounted at CI time via a deploy key. The model keeps running and self-grading daily. The model code stayed public. The data didn't, and a planned "grade the big mapping provider too" comparison lane got cut before it was built for the same class of reason, despite a workable free quota.</p>
+  <p>Two of this project's best engineering decisions were about what <em>not</em> to ship. An audit of the traffic provider's terms found that committing flow snapshots and derived layers to a public, permissively licensed repo exceeded what the license allowed, so the entire dataset moved to a private companion repo mounted at CI time via a deploy key. The model keeps running and self-grading daily. The model code stayed public; the data didn't. A planned "grade the big mapping provider too" comparison lane was cut before it was built for the same class of reason, despite a workable free quota.</p>
 
   <p class="claim">You predict what answer engines will surface, you check what they actually surfaced, and your credibility rests on how honestly the two are reconciled.</p>
 
   <h2>Why this matters for AEO</h2>
-  <p>AEO is a forecasting-and-measurement discipline wearing a marketing hat, and this repo is the same muscle with the weights visible. A model that grades itself daily, records the basis of every number, and cuts scope when the data rights aren't there is on <a href="https://github.com/davidhluther/davessweater">public GitHub</a>, every commit of it. Whether the v0 priors survive their first football season intact, I genuinely don't know yet.</p>
+  <p>AEO is a forecasting-and-measurement discipline wearing a marketing hat, and this repo is the same muscle with the weights visible. Declared priors, graded daily, every number traceable to its basis, scope cut when the data rights aren't there. If you want to audit how I actually work, <a href="https://github.com/davidhluther/davessweater">every commit is public</a>.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team, in evenings. GitHub Actions free tier, a Vercel hobby plan, 24 of TomTom's 2,500 free daily calls, standard-library Python. Monthly cost in API and compute: $0.</p></div>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/case-studies/content-engine/">The content engine</a>
-    <a href="/case-studies/aeo-site-playbook/">Next: the AEO playbook</a>
+    <a href="/case-studies/rag-knowledge-base/">RAG knowledge base</a>
+    <a href="/#lab">All lab projects</a>
   </nav>
 </article>
 </main>
@@ -111,8 +134,7 @@ br = tm.brier(prob, observed_jammed)</code></pre>
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
-    <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
   </div>
 </footer>
 </body>

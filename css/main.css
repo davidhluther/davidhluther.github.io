@@ -1,8 +1,8 @@
-/* davidhluther.github.io: the Instrument system, v3.
+/* davidhluther.github.io: the Instrument system, v4.
    Swiss grid discipline on an engineering-document voice. IBM Plex
    throughout (self-hosted latin subsets), one drafting-ink accent,
-   structure from a visible 12-column grid, hairline rules, and tabular
-   figures. Content-bearing SVG diagrams, no decoration. Zero JavaScript. */
+   structure from a 12-column grid, hairline rules, and tabular figures.
+   Mono is reserved for numerals and code. Zero JavaScript. */
 
 @font-face {
   font-family: "IBM Plex Sans";
@@ -63,7 +63,6 @@
   --type-display: clamp(2.1rem, 5.4vw, 4.1rem);
   --type-title: clamp(1.7rem, 3.6vw, 2.5rem);
   --type-section: clamp(1.28rem, 2vw, 1.55rem);
-  --type-label: 0.72rem;
   color-scheme: light dark;
 }
 
@@ -94,10 +93,7 @@ body {
   line-height: 1.65;
 }
 
-/* ---- the grid ----
-   One container, twelve columns above 900px. Copy sits on an 8-column
-   measure; figures, asides, and plates take the columns prose leaves
-   free. Below 900px everything stacks full-width. */
+/* ---- the grid ---- */
 
 .page {
   max-width: 74rem;
@@ -114,35 +110,30 @@ body {
 @media (min-width: 900px) {
   .grid { grid-template-columns: repeat(12, 1fr); }
   .col-copy { grid-column: 1 / 9; }
-  .col-copy-offset { grid-column: 3 / 11; }
-  .col-side { grid-column: 9 / 13; }
   .col-full { grid-column: 1 / 13; }
   .col-display { grid-column: 1 / 12; }
 }
 
 .measure { max-width: 62ch; }
 
-/* Article children place themselves: prose holds an 8-column measure,
-   display type and plates run wider, the claim sits offset. Below 900px
-   the grid is one column and these are inert. */
 @media (min-width: 900px) {
   article.grid > * { grid-column: 1 / 9; }
   article.grid > h1 { grid-column: 1 / 12; }
   article.grid > .lede { grid-column: 1 / 10; }
-  article.grid > .fact-grid, article.grid > .next-prev { grid-column: 1 / 13; }
+  article.grid > .fact-grid, article.grid > .next-prev,
+  article.grid > .build-notes, article.grid > table,
+  article.grid > .table-scroll { grid-column: 1 / 13; }
   article.grid > figure.diagram { grid-column: 1 / 12; }
   article.grid > .claim { grid-column: 2 / 12; }
 }
 
-/* ---- the label voice ---- */
+/* ---- labels: quiet sans, normal case ---- */
 
-.kicker, .tag, .l, header.site nav a:not(.brand), .colophon-label,
-.sys-list dt span, .diagram-label {
-  font-family: var(--mono);
-  font-size: var(--type-label);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+.tag, .l, .colophon-label, .sys-list dt span, .study-list .fig small {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-2);
 }
 
 /* ---- chrome ---- */
@@ -159,17 +150,19 @@ header.site nav {
 }
 
 header.site .brand {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
   text-decoration: none;
   color: var(--text);
   margin-right: auto;
 }
 
-header.site nav a:not(.brand) { color: var(--text-2); text-decoration: none; }
+header.site nav a:not(.brand) {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
 
 header.site nav a:not(.brand):hover,
 header.site nav a[aria-current="page"]:not(.brand) { color: var(--accent); }
@@ -190,8 +183,6 @@ footer.site { padding: 0 0 3rem; color: var(--text-2); font-size: 0.92rem; }
   flex: 1;
   border-top: 1px solid var(--rule);
 }
-
-.colophon-label { color: var(--text-2); }
 
 footer.site a { color: var(--text-2); }
 footer.site a:hover { color: var(--accent); }
@@ -238,9 +229,6 @@ a:hover { color: var(--accent-2); text-decoration-color: currentColor; }
   color: var(--text-2);
 }
 
-.kicker { color: var(--text-2); margin: 0 0 0.9rem; }
-.kicker a { color: inherit; }
-
 /* ---- masthead ---- */
 
 .masthead { padding-top: 1rem; }
@@ -270,8 +258,6 @@ a:hover { color: var(--accent-2); text-decoration-color: currentColor; }
   color: var(--text);
 }
 
-.masthead-foot .l { color: var(--text-2); }
-
 a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--accent); }
 
 /* ---- ruled study index ---- */
@@ -298,7 +284,7 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   .study-list p { grid-column: 2; }
 }
 
-.study-list .tag { color: var(--text-2); padding-top: 0.42rem; }
+.study-list .tag { padding-top: 0.42rem; }
 
 .study-list h3 {
   margin: 0;
@@ -324,17 +310,9 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
 
 @media (min-width: 900px) { .study-list .fig { text-align: right; } }
 
-.study-list .fig small {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-2);
-}
+.study-list .fig small { display: block; }
 
-/* ---- systems index (dense, two columns) ---- */
+/* ---- systems index ---- */
 
 .sys-list {
   margin: 0.5rem 0 0;
@@ -353,11 +331,7 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
 
 .sys-list dt { font-weight: 600; }
 
-.sys-list dt span {
-  color: var(--text-2);
-  font-weight: 500;
-  margin-left: 0.6rem;
-}
+.sys-list dt span { font-weight: 400; margin-left: 0.6rem; }
 
 .sys-list dd { margin: 0.15rem 0 0; color: var(--text-2); font-size: 0.95rem; }
 
@@ -383,12 +357,9 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
 }
 
 .fact-grid .l {
-  color: var(--text-2);
-  letter-spacing: 0.1em;
-  font-size: 0.67rem;
   display: block;
   margin-top: 0.2rem;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 /* ---- the claim ---- */
@@ -406,7 +377,7 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   margin: 2.75rem 0;
 }
 
-/* ---- diagrams: content-bearing plates ---- */
+/* ---- diagrams ---- */
 
 figure.diagram {
   margin: 2.2rem 0;
@@ -428,8 +399,6 @@ figure.diagram figcaption {
   margin-top: 1rem;
   max-width: 58ch;
 }
-
-.diagram-label { fill: var(--text-2); }
 
 /* ---- article furniture ---- */
 
@@ -463,30 +432,46 @@ blockquote {
   color: var(--text-2);
 }
 
+.table-scroll { overflow-x: auto; }
+
 table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   margin: 1.5rem 0;
   font-variant-numeric: tabular-nums;
 }
 
 th, td {
   text-align: left;
-  padding: 0.55rem 0.9rem 0.55rem 0;
+  padding: 0.55rem 1.1rem 0.55rem 0;
   border-bottom: 1px solid var(--rule);
   vertical-align: top;
 }
 
 th { font-weight: 600; }
 
+/* ---- build notes ---- */
+
+.build-notes {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 1.1rem;
+  margin-top: 2.75rem;
+  color: var(--text-2);
+  font-size: 0.93rem;
+}
+
+.build-notes p { margin: 0 0 0.35rem; }
+
+.build-notes strong { color: var(--text); font-weight: 600; }
+
 .next-prev {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 3.25rem;
+  margin-top: 2rem;
   padding-top: 1.4rem;
-  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid var(--rule);
   font-size: 0.95rem;
 }
 
