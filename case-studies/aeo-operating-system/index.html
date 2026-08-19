@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,38 +89,38 @@
   <p>The practical consequence is that a "full" audit is usually a partial re-pull. The gate routes only decayed lenses to refresh and hands everything else its existing artifacts. Cost control expressed as architecture, not as discipline. Nothing is ever overwritten, so every cycle stays diffable, and a new contributor can reconstruct the data flow from the directory tree alone.</p>
 
   <figure class="diagram">
-    <svg viewBox="0 0 720 150" role="img" aria-label="Four pipeline roles left to right, collector, gatekeeper, analyst and synthesizer, each pair joined by a dated artifact, ending in a leadership deliverable">
+    <svg viewBox="0 0 760 150" role="img" aria-label="Four pipeline roles left to right, collector, gatekeeper, analyst and synthesizer, each pair joined by a dated artifact, ending in a leadership deliverable">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <rect x="4" y="54" width="84" height="40"/>
-        <rect x="296" y="54" width="84" height="40"/>
-        <rect x="442" y="54" width="84" height="40"/>
+        <rect x="4" y="54" width="96" height="40"/>
+        <rect x="300" y="54" width="96" height="40"/>
+        <rect x="448" y="54" width="96" height="40"/>
       </g>
-      <rect x="150" y="54" width="84" height="40" fill="none" stroke="var(--accent)" stroke-width="1"/>
+      <rect x="152" y="54" width="96" height="40" fill="none" stroke="var(--accent)" stroke-width="1"/>
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
-        <rect x="107" y="67" width="24" height="14"/>
-        <rect x="253" y="67" width="24" height="14"/>
-        <rect x="399" y="67" width="24" height="14"/>
-        <path d="M88 74 H107 M131 74 H143 M234 74 H253 M277 74 H289 M380 74 H399 M423 74 H435 M526 74 H552"/>
+        <rect x="114" y="67" width="24" height="14"/>
+        <rect x="262" y="67" width="24" height="14"/>
+        <rect x="410" y="67" width="24" height="14"/>
+        <path d="M100 74 H114 M138 74 H145 M248 74 H262 M286 74 H293 M396 74 H410 M434 74 H441 M544 74 H564"/>
       </g>
       <g fill="var(--diagram-ink)">
-        <polygon points="143,70.5 143,77.5 150,74"/>
-        <polygon points="289,70.5 289,77.5 296,74"/>
-        <polygon points="435,70.5 435,77.5 442,74"/>
-        <polygon points="552,70.5 552,77.5 560,74"/>
+        <polygon points="145,70.5 145,77.5 152,74"/>
+        <polygon points="293,70.5 293,77.5 300,74"/>
+        <polygon points="441,70.5 441,77.5 448,74"/>
+        <polygon points="564,70.5 564,77.5 572,74"/>
       </g>
-      <g font-size="10.5" fill="var(--text-2)">
-        <text x="18" y="78">Collector</text>
-        <text x="160" y="78">Gatekeeper</text>
-        <text x="316" y="78">Analyst</text>
-        <text x="449" y="78">Synthesizer</text>
-        <text x="568" y="78">leadership deliverable</text>
+      <g fill="var(--text-2)">
+        <text x="19" y="78">Collector</text>
+        <text x="161" y="78">Gatekeeper</text>
+        <text x="321" y="78">Analyst</text>
+        <text x="453" y="78">Synthesizer</text>
+        <text x="580" y="78">leadership deliverable</text>
       </g>
-      <g font-size="9.5" fill="var(--text-2)">
-        <text x="79" y="42">dated artifact</text>
-        <text x="225" y="42">dated artifact</text>
-        <text x="371" y="42">dated artifact</text>
-        <text x="129" y="114">fresh? reuse : refresh</text>
-        <text x="401" y="114">read-only, never calls an API</text>
+      <g fill="var(--text-2)">
+        <text class="s" x="78" y="42">dated artifact</text>
+        <text class="s" x="226" y="42">dated artifact</text>
+        <text class="s" x="374" y="42">dated artifact</text>
+        <text class="s" x="124" y="114">fresh? reuse : refresh</text>
+        <text class="s" x="396" y="114">read-only, never calls an API</text>
       </g>
     </svg>
     <figcaption>Every stage writes a dated artifact and the next stage reads it. The gate decides reuse versus refresh, and the synthesis layer can only read.</figcaption>

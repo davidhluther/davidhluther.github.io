@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -88,29 +88,38 @@
   <figure class="diagram">
     <svg viewBox="0 0 760 150" role="img" aria-label="Six-stage ingestion pipeline from transcripts through storage">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <rect x="4" y="30" width="110" height="52"/>
-        <rect x="130" y="30" width="110" height="52"/>
-        <rect x="256" y="30" width="110" height="52"/>
-        <rect x="382" y="30" width="110" height="52"/>
-        <rect x="508" y="30" width="110" height="52" stroke="var(--accent)" stroke-width="1.5"/>
-        <rect x="634" y="30" width="110" height="52"/>
-        <path d="M114 56 H130 M240 56 H256 M366 56 H382 M492 56 H508 M618 56 H634"/>
+        <rect x="4" y="24" width="116" height="64"/>
+        <rect x="130" y="24" width="116" height="64"/>
+        <rect x="256" y="24" width="116" height="64"/>
+        <rect x="382" y="24" width="116" height="64"/>
+        <rect x="508" y="24" width="116" height="64" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="634" y="24" width="116" height="64"/>
+        <path d="M120 56 H130 M246 56 H256 M372 56 H382 M498 56 H508 M624 56 H634"/>
       </g>
-      <g font-size="12" fill="var(--diagram-ink)">
-        <text x="16" y="52" font-weight="500">transcripts</text>
-        <text x="16" y="70" fill="var(--text-2)" font-size="10.5">VTT/SRT, timestamps</text>
-        <text x="142" y="52" font-weight="500">visuals</text>
-        <text x="142" y="70" fill="var(--text-2)" font-size="10.5">scene detect, dedup</text>
-        <text x="268" y="52" font-weight="500">OCR</text>
-        <text x="268" y="70" fill="var(--text-2)" font-size="10.5">+ diagram captions</text>
-        <text x="394" y="52" font-weight="500">chunk</text>
-        <text x="394" y="70" fill="var(--text-2)" font-size="10.5">400 tok / 60 overlap</text>
-        <text x="520" y="52" font-weight="500">embed</text>
-        <text x="520" y="70" fill="var(--text-2)" font-size="10.5">batched, cost-capped</text>
-        <text x="646" y="52" font-weight="500">store</text>
-        <text x="646" y="70" fill="var(--text-2)" font-size="10.5">pgvector / JSONL</text>
+      <g fill="var(--diagram-ink)">
+        <text x="16" y="44" font-weight="500">transcripts</text>
+        <text x="16" y="62" fill="var(--text-2)">VTT/SRT,</text>
+        <text x="16" y="79" fill="var(--text-2)">timestamps</text>
+        <text x="142" y="44" font-weight="500">visuals</text>
+        <text x="142" y="62" fill="var(--text-2)">scene detect</text>
+        <text x="142" y="79" fill="var(--text-2)">then dedup</text>
+        <text x="268" y="44" font-weight="500">OCR</text>
+        <text x="268" y="62" fill="var(--text-2)">+ diagram</text>
+        <text x="268" y="79" fill="var(--text-2)">captions</text>
+        <text x="394" y="44" font-weight="500">chunk</text>
+        <text x="394" y="62" fill="var(--text-2)">400 tok /</text>
+        <text x="394" y="79" fill="var(--text-2)">60 overlap</text>
+        <text x="520" y="44" font-weight="500">embed</text>
+        <text x="520" y="62" fill="var(--text-2)">batched,</text>
+        <text x="520" y="79" fill="var(--text-2)">cost-capped</text>
+        <text x="646" y="44" font-weight="500">store</text>
+        <text x="646" y="62" fill="var(--text-2)">pgvector /</text>
+        <text x="646" y="79" fill="var(--text-2)">JSONL</text>
       </g>
-      <text x="4" y="122" font-size="10.5" fill="var(--text-2)">A manifest of per-lecture content hashes makes every stage idempotent. Reruns touch only what changed.</text>
+      <g fill="var(--text-2)">
+        <text x="4" y="112">A manifest of per-lecture content hashes makes every stage</text>
+        <text x="4" y="130">idempotent. Reruns touch only what changed.</text>
+      </g>
     </svg>
     <figcaption>The cost gate sits at the embedding stage, the one place the pipeline spends money.</figcaption>
   </figure>

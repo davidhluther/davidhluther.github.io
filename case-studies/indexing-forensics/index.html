@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,24 +87,24 @@
   <p>The first job is telling apart two failures that produce the same red status. Either Google can't fetch your pages, or Google doesn't know they exist. The homepage settled it, being both indexed and crawled the same day. Crawling was healthy. Googlebot had been on the site repeatedly and simply never learned that 34 other URLs had appeared. That reframes the whole investigation, because everything you'd check for a crawling problem, meaning robots rules, response codes, and render blocking, is now off the table.</p>
 
   <figure class="diagram">
-    <svg viewBox="0 0 720 208" role="img" aria-label="Diagnostic split: can Google fetch the pages, and does Google know they exist; the homepage answers the first, the sitemap answers the second">
+    <svg viewBox="0 0 760 208" role="img" aria-label="Diagnostic split: can Google fetch the pages, and does Google know they exist; the homepage answers the first, the sitemap answers the second">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
         <rect x="6" y="76" width="150" height="52"/>
         <path d="M156 102 H206"/>
-        <rect x="206" y="18" width="200" height="52"/>
-        <rect x="206" y="134" width="200" height="52" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="206" y="18" width="314" height="52"/>
+        <rect x="206" y="134" width="314" height="52" stroke="var(--accent)" stroke-width="1.5"/>
         <path d="M196 102 V44 H206 M196 102 V160 H206"/>
-        <path d="M406 44 H466 M406 160 H466"/>
+        <path d="M520 44 H570 M520 160 H570"/>
       </g>
-      <g font-size="13" fill="var(--diagram-ink)">
+      <g fill="var(--diagram-ink)">
         <text x="20" y="98" font-weight="500">34 pages,</text>
         <text x="20" y="116" font-weight="500">status unknown</text>
         <text x="220" y="40" font-weight="500">Can Google fetch them?</text>
-        <text x="220" y="58" fill="var(--text-2)" font-size="11">homepage crawled same day</text>
+        <text x="220" y="58" fill="var(--text-2)">homepage crawled same day</text>
         <text x="220" y="156" font-weight="500">Does Google know they exist?</text>
-        <text x="220" y="174" fill="var(--text-2)" font-size="11">sitemap last downloaded before launch</text>
-        <text x="474" y="48" font-weight="500" fill="var(--text-2)">yes, healthy</text>
-        <text x="474" y="164" font-weight="500">no, and that is the bug</text>
+        <text x="220" y="174" fill="var(--text-2)">sitemap last downloaded before launch</text>
+        <text x="578" y="48" font-weight="500" fill="var(--text-2)">yes, healthy</text>
+        <text x="578" y="164" font-weight="500">no, and that's the bug</text>
       </g>
     </svg>
     <figcaption>Two failures, one red status. Answering the top branch first is what makes the bottom branch worth investigating, and it retires robots rules, response codes, and rendering as suspects before you spend a day on them.</figcaption>

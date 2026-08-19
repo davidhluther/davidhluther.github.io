@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,6 +62,13 @@
   <h1>The AEO Site-Readiness Playbook</h1>
   <p class="lede">Making a site legible to AI systems is an infrastructure layer with a deployment order. Here's the order, why it's the order, and a live deployment you're reading right now.</p>
 
+  <div class="fact-grid">
+    <div><span class="n">7</span><span class="l">steps, in the order the dependencies force</span></div>
+    <div><span class="n">19</span><span class="l">AI agents allowed by name in robots.txt</span></div>
+    <div><span class="n">16</span><span class="l">pages in the sitemap, every one of them checkable</span></div>
+    <div><span class="n">0</span><span class="l">lines of JavaScript on any page here</span></div>
+  </div>
+
   <nav class="toc" aria-label="On this page">
     <span class="toc-label">On this page</span>
     <ol>
@@ -75,6 +82,57 @@
       <li><a href="#the-proof-structure">The proof structure</a></li>
     </ol>
   </nav>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 150" role="img" aria-label="The seven steps left to right, crawler access first and marked as the gate, then structured data, llms.txt, semantic HTML, the gated PDF, published data, and weight discipline">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="116" y="26" width="76" height="34"/>
+        <rect x="224" y="26" width="76" height="34"/>
+        <rect x="332" y="26" width="76" height="34"/>
+        <rect x="440" y="26" width="76" height="34"/>
+        <rect x="548" y="26" width="76" height="34"/>
+        <rect x="656" y="26" width="76" height="34"/>
+      </g>
+      <rect x="8" y="26" width="76" height="34" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <path d="M84 43 H109 M192 43 H217 M300 43 H325 M408 43 H433 M516 43 H541 M624 43 H649"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="109,39.5 109,46.5 116,43"/>
+        <polygon points="217,39.5 217,46.5 224,43"/>
+        <polygon points="325,39.5 325,46.5 332,43"/>
+        <polygon points="433,39.5 433,46.5 440,43"/>
+        <polygon points="541,39.5 541,46.5 548,43"/>
+        <polygon points="649,39.5 649,46.5 656,43"/>
+      </g>
+      <g fill="var(--text-2)" font-weight="500">
+        <text x="38" y="48">01</text>
+        <text x="146" y="48">02</text>
+        <text x="254" y="48">03</text>
+        <text x="362" y="48">04</text>
+        <text x="470" y="48">05</text>
+        <text x="578" y="48">06</text>
+        <text x="686" y="48">07</text>
+      </g>
+      <g fill="var(--text-2)">
+        <text x="19" y="80">crawler</text>
+        <text x="23" y="97">access</text>
+        <text x="115" y="80">structured</text>
+        <text x="138" y="97">data</text>
+        <text x="231" y="80">llms.txt</text>
+        <text x="339" y="80">semantic</text>
+        <text x="354" y="97">HTML</text>
+        <text x="447" y="80">gate the</text>
+        <text x="466" y="97">PDF</text>
+        <text x="559" y="80">publish</text>
+        <text x="555" y="97">the data</text>
+        <text x="671" y="80">weight</text>
+        <text x="655" y="97">discipline</text>
+      </g>
+      <text class="s" x="8" y="130" fill="var(--text-2)">The order is the argument, and step 1 gates everything after it.</text>
+    </svg>
+    <figcaption>Access comes first because every step after it assumes a crawler already got in. Step 6 is the one this site can't demonstrate on itself, so it points at the weather project, where the data and its licence actually live.</figcaption>
+  </figure>
 
   <h2 id="step-1-crawler-access">Step 1: Crawler access, audited rather than assumed</h2>
   <p>Before any optimization, can AI systems fetch your pages at all? Audit robots directives for AI crawler user agents specifically, because wildcard defaults were written for a different era's crawlers. At Corpay this audit found an existing advantage worth defending, with explicit allow rules where much of the competitive set either blocked AI agents or relied on defaults, so the job became tightening crawl delays and adding newly emerged agents as they appear. On this site, <a href="/robots.txt">robots.txt</a> welcomes GPTBot, ClaudeBot, PerplexityBot, and Google-Extended by name.</p>

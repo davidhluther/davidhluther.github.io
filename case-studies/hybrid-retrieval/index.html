@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -90,27 +90,27 @@
   <figure class="diagram">
     <svg viewBox="0 0 760 290" role="img" aria-label="Diagram of three retrieval channels feeding reciprocal rank fusion and producing a ranked top-10 list">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <rect x="10" y="20" width="215" height="62"/>
-        <rect x="10" y="112" width="215" height="62"/>
-        <rect x="10" y="204" width="215" height="62"/>
-        <rect x="330" y="96" width="180" height="94" stroke="var(--accent)" stroke-width="1.5"/>
-        <path d="M225 51 H285 L330 122"/>
-        <path d="M225 143 H330"/>
-        <path d="M225 235 H285 L330 164"/>
-        <path d="M510 143 H580"/>
+        <rect x="10" y="20" width="258" height="62"/>
+        <rect x="10" y="112" width="258" height="62"/>
+        <rect x="10" y="204" width="258" height="62"/>
+        <rect x="330" y="96" width="212" height="94" stroke="var(--accent)" stroke-width="1.5"/>
+        <path d="M268 51 H295 L330 122"/>
+        <path d="M268 143 H330"/>
+        <path d="M268 235 H295 L330 164"/>
+        <path d="M542 143 H580"/>
       </g>
-      <g font-size="12" fill="var(--diagram-ink)">
+      <g fill="var(--diagram-ink)">
         <text x="24" y="44" font-weight="500">L &#124; Lexical</text>
-        <text x="24" y="62" fill="var(--text-2)" font-size="11">BM25 + stems + bigrams + synonyms</text>
+        <text x="24" y="62" fill="var(--text-2)">BM25, stems, bigrams, synonyms</text>
         <text x="24" y="136" font-weight="500">C &#124; Composed vector</text>
-        <text x="24" y="154" fill="var(--text-2)" font-size="11">IDF-weighted term centroids</text>
+        <text x="24" y="154" fill="var(--text-2)">IDF-weighted term centroids</text>
         <text x="24" y="228" font-weight="500">S &#124; Seed neighborhood</text>
-        <text x="24" y="246" fill="var(--text-2)" font-size="11">neighbors of top lexical hits</text>
+        <text x="24" y="246" fill="var(--text-2)">neighbors of top lexical hits</text>
         <text x="344" y="124" font-weight="500">RRF fusion</text>
-        <text x="344" y="142" fill="var(--text-2)" font-size="11">k = 60</text>
-        <text x="344" y="160" fill="var(--text-2)" font-size="11">weights 1.0 / 0.75 / 0.6</text>
+        <text x="344" y="142" fill="var(--text-2)">k = 60</text>
+        <text x="344" y="160" fill="var(--text-2)">weights 1.0 / 0.75 / 0.6</text>
       </g>
-      <g font-size="11" fill="var(--text-2)">
+      <g fill="var(--text-2)">
         <text x="588" y="105">ranked top-10</text>
         <text x="588" y="127">1&#8201;&#9632; L C</text>
         <text x="588" y="147">2&#8201;&#9632; C</text>

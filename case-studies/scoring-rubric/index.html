@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,26 +138,26 @@
   <p>Sources that read a provider's own daily minimum were provably unaffected, which is the sentence that makes the fix auditable rather than merely plausible. Note the direction of the error. It was flattering to the site's whole premise, since it made two free rivals look worse than they are, and it took a backfill across all history to give them back points they had earned. Telling "this source is bad" apart from "my instrument is measuring it wrong" is most of the difference between a dashboard and an instrument.</p>
 
   <figure class="diagram">
-    <svg viewBox="0 0 720 170" role="img" aria-label="The four rubric revisions along a line, each pairing the defect it found with the fix that closed it, with every revision re-scored across all history">
+    <svg viewBox="0 0 760 170" role="img" aria-label="The four rubric revisions along a line, each pairing the defect it found with the fix that closed it, with every revision re-scored across all history">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
         <path d="M20 72 H700"/>
       </g>
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
         <path d="M96 65 V79 M272 65 V79 M448 65 V79 M624 65 V79"/>
       </g>
-      <g font-size="10.5" fill="var(--text-2)">
-        <text x="36" y="34">ceiling compression</text>
-        <text x="382" y="34">one fact graded twice</text>
-        <text x="215" y="95">gaming by omission</text>
-        <text x="577" y="95">instrument bias</text>
+      <g fill="var(--text-2)">
+        <text x="22" y="34">ceiling compression</text>
+        <text x="366" y="34">one fact graded twice</text>
+        <text x="202" y="95">gaming by omission</text>
+        <text x="566" y="95">instrument bias</text>
       </g>
-      <g font-size="9.5" fill="var(--text-2)">
-        <text x="50" y="52">tightened to 1&deg;F</text>
-        <text x="385" y="52">merged, partial credit</text>
-        <text x="224" y="113">implied-zero rule</text>
-        <text x="570" y="113">capture-day low fix</text>
+      <g fill="var(--text-2)">
+        <text class="s" x="41" y="52">tightened to 1&deg;F</text>
+        <text class="s" x="372" y="52">merged, partial credit</text>
+        <text class="s" x="213" y="113">implied-zero rule</text>
+        <text class="s" x="558" y="113">capture-day low fix</text>
       </g>
-      <text x="257" y="139" font-size="9.5" fill="var(--accent)">every revision re-scores all history</text>
+      <text class="s" x="236" y="139" fill="var(--accent)">every revision re-scores all history</text>
     </svg>
     <figcaption>The four revisions in the order the sections above take them, which is not their order by date. Each one pairs the defect with the fix that closed it, and every fix was re-applied to the whole scored history.</figcaption>
   </figure>
@@ -169,24 +169,24 @@
   <figure class="diagram">
     <svg viewBox="0 0 760 176" role="img" aria-label="Revision protocol: propose a rubric change, measure per-source deltas against two fairness gates, re-score all history, then publish with the date and the reason">
       <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
-        <rect x="6" y="34" width="150" height="56"/>
-        <rect x="196" y="34" width="184" height="56" stroke="var(--accent)" stroke-width="1.5"/>
-        <rect x="420" y="34" width="150" height="56"/>
-        <rect x="610" y="34" width="144" height="56"/>
-        <path d="M156 62 H196 M380 62 H420 M570 62 H610"/>
-        <path d="M288 90 V132 H81 V90" stroke-dasharray="4 4"/>
+        <rect x="6" y="34" width="137" height="56"/>
+        <rect x="163" y="34" width="168" height="56" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="351" y="34" width="192" height="56"/>
+        <rect x="563" y="34" width="192" height="56"/>
+        <path d="M143 62 H163 M331 62 H351 M543 62 H563"/>
+        <path d="M247 90 V132 H75 V90" stroke-dasharray="4 4"/>
       </g>
-      <g font-size="13" fill="var(--diagram-ink)">
-        <text x="20" y="58" font-weight="500">propose</text>
-        <text x="20" y="76" fill="var(--text-2)" font-size="11">a rubric change</text>
-        <text x="210" y="58" font-weight="500">two fairness gates</text>
-        <text x="210" y="76" fill="var(--text-2)" font-size="11">zero wins by omission</text>
-        <text x="434" y="58" font-weight="500">re-score</text>
-        <text x="434" y="76" fill="var(--text-2)" font-size="11">all history, all towns</text>
-        <text x="624" y="58" font-weight="500">publish</text>
-        <text x="624" y="76" fill="var(--text-2)" font-size="11">dated, with the reason</text>
+      <g fill="var(--text-2)">
+        <text x="18" y="58" font-weight="500">propose</text>
+        <text x="18" y="76">a rubric change</text>
+        <text x="175" y="58" font-weight="500">two fairness gates</text>
+        <text x="175" y="76">no wins by omission</text>
+        <text x="363" y="58" font-weight="500">re-score</text>
+        <text x="363" y="76">all history, all towns</text>
+        <text x="575" y="58" font-weight="500">publish</text>
+        <text x="575" y="76">dated, with the reason</text>
       </g>
-      <text x="100" y="150" font-size="11" fill="var(--text-2)">a gate failure sends the change back, and that has happened</text>
+      <text x="100" y="150" fill="var(--text-2)">a gate failure sends the change back, and that has happened</text>
     </svg>
     <figcaption>The gates run before the change ships, not after anyone complains. The re-scoring step is why the site never carries a mixed-methodology history: <code>rescore_history.py</code> replays every stored prediction against the current engine, idempotently, across Boone and all seventeen other towns, so the published archive always reflects the rubric in force today. Original predictions and actuals are never touched.</figcaption>
   </figure>

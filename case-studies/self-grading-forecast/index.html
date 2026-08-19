@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=14">
+<link rel="stylesheet" href="/css/main.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -126,15 +126,15 @@
         <path d="M186 58 H262 M442 58 H518"/>
         <path d="M352 86 V122 H96 V86" stroke-dasharray="4 4"/>
       </g>
-      <g font-size="13" fill="var(--diagram-ink)">
+      <g fill="var(--diagram-ink)">
         <text x="20" y="54" font-weight="500">capture actuals</text>
-        <text x="20" y="72" fill="var(--text-2)" font-size="11">4x daily</text>
+        <text x="20" y="72" fill="var(--text-2)">4x daily</text>
         <text x="276" y="54" font-weight="500">grade yesterday</text>
-        <text x="276" y="72" fill="var(--text-2)" font-size="11">ratio error + Brier</text>
+        <text x="276" y="72" fill="var(--text-2)">ratio error + Brier</text>
         <text x="532" y="54" font-weight="500">forecast today + tomorrow</text>
-        <text x="532" y="72" fill="var(--text-2)" font-size="11">only after grading</text>
+        <text x="532" y="72" fill="var(--text-2)">only after grading</text>
       </g>
-      <text x="120" y="140" font-size="11" fill="var(--text-2)">graded scores feed the next day's baselines</text>
+      <text x="120" y="140" fill="var(--text-2)">graded scores feed the next day's baselines</text>
     </svg>
     <figcaption>Grading always runs before the new forecast is written; the order is the accountability. Scores fold idempotently into a running file, broken out overall, per corridor, event day versus ordinary, and by weekday class. The daily gate is state-based ("does today's forecast file exist yet?") rather than wall-clock, a fix from a real bug: GitHub's cron drift slid past the old wall-clock window and the loop stopped forecasting silently, every signal still green.</figcaption>
   </figure>
