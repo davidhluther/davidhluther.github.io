@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="300" y="6" width="6" height="8"/><rect x="520" y="6" width="6" height="8"/><rect x="900" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,7 +67,16 @@
     <div><span class="n">17</span><span class="l">analysis tools that read the results</span></div>
   </div>
 
-  <h2>The Pigasus battery: The same 28 questions, every month</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#the-pigasus-battery">The Pigasus battery</a></li>
+      <li><a href="#the-same-discipline">The same discipline</a></li>
+      <li><a href="#the-through-line">The through-line</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="the-pigasus-battery">The Pigasus battery: The same 28 questions, every month</h2>
   <p>For my consultancy I track AI visibility the way you'd run a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and every month all four major assistants, ChatGPT, Claude, Perplexity, and Gemini, get the exact same 28, word for word. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's.</p>
 
   <figure class="diagram">
@@ -120,7 +130,7 @@
     verify_note: str     # what to check before flipping `verified` to True</code></pre>
   <p>Downstream, a 17-module analysis suite handles mention and share-of-voice math, citation verification (assistants fabricate links, so every cited URL gets checked), sentiment and factual-error review, competitive and per-platform variance, and trend reads with confound checks for model swaps. Client separation is architectural. Every module is parameterized by an engagement slug, the same logic runs unmodified across engagements, and no client data lives in code.</p>
 
-  <h2>The same discipline at S&amp;P 500 scale</h2>
+  <h2 id="the-same-discipline">The same discipline at S&amp;P 500 scale</h2>
   <p>At Corpay I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal. The methodology is the interesting part anyway.</p>
 
   <h3>Prompt-pool noise correction</h3>
@@ -146,7 +156,7 @@
   <h3>Citations and mentions are different assets</h3>
   <p>Being cited (your page linked in the answer) and being named (your brand in the answer text) get measured as separate metrics here, because they respond to different levers. Owned content moves citation. Syndication and third-party placement move naming. The gap between the two curves is where strategy lives, since a brand that gets named without being cited is riding other people's pages, and one that gets cited without being named has an attribution problem. Most tooling collapses these into one "visibility" number, which throws away the diagnosis.</p>
 
-  <h2>The through-line</h2>
+  <h2 id="the-through-line">The through-line</h2>
   <p>Every number carries its provenance, meaning its source, its window, its pull time, and which pool or basis produced it. A figure without that lineage doesn't get cited in a deliverable, however good it looks. AI visibility is a young channel with immature tooling and an enormous appetite for headline numbers, which is exactly the environment where measurement honesty is the whole game.</p>
 
   <p class="claim">The instrument you can defend beats the number you wish were true.</p>
@@ -163,7 +173,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

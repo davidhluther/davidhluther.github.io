@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="300" y="6" width="6" height="8"/><rect x="520" y="6" width="6" height="8"/><rect x="900" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,7 +67,19 @@
     <div><span class="n">4</span><span class="l">widely circulated figures killed in one executive-deck vetting pass</span></div>
   </div>
 
-  <h2>Newsletters are a discovery layer, not a source</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#newsletters-are-a-discovery-layer">Newsletters are a discovery layer</a></li>
+      <li><a href="#a-baseline">A baseline</a></li>
+      <li><a href="#the-ladder">The ladder</a></li>
+      <li><a href="#the-semantic-pass">The semantic pass</a></li>
+      <li><a href="#the-public-twin">The public twin</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="newsletters-are-a-discovery-layer">Newsletters are a discovery layer, not a source</h2>
   <p>The weekly industry intake treats every newsletter and roundup as a pointer, never as a source. Every substantive item's primary source gets read before the item is allowed to mean anything. That rule earned its keep immediately. On the first instrumented run, four of seven items had drifted from what their primary sources actually said, twice badly enough that acting on the newsletter's version would have produced a wrong decision. The drift itself gets quoted in the output, summary next to source, because "this aggregator paraphrases loosely" is a finding worth accumulating about a publication.</p>
 
   <figure class="diagram">
@@ -105,23 +118,23 @@
     <figcaption>Nothing means anything until the primary source is read. The grade assigned there rides with the figure all the way into the deliverable.</figcaption>
   </figure>
 
-  <h2>A baseline, not a pile of notes</h2>
+  <h2 id="a-baseline">A baseline, not a pile of notes</h2>
   <p>Platform-usage and buyer-behavior figures, the numbers everyone in this field repeats at each other, live in one edit-in-place baseline file rather than in scattered notes. It refreshes monthly, and the refresh re-grades: a mid-tier figure becomes bottom-tier the day its primary source goes offline, because a figure whose primary is gone isn't a fact with history, it's a rumor with a citation. Killed figures move to a retraction table instead of being deleted, so a zombie statistic can't creep back in six weeks later looking new.</p>
   <p>New intake gets checked against the baseline in the same run. A conflict gets called out with a which-wins ruling rather than left for two contradictory numbers to coexist, and a supersession gets baked immediately. The baseline is the thing I trust; everything else is candidate evidence auditioning for it.</p>
 
-  <h2>The ladder, and why it travels</h2>
+  <h2 id="the-ladder">The ladder, and why it travels</h2>
   <p>Every borrowed figure carries an A-through-D provenance tier, assigned by reading the primary source rather than by inference. A named research firm quoted inside an aggregator doesn't inherit the firm's tier; follow the link or downgrade. Research published by a vendor selling the thing it measured caps at mid-tier regardless of how clean the methodology looks. And the tier travels with the figure into deliverables, so a number in an executive summary arrives wearing its own reliability grade, and a reader can weight it without trusting my synthesis.</p>
   <p>The vetting pass for one executive deck killed four widely circulated figures, including a sample size that existed only on a vendor's blog post, cited everywhere as if it were a study. Nothing about that deck was weaker for the deletions. It was stronger, because every number that survived could be defended to the most skeptical person in the room.</p>
 
   <p class="claim">A figure whose primary source is gone isn't a fact with history, it's a rumor with a citation.</p>
 
-  <h2>The semantic pass</h2>
+  <h2 id="the-semantic-pass">The semantic pass</h2>
   <p>Numeric screens miss the most common way a statistic escapes scrutiny, which is paraphrase. "Nearly half" carries the same claim as "47%" and sails past any check that greps for digits. So the screen is semantic: read the sentence, extract the claim, match on the claim, and audit quantity language along with numerals. This produces false positives by design, and clearing them is part of the job rather than a reason to narrow the pattern. The same semantic discipline runs inside the <a href="/case-studies/aeo-operating-system/">enterprise engine's</a> evidence gate, where it screens findings before they can become action items.</p>
 
-  <h2>The public twin</h2>
+  <h2 id="the-public-twin">The public twin</h2>
   <p>The private half of this system decides what I believe; the public half proves the posture isn't performance. My <a href="/case-studies/self-grading-forecast/">forecast model</a> publishes falsifiable predictions and grades them daily in the open, which is the same epistemics running in the opposite direction: not "check what you consume" but "make what you produce checkable." A field full of confident numbers needs both.</p>
 
-  <h2>Why this matters for AEO</h2>
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
   <p>Answer engines synthesize from whatever the information supply chain hands them, drift and zombie statistics included, and an AEO program's job includes deciding which industry claims to build strategy on. I don't know a way to do that responsibly without something like this pipeline. I also don't claim mine is finished. The drift measurement has one instrumented run behind it, and whether the rate holds across months is exactly the kind of claim the system says I shouldn't make yet.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Built and run by me with Claude Code: a weekly intake skill, a baseline file with its retraction table, and grading rules enforced at synthesis time. The costliest component is reading primary sources, which is the point.</p></div>
@@ -136,7 +149,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

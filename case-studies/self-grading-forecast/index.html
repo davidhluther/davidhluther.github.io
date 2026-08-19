@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,10 +67,23 @@
     <div><span class="n">$0</span><span class="l">monthly cost in API and compute</span></div>
   </div>
 
-  <h2>The site around it</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#the-site-around-it">The site around it</a></li>
+      <li><a href="#what-the-model-actually-eats">What the model actually eats</a></li>
+      <li><a href="#the-model-kept-deliberately-legible">The model, kept deliberately legible</a></li>
+      <li><a href="#the-predict-then-grade-loop">The predict-then-grade loop</a></li>
+      <li><a href="#the-machinery-around-the-loop">The machinery around the loop</a></li>
+      <li><a href="#the-scope-decisions-that-mattered">The scope decisions that mattered</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="the-site-around-it">The site around it</h2>
   <p><a href="https://davessweater.com">Dave's Sweater</a> is my satirical local-weather site for Boone, NC, and the public face of an idea I keep applying elsewhere. Forecasts should be accountable. The site's Right Ray / Wrong Ray tracker scores real forecast providers against verified actuals on a 100-point rubric, month after month, in public, and <a href="/case-studies/scoring-rubric/">that rubric has its own case study</a>, because rebuilding it four times without rigging it was the harder engineering problem. Its consensus forecast ships through a public API and an embeddable widget that loads no analytics, licensed CC BY 4.0. The traffic model extends the accountability discipline to a domain with no ground-truth provider to borrow.</p>
 
-  <h2>What the model actually eats</h2>
+  <h2 id="what-the-model-actually-eats">What the model actually eats</h2>
   <p>"Three factors and a clamp" describes the formula, and it undersells the system. Each factor is fed by its own data family, each with its own capture pipeline, freshness rules, and documented provenance.</p>
 
   <div class="table-scroll">
@@ -88,7 +102,7 @@
   <p>The six corridors are the roads that actually govern life here. The US-321 bypass and King Street through downtown, NC-105 at the US-321 split and south at Foscoe, Valley Boulevard in Blowing Rock, and US-421 out at Deep Gap. Every sensor pin was reverse-geocoded and road-class-verified before use, under a standing rule the repo calls "no eyeballed pins." The rule exists because the first-guess pins all landed on side streets. Right math, wrong input, and the model would have learned the traffic patterns of a parking lot.</p>
   <p>One more capture detail I'm fond of, because it's the kind that silently ruins models. The flow API defaults to km/h. The capture requests mph explicitly, a mismatch caught during live verification rather than after a season of quietly absurd baselines.</p>
 
-  <h2>The model, kept deliberately legible</h2>
+  <h2 id="the-model-kept-deliberately-legible">The model, kept deliberately legible</h2>
   <p>The model predicts a per-corridor congestion ratio (current speed over free-flow speed) at the four daily windows.</p>
   <pre><code>def predict_ratio(baseline: float, event_mult: float, weather_mult: float) -&gt; float:
     return clamp_ratio(baseline * event_mult * weather_mult)</code></pre>
@@ -99,7 +113,7 @@
       cell -&gt; corridor_window -&gt; corridor -&gt; 1.0 (default)."""</code></pre>
   <p>A logistic function turns each predicted ratio into a jam probability, which is what makes honest scoring possible. A probability can be wrong by a measurable amount; a vibe can't.</p>
 
-  <h2>The predict-then-grade loop</h2>
+  <h2 id="the-predict-then-grade-loop">The predict-then-grade loop</h2>
 
   <figure class="diagram">
     <svg viewBox="0 0 760 150" role="img" aria-label="Daily loop: capture actuals four times daily, grade yesterday, then forecast today and tomorrow">
@@ -129,15 +143,15 @@ ae = tm.abs_error(pred_ratio, obs_ratio)
 br = tm.brier(prob, observed_jammed)</code></pre>
   <p>The model's first graded call, for the record, was King Street's 5 p.m. window, at a jam probability of 0.79. It has been graded on every prediction since, with error broken out by corridor and condition so I can see exactly which prior is most wrong. Whether the football multiplier survives its first season intact, I genuinely don't know yet. That's the fun of it.</p>
 
-  <h2>The machinery around the loop</h2>
+  <h2 id="the-machinery-around-the-loop">The machinery around the loop</h2>
   <p>Six GitHub Actions workflows run the whole site's data layer, and their division of labor is the engineering. The daily weather capture chains into the comparison run via <code>workflow_run</code>. The traffic capture fires on four crons at the demand windows. A freshness sentinel runs after the captures specifically to catch a silently skipped cron, because the silent-skip bug above taught the repo that green isn't the same as done. A screenshot workflow accepts an iPhone-only data source through <code>repository_dispatch</code>, fired by an iOS Shortcut posting to the GitHub API, which is the no-server way to get Apple Weather into a static pipeline. And a function-budget gate runs a fast static model plus a ground-truth build on every PR that touches routes, born from a ten-day outage where deploys failed <em>after</em> "Build Completed" and production silently served a stale build. Python throughout is standard-library only, one deliberate exception aside.</p>
 
-  <h2>The scope decisions that mattered</h2>
+  <h2 id="the-scope-decisions-that-mattered">The scope decisions that mattered</h2>
   <p>Two of this project's best engineering decisions were about what <em>not</em> to ship. An audit of the traffic provider's terms found that committing flow snapshots and derived layers to a public, permissively licensed repo exceeded what the license allowed, so the entire dataset moved to a private companion repo mounted at CI time via a deploy key. The model keeps running and self-grading daily. The model code stayed public; the data didn't. A planned "grade the big mapping provider too" comparison lane was cut before it was built for the same class of reason, despite a workable free quota.</p>
 
   <p class="claim">You predict what answer engines will surface, you check what they actually surfaced, and your credibility rests on how honestly the two are reconciled.</p>
 
-  <h2>Why this matters for AEO</h2>
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
   <p>AEO is a forecasting-and-measurement discipline wearing a marketing hat, and this repo is the same muscle with the weights visible. Declared priors, graded daily, every number traceable to its basis, scope cut when the data rights aren't there. If you want to audit how I actually work, <a href="https://github.com/davidhluther/davessweater">every commit is public</a>.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team, in evenings. GitHub Actions free tier, a Vercel hobby plan, 24 of TomTom's 2,500 free daily calls, standard-library Python. Monthly cost in API and compute: $0. The code is public at <a href="https://github.com/davidhluther/davessweater">github.com/davidhluther/davessweater</a>.</p></div>
@@ -152,7 +166,7 @@ br = tm.brier(prob, observed_jammed)</code></pre>
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

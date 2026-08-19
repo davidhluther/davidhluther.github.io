@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,11 +67,23 @@
     <div><span class="n">~10ms</span><span class="l">per query after warm-up, fully offline</span></div>
   </div>
 
-  <h2>Why I built it</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#why-i-built-it">Why I built it</a></li>
+      <li><a href="#the-three-channels">The three channels</a></li>
+      <li><a href="#fusion">Fusion</a></li>
+      <li><a href="#the-measurement">The measurement</a></li>
+      <li><a href="#documented-limits">Documented limits</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="why-i-built-it">Why I built it</h2>
   <p>My consultancy's knowledge base (the <a href="/case-studies/rag-knowledge-base/">RAG case study</a> covers it) has an online query path that needs the network twice, once to embed the query and once to hit the vector index. I wanted a search that works with the network off, over the 15,302 embeddings already cached in the offline index, and still reaches passages that share no wording with the query.</p>
   <p>That constraint forced the design. BM25 runs offline trivially. Vector search normally requires embedding the incoming query, and that's an API call. Working around it produced the engine's most distinctive piece.</p>
 
-  <h2>The three channels</h2>
+  <h2 id="the-three-channels">The three channels</h2>
 
   <figure class="diagram">
     <svg viewBox="0 0 760 290" role="img" aria-label="Diagram of three retrieval channels feeding reciprocal rank fusion and producing a ranked top-10 list">
@@ -122,7 +135,7 @@
   <h3>S, the seed neighborhood</h3>
   <p>The strongest lexical hits become query vectors themselves, and every chunk is scored by its best similarity to any of the top twelve seeds. This catches "more like the thing keywords did find," which fails differently than the composed channel does. You want channels that fail differently. Agreement between them is the signal fusion exploits.</p>
 
-  <h2>Fusion</h2>
+  <h2 id="fusion">Fusion</h2>
   <p>The three ranked lists merge with reciprocal rank fusion, weighted so lexical evidence leads and vector evidence corroborates.</p>
   <pre><code>def _rrf(rank_arrays: dict[str, np.ndarray], n: int) -&gt; np.ndarray:
     fused = np.zeros(n, dtype=np.float32)
@@ -135,17 +148,17 @@
     return fused</code></pre>
   <p>Near-duplicate passages collapse at cosine similarity of 0.985 and above, which handles course sections that reuse the same recording. Every result carries its channel tags, so any ranking can be audited query by query.</p>
 
-  <h2>The measurement</h2>
+  <h2 id="the-measurement">The measurement</h2>
   <p>Claims about semantic search usually stop at "it finds things keywords miss." I wanted the number, so I scored every top-10 result against a fixed set of ten realistic client-engagement queries, on two separate honesty markers. A passage is <em>no-substring</em> when it's missing at least one query word entirely, and that described 72 of 100 results. A passage is <em>beyond-keyword</em> when it doesn't appear in a plain BM25 top-<em>k</em> for the query as typed, with no synonyms and no vector channels, and that described 83 of 100.</p>
   <p>The finding under the finding is starker. Four of the ten queries had zero passages containing all their words. Naive keyword search returns nothing at all for 40% of realistic queries, while the hybrid engine returns ten ranked passages for every one.</p>
   <p>A 45-check automated test suite covers the stemmer, bigram formation, the expansion layer, cache behavior, ranking, and a semantic-recall case. It runs against a synthetic fixture, so tests touch no real corpus, no network, and no keys.</p>
 
   <p class="claim">When 83% of what a well-tuned retriever surfaces is unreachable by the literal query string, keyword-era assumptions are quantifiably obsolete.</p>
 
-  <h2>Documented limits</h2>
+  <h2 id="documented-limits">Documented limits</h2>
   <p>The composed-vector channel is a bag-of-centroids approximation. It degrades when query terms are rare, or so common their centroids collapse toward the corpus mean. The seed channel depends on the lexical channel finding at least one usable seed, and a query whose every term is absent from the lexicon retrieves nothing useful. These limits are written into the module's documentation. Whether the composed channel should eventually yield to a small local embedding model is an open question I haven't settled; the approximation keeps winning on simplicity.</p>
 
-  <h2>Why this matters for AEO</h2>
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
   <p>Answer engines are retrieval systems. I make the concepts-over-strings argument to marketing leadership with some confidence, because I measured it in an engine I built end to end, and the measurement is reproducible from the eval file.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team. Python and NumPy, no search infrastructure, no vendor index. It runs on a laptop, and reproducing the eval costs nothing.</p></div>
@@ -160,7 +173,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

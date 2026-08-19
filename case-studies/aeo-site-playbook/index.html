@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,36 +53,50 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="300" y="6" width="6" height="8"/><rect x="520" y="6" width="6" height="8"/><rect x="900" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
   <h1>The AEO Site-Readiness Playbook</h1>
   <p class="lede">Making a site legible to AI systems is an infrastructure layer with a deployment order. Here's the order, why it's the order, and a live deployment you're reading right now.</p>
 
-  <h2>Step 1: Crawler access, audited rather than assumed</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#step-1-crawler-access">Step 1: Crawler access</a></li>
+      <li><a href="#step-2-structured-data">Step 2: Structured data</a></li>
+      <li><a href="#step-3-llms-txt">Step 3: llms.txt</a></li>
+      <li><a href="#step-4-semantic-html">Step 4: Semantic HTML</a></li>
+      <li><a href="#step-5-gate-the-pdf">Step 5: Gate the PDF</a></li>
+      <li><a href="#step-6-weight-discipline">Step 6: Weight discipline</a></li>
+      <li><a href="#the-proof-structure">The proof structure</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="step-1-crawler-access">Step 1: Crawler access, audited rather than assumed</h2>
   <p>Before any optimization, can AI systems fetch your pages at all? Audit robots directives for AI crawler user agents specifically, because wildcard defaults were written for a different era's crawlers. At Corpay this audit found an existing advantage worth defending, with explicit allow rules where much of the competitive set either blocked AI agents or relied on defaults, so the job became tightening crawl delays and adding newly emerged agents as they appear. On this site, <a href="/robots.txt">robots.txt</a> welcomes GPTBot, ClaudeBot, PerplexityBot, and Google-Extended by name.</p>
   <p>Access is not the same as discovery, and the two fail differently. A crawler that is allowed in still has to learn a page exists, which is a separate problem with its own diagnosis. I worked one of those <a href="/case-studies/indexing-forensics/">end to end on my weather site</a> after 34 new pages went unfound.</p>
 
-  <h2>Step 2: Structured data in dependency order</h2>
+  <h2 id="step-2-structured-data">Step 2: Structured data in dependency order</h2>
   <p>The audit that kicked off Corpay's deployment found a large site with no machine-readable structured data anywhere. That's common, and it's quietly expensive, since AI systems could reach the content but had nothing structured to extract. The deployment discipline mattered as much as the markup. Money pages went first, sequenced by impression volume rather than by ease. Page types got their appropriate entities, plus FAQ markup whose answers must match visible on-page content. And defects got fixed before becoming machine-readable, because rich results bake in whatever's there. One page's schema deployment waited on an unrelated title-tag fix for exactly that reason. Rating markup got checked against live review counts, and an offer block that would have misstated a price got removed. Structured data amplifies what's already there, including the errors.</p>
   <p>Then it scaled, moving from a hand-deployed priority set into the content pipeline as a production step. This site carries Person and ProfilePage schema on the <a href="/">home page</a> and TechArticle schema on every case study, all in JSON-LD.</p>
   <p>Schema is entity infrastructure before it's rich-result decoration, and I have the incident to prove it. In July, Google's AI summary confidently blended my consultancy, Pigasus Group, with a UK planning consultancy called Pegasus, one letter and an ocean away. The fix was identity rather than volume. Every schema node on the Pigasus site now carries a stable <code>@id</code> anchored to one organization node, so a machine assembling an answer resolves against an unambiguous graph instead of two similar strings. FAQ schema on the same site stayed deployed after Google retired FAQ rich results, a call made in writing at the time, because the classic-SEO payoff was never the point. Assistants still extract from it.</p>
 
-  <h2>Step 3: llms.txt as a citation-shaping asset</h2>
+  <h2 id="step-3-llms-txt">Step 3: llms.txt as a citation-shaping asset</h2>
   <p>An llms.txt file usually gets described as a sitemap for AI, which undersells it. Schema makes individual pages extractable, while llms.txt makes the organization legible, and it's the one place you can tell AI systems how to talk about you. The Corpay deployment carried canonical product descriptions in the company's own framing, an explicit target-audience section, differentiators, and a citation-preferences block stating how the brand should be attributed. For a company whose legacy and acquired sub-brand names still circulate in training data, that block addresses an observable attribution problem directly.</p>
   <p>The honest framing, recorded at deployment time, was that no AI platform had officially confirmed reading these files, adoption was accelerating anyway, and publishing one costs minutes. It shipped ahead of every tracked competitor. This site's own <a href="/llms.txt">llms.txt</a> follows the pattern, citation preferences included. I'll note the counterexample myself, since honesty is the house style. On my own weather site I evaluated llms.txt and declined it, because that site's AEO surface didn't justify the file. The playbook is a decision framework, and sometimes the decision is no.</p>
 
-  <h2>Step 4: Semantic HTML and answer-ready copy</h2>
+  <h2 id="step-4-semantic-html">Step 4: Semantic HTML and answer-ready copy</h2>
   <p>Retrieval systems chunk pages (<a href="/case-studies/rag-knowledge-base/">here's how, mechanically</a>), and chunks travel without their surroundings. Concrete writing rules follow. Headings state the claim, because a heading is the chunk's label in the index. Meta descriptions read as complete, citable sentences about what the page establishes. Sections stand alone, since a paragraph that depends on three paragraphs of prior context loses the citation to one that doesn't. And the markup uses real semantics, meaning article, nav, heading hierarchy, and lists that are lists. Extraction quality follows markup quality.</p>
 
-  <h2>Step 5: Gate the PDF, never the answers</h2>
+  <h2 id="step-5-gate-the-pdf">Step 5: Gate the PDF, never the answers</h2>
   <p>Lead-gen instinct says gate the good stuff, and for answer engines that instinct is fatal. The publish shape that works: the designed whitepaper PDF stays behind the form, while the pillar page, glossary, answer blocks, and chart pack stay ungated and crawlable. Gating the canonical answer surface is permanently off the table, because a page an assistant can't retrieve is a page that doesn't exist to it.</p>
   <p>Two sequencing rules travel with this. Measurement prompts enter the tracking pool before publication, since a post-publication baseline can't be reconstructed, and indexation on the engine that feeds assistant retrieval gets treated as a prerequisite rather than a traffic channel, with a measured publish-to-first-citation lag distribution setting the evaluation windows. You can't grade content on a timeline the retrieval layer never agreed to.</p>
 
-  <h2>Step 6: Weight discipline</h2>
+  <h2 id="step-6-weight-discipline">Step 6: Weight discipline</h2>
   <p>This site is HTML, one stylesheet, and six subsetted font files. No JavaScript, no tracking, no framework. Every technique above works better when the page is trivially fetchable and parseable. View source on any page here and you're looking at exactly what a crawler gets.</p>
 
-  <h2>The proof structure</h2>
+  <h2 id="the-proof-structure">The proof structure</h2>
   <p>The playbook's claims are checkable against this site in about two minutes, through <a href="/robots.txt">robots.txt</a>, <a href="/llms.txt">llms.txt</a>, view-source on any page, and <a href="/sitemap.xml">sitemap.xml</a>. What this site can't demonstrate is the enterprise half, meaning the sequencing politics, the verification gates, and the pipeline integration, which is why the Corpay methodology sits alongside the worked example.</p>
 
   <p class="claim">A playbook that doesn't run on its author's own site is a hypothesis.</p>
@@ -99,7 +113,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

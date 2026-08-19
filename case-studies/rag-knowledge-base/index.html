@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,10 +67,21 @@
     <div><span class="n">847</span><span class="l">lectures processed incrementally</span></div>
   </div>
 
-  <h2>What it is</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#what-it-is">What it is</a></li>
+      <li><a href="#the-ingestion-pipeline">The ingestion pipeline</a></li>
+      <li><a href="#retrieval-citation-first">Retrieval, citation-first</a></li>
+      <li><a href="#decisions-worth-stealing">Decisions worth stealing</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="what-it-is">What it is</h2>
   <p>A retrieval-augmented generation system I designed and built solo over a private corpus of licensed lecture video and slides. Ingestion, chunking, embedding, storage, retrieval, and LLM answer synthesis with enforced inline citations. The corpus content is copyrighted, which shaped the architecture in a useful way. The retrieval layer is the IP enforcement boundary, surfacing passages for synthesis and citation without ever republishing them.</p>
 
-  <h2>The ingestion pipeline</h2>
+  <h2 id="the-ingestion-pipeline">The ingestion pipeline</h2>
 
   <figure class="diagram">
     <svg viewBox="0 0 760 150" role="img" aria-label="Six-stage ingestion pipeline from transcripts through storage">
@@ -104,7 +116,7 @@
   <p>Scene detection deserves a word. A slide shown for ten minutes of video becomes one frame after perceptual-hash dedup, and the optional Claude caption for diagrams runs once per unique slide instead of once per frame. Tesseract handles the plain slide text. Cheap, boring, and it cut the captioning bill by an order of magnitude.</p>
   <p>The manifest is what made the project survivable. Hundreds of lectures got processed incrementally across working sessions, and a rerun after any failure reprocessed only the lectures whose content hashes changed.</p>
 
-  <h2>Retrieval, citation-first</h2>
+  <h2 id="retrieval-citation-first">Retrieval, citation-first</h2>
   <p>All retrieval flows through a single hand-written SQL function (declared <code>language sql stable</code>) against an HNSW index. It takes a query embedding, a result count, and a JSONB metadata filter for scoping.</p>
   <pre><code>create or replace function match_chunks(
   query_embedding vector(1024),
@@ -128,12 +140,12 @@ $$;</code></pre>
 
   <p class="claim">This is the machinery answer engines run on: chunking, embedding, retrieval, synthesis, citation.</p>
 
-  <h2>Decisions worth stealing</h2>
+  <h2 id="decisions-worth-stealing">Decisions worth stealing</h2>
   <p>The embedding stage projects run cost from token counts and refuses to start a run that would exceed the configured cap. Failing before spending beats failing mid-run, and the cap has caught two runs that would have been expensive mistakes.</p>
   <p>The embedding provider is one config line (Voyage, OpenAI, or local Ollama), and every stored vector records which model produced it. A future provider switch becomes an unambiguous re-embed instead of an archaeology project. Voyage won on retrieval quality and on a deployment quirk, since it's callable identically from Python during ingest and from a serverless function at query time, where a local Ollama can't be reached.</p>
   <p>The pipeline, schema, and docs are structured for a public repo while transcripts, images, and embeddings live outside it, enforced by redundant gitignores and a private database project. Confidentiality as architecture rather than policy. The same cached embeddings also power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> for when the network path isn't there.</p>
 
-  <h2>Why this matters for AEO</h2>
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
   <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 23,615 chunks of someone else's prose.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team. Python, Tesseract, and Postgres/pgvector on a managed database's free tier. Embedding is the only real spend, and every run is gated by a hard pre-run cost cap.</p></div>
@@ -148,7 +160,7 @@ $$;</code></pre>
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>

@@ -16,7 +16,7 @@
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=10">
+<link rel="stylesheet" href="/css/main.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,6 +53,7 @@
     </nav>
   </div>
 </header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="300" y="6" width="6" height="8"/><rect x="520" y="6" width="6" height="8"/><rect x="900" y="6" width="6" height="8"/></g></svg></div>
 
 <main class="page">
 <article class="grid">
@@ -66,31 +67,43 @@
     <div><span class="n">3</span><span class="l">systems queried before any brief is written</span></div>
   </div>
 
-  <h2>Start from the buyer's words, with receipts</h2>
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#start-from-the-buyers-words">Start from the buyer's words</a></li>
+      <li><a href="#consolidate-before-you-fragment">Consolidate before you fragment</a></li>
+      <li><a href="#the-redundancy-gate">The redundancy gate</a></li>
+      <li><a href="#quality-as-a-machine">Quality as a machine</a></li>
+      <li><a href="#internal-linking-by-similarity">Internal linking by similarity</a></li>
+      <li><a href="#what-id-tell-you">What I'd tell you to steal</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="start-from-the-buyers-words">Start from the buyer's words, with receipts</h2>
   <p>Buyer vocabulary is scattered across review sites, community threads, search autocomplete, competitor content, and the phrasing AI assistants themselves use. Each source is individually thin and individually biased, so the taxonomy synthesizes nine of them into one phrase set. Every phrase carries its own provenance, meaning its source, discovery channel, inferred persona, intent stage, and an authority-weighted mention count. Provenance at the phrase level, not the report level, is what lets you ask whether a phrase is real everywhere or an artifact of one community.</p>
   <p>The persona-by-intent matrix gets read for its empty cells. A cell with no phrases is a buyer segment or funnel stage nobody is speaking to, and those blanks have shaped the roadmap more than the full cells have. Each phrase also gets scored for whether it would plausibly appear in a recorded sales or support conversation, which turns a search artifact into a query set for the contact-center corpus. A different channel entirely, reached through one scoring column.</p>
 
-  <h2>Consolidate before you fragment</h2>
+  <h2 id="consolidate-before-you-fragment">Consolidate before you fragment</h2>
   <p>A quarter-scale content plan built naively spins up one thin page per keyword variant, which fragments the ranking signal a strong page already earned. Rank data showed each nominated hub already absorbing a large family of near-duplicate variants on a single URL, so the plan sequences consolidation first. Hubs get refreshed into clearly addressable sections that can hold the full head-term family, and only then do spokes get built, only for sub-intents that genuinely earn their own URL.</p>
   <p>Hubs and spokes serve different masters on purpose. Hubs are built for ranking and internal-link authority. Spokes are built in the definitional, how-to, and checklist formats answer engines actually quote, because an assistant decomposing a comparison question into sub-queries is choosing between candidates, and a fragmented site offers it several weak ones instead of one strong one.</p>
 
-  <h2>The redundancy gate</h2>
+  <h2 id="the-redundancy-gate">The redundancy gate</h2>
   <p>Content programs at volume commission articles that already exist. Before any brief gets written here, a deterministic script queries three authoritative systems, meaning the live CMS for what's published, the production board for what's in flight, and staged briefs for what's queued, then emits a verdict: new article, refresh an existing URL, hold pending a queue item, or skip.</p>
   <p>The gate's character shows in its failure handling. A source that couldn't run is reported as incomplete and must be compensated by a manual check before a "new article" verdict is permitted, and a known-stale cache is demoted to a hint that can never clear a topic on its silence. The gate exists because a softer version of it failed once, and that incident is written into the skill so a future maintainer can't loosen the rule without knowing why it was tightened.</p>
 
   <p class="claim">The content that gets cited is the content that doesn't sell, so vendor neutrality became a fail condition rather than an aspiration.</p>
 
-  <h2>Quality as a machine, not a memo</h2>
+  <h2 id="quality-as-a-machine">Quality as a machine, not a memo</h2>
   <p>Every draft passes a Python validator with a severity ladder, where errors block and warnings advise, across roughly two dozen checks. Banned AI-tell phrases, puffery, formulaic transitions, placeholder examples, uncited statistics, repeated statistics, heading defects, casing, punctuation, and summary-ending patterns all get caught mechanically. A second family of checks enforces answer-engine structure, including answer-block length, question-shaped headings above a threshold ratio, answer-first opening sentences, comparison-table presence, and the vendor-neutrality rule above.</p>
   <p>The checks are commit-time and unsentimental. In one wave, a single named AI-tell pattern class got caught 29 times out of 30 appearances, and every instance was rewritten rather than waived. The colon and heading disciplines are enforced by hook, a change made after prose-only rules demonstrably failed to hold, and the factual-claims register screens semantically because a paraphrased statistic ("roughly a third") once slipped past a numeric grep. That last discovery grew into the <a href="/case-studies/evidence-engineering/">evidence pipeline's</a> semantic pass.</p>
   <p>The architecture matters more than the check list. One universal core walks up from the article being validated to find a per-brand rules file, and with no config, calibrated defaults apply byte for byte, which ended a forked-copy problem where a sibling brand's validator had silently drifted. Unknown config keys are fatal, so a typo in a brand rule fails loudly instead of silently disabling a compliance check. And the rule data is tested against the human-readable styleguide, so the prose doctrine and the executable rules can't separate. This site's own copy was written under the same styleguide, which felt only fair.</p>
 
-  <h2>Internal linking by similarity, applied by humans</h2>
+  <h2 id="internal-linking-by-similarity">Internal linking by similarity, applied by humans</h2>
   <p>A scikit-learn module vectorizes each published post against the candidate target pages (unigrams and bigrams, stopwords removed) and ranks targets by cosine similarity, capped by a per-post link budget and a minimum-similarity floor. Two details separate it from a toy.</p>
   <p>Anchor selection defers to apply time. The scorer proposes an ordered list of candidate anchor phrases per target, and the applier picks the first phrase that actually occurs in the post body, which decouples "which page should this link to" from "what words can carry the link" and means a link is never inserted with fabricated anchor text. And a degenerate-record guard treats a target with blank title, H1, and meta as absent rather than present-and-empty, because that record would otherwise score zero against every post and silently vanish from the whole link graph. A wrong answer, not an error, which is the worst kind.</p>
   <p>The whole thing stays a proposal engine. Score, candidate sheet, human approval, then apply into the CMS as rich-text link nodes. Publication state gets detected rather than asserted too. A scheduled job notices genuinely published entries and stamps the real live date and URL, and hand-moving an item to "live" is prohibited because it bypasses detection.</p>
 
-  <h2>What I'd tell you to steal</h2>
+  <h2 id="what-id-tell-you">What I'd tell you to steal</h2>
   <p>The taxonomy's empty cells, the consolidation-first sequencing, and the fatal-on-typo config layer travel to any content program. The part I keep coming back to is smaller. Every gate in this engine that works got built after a softer version failed, and carries its own incident history in the file. Whether that discipline survives a team bigger than one is a question I'm still testing.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Built at Corpay by me, hands on keyboard, with Claude Code as the pair. The taxonomy synthesis, validator, redundancy gate, and linking engine are Python; the pipeline runs on GitHub Actions.</p></div>
@@ -105,7 +118,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>
