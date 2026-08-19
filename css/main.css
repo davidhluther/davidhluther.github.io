@@ -49,12 +49,12 @@
 
 :root {
   --bg: #f5f6f3;
-  --surface: #ebede7;
+  --surface: #e2e5db;
   --text: #191c1e;
   --text-2: #545b60;
   --accent: #2b50b4;
   --accent-2: #1f3d8f;
-  --rule: #d8dcd2;
+  --rule: #bfc3ba;
   --rule-strong: color-mix(in srgb, var(--accent) 32%, transparent);
   --diagram-ink: #191c1e;
   --sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
@@ -69,12 +69,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #151719;
-    --surface: #1c1f22;
+    --surface: #24282c;
     --text: #e6e7e3;
     --text-2: #a0a6ab;
     --accent: #94adf2;
     --accent-2: #b3c4f7;
-    --rule: #2c3134;
+    --rule: #3f464b;
     --rule-strong: color-mix(in srgb, var(--accent) 40%, transparent);
     --diagram-ink: #e6e7e3;
   }
@@ -217,7 +217,15 @@ h2 {
   margin: 3rem 0 0.8rem;
 }
 
-h3 { font-size: 1.08rem; font-weight: 600; margin: 2rem 0 0.5rem; }
+h3 {
+  font-family: var(--serif);
+  font-size: 1.16rem;
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+}
+
+/* grid prevents margin collapse; make each section gap exactly the h2's own */
+article.grid > :has(+ h2) { margin-bottom: 0; }
 
 p, ul, ol { margin: 0 0 1.1rem; }
 
