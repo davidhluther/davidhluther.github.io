@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>The Lab | David Luther</title>
-<meta name="description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across five case studies whose code is mostly public and whose running costs are effectively zero.">
+<meta name="description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across six case studies whose code is mostly public and whose running costs are effectively zero.">
 <link rel="canonical" href="https://davidhluther.github.io/lab/">
 <meta property="og:site_name" content="David Luther">
 <meta property="og:title" content="The Lab | David Luther">
-<meta property="og:description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across five case studies whose code is mostly public and whose running costs are effectively zero.">
+<meta property="og:description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across six case studies whose code is mostly public and whose running costs are effectively zero.">
 <meta property="og:url" content="https://davidhluther.github.io/lab/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,7 @@
   "@id": "https://davidhluther.github.io/lab/#collection",
   "url": "https://davidhluther.github.io/lab/",
   "name": "The Lab",
-  "description": "Index of the self-built systems, with five case studies covering retrieval engines, forecast models, and a publicly revised scoring rubric, plus the smaller standing systems around them.",
+  "description": "Index of the self-built systems, with six case studies covering retrieval engines, forecast models, and a publicly revised scoring rubric, plus the smaller standing systems around them.",
   "isPartOf": { "@id": "https://davidhluther.github.io/#website" }
 }
 </script>
@@ -56,8 +56,14 @@
 <main class="page">
 <article class="grid">
   <h1>The Lab</h1>
-  <p class="lede">The passion projects, where I learn how these machines actually work by building their moving parts myself: a search engine, a retrieval pipeline over a private library, and the forecast models, scoring rubric, and indexing investigation running live at <a href="https://davessweater.com">davessweater.com</a>. Everything here is open to inspection, most of it is <a href="https://github.com/davidhluther">public code</a>, and all of it runs at effectively zero cost. It's also where the day job's discipline gets invented. The measurement instrument I defend at work was built and stress-tested here first.</p>
+  <p class="lede">The passion projects, where I learn how these machines actually work by building their moving parts myself: a search engine, a retrieval pipeline over a private library, and the forecast models, scoring rubric, and indexing investigation running live at <a href="https://davessweater.com">davessweater.com</a>, plus <a href="/case-studies/governance-as-code/">the governance gates that fail their builds</a>. Everything here is open to inspection, most of it is <a href="https://github.com/davidhluther">public code</a>, and all of it runs at effectively zero cost. It's also where the day job's discipline gets invented. The measurement instrument I defend at work was built and stress-tested here first.</p>
   <ul class="study-list">
+    <li>
+      <span class="tag">Governance</span>
+      <h3><a href="/case-studies/governance-as-code/">Two Rules I Stopped Trying to Remember</a></h3>
+      <span class="fig">156<small>copy violations humans had reviewed past</small></span>
+      <p>A styleguide compiled into a linter that reads shipped copy rather than drafts, and a platform limit turned into a PR gate after it froze production for ten days.</p>
+    </li>
     <li>
       <span class="tag">Measurement</span>
       <h3><a href="/case-studies/scoring-rubric/">Grading Ten Forecasters on a Rubric I Rebuilt Four Times</a></h3>

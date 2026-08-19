@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Two Rules I Stopped Trying to Remember | David Luther</title>
+<meta name="description" content="Two standards that only started holding once they could fail a build: a writing styleguide compiled into a linter that reads shipped UI copy rather than drafts, and a platform function limit turned into a pull-request gate after it silently froze production for ten days. Both are public code with their severity choices explained.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/governance-as-code/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="Two Rules I Stopped Trying to Remember | David Luther">
+<meta property="og:description" content="Two standards that only started holding once they could fail a build: a writing styleguide compiled into a linter that reads shipped UI copy rather than drafts, and a platform function limit turned into a pull-request gate after it silently froze production for ten days.">
+<meta property="og:url" content="https://davidhluther.github.io/case-studies/governance-as-code/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=13">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Two Rules I Stopped Trying to Remember",
+  "datePublished": "2026-08-19",
+  "dateModified": "2026-08-19",
+  "description": "Case study in executable governance: a writing styleguide compiled into a linter that extracts shipped UI copy from JSX, metadata and aria-labels, a severity design that keeps the linter switched on, canonical shared word lists that cannot fork, and a CI gate that turns an invisible platform limit into a failing pull request.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/governance-as-code/",
+  "about": ["Editorial Governance", "Continuous Integration", "Linting", "Content Operations", "Technical SEO"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "The lab", "item": "https://davidhluther.github.io/lab/" },
+    { "@type": "ListItem", "position": 3, "name": "Two Rules I Stopped Trying to Remember", "item": "https://davidhluther.github.io/case-studies/governance-as-code/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/aeo/">AEO work</a>
+      <a href="/lab/">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
+
+<main class="page">
+<article class="grid">
+  <h1>Two Rules I Stopped Trying to Remember</h1>
+  <p class="lede">One was an editorial standard I kept restating and the site kept violating. The other was a platform limit that froze production for ten days without turning anything red. Both are now code that fails a build, and the interesting part of each is not the rule but the design decisions that made it survivable to live with.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">156</span><span class="l">copy violations in a tree humans had reviewed for months</span></div>
+    <div><span class="n">1,722</span><span class="l">user-facing strings extracted and checked</span></div>
+    <div><span class="n">66</span><span class="l">tests guarding the two gates themselves</span></div>
+    <div><span class="n">10</span><span class="l">function budget, set two under the real cap</span></div>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#three-sweeps-before-i-admitted">Three sweeps before I admitted</a></li>
+      <li><a href="#a-draft-validator">A draft validator</a></li>
+      <li><a href="#severity-is-the-design-decision">Severity is the design decision</a></li>
+      <li><a href="#the-word-lists">The word lists</a></li>
+      <li><a href="#the-second-rule">The second rule</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="three-sweeps-before-i-admitted">Three sweeps before I admitted prose wasn't working</h2>
+  <p>My weather site uses a pipe to separate data points on a line. Small rule, set on 2 July and swept across the site the same day. It came back. Swept again during a later feature build, and it came back again. On 17 August I swept it a third time and, in the same change, made it a rule the test suite enforces, which is the only sweep that has held.</p>
+  <p>That pattern is the whole argument. The styleguide it belongs to is a serious document with tiered rules and a quarterly re-check, and it lived as prose for months while I kept catching violations by reading the live page. A rule a human has to remember is a rule that decays at exactly the rate you stop paying attention. The linter's own docstring is blunt about the reason it exists, which is that prose-only rules demonstrably don't hold.</p>
+
+  <h2 id="a-draft-validator">A draft validator can't see the copy that ships</h2>
+  <p>The <a href="/case-studies/content-engine/">Corpay content engine</a> runs a validator over drafts before they publish, which is the right place for an article pipeline. It is also structurally blind to most of the copy on a web application. Nobody drafts an aria-label. Nobody sends a nav item or a table header or an Open Graph description through editorial review.</p>
+  <p>So this one reads the artifact instead. It pulls user-facing strings out of JSX text nodes, prose string literals, metadata titles and descriptions, aria-labels, and markdown posts, which comes to 1,722 strings today, and applies the mechanically decidable subset of the styleguide to all of them. Fourteen rule codes cover colon capitalization and colon budget, em-dashes in interface copy, nav label sets that aren't uniformly title case, table cells and stat captions starting lowercase, straight quotes that JSX will never convert, banned vocabulary, the separator standard, and one bug class worth naming on its own.</p>
+  <p>That one is <code>JSX_SPACING</code>. A JSX text node carrying an HTML entity that also wraps across source lines silently loses its leading space when it builds, so "range is scored" ships as "rangeis scored." The source looks correct, review catches nothing, and the defect exists only in the production bundle. It is precisely the class of error that a draft-stage check cannot reach and a human proofreader will read straight past, because they are reading the source rather than the output.</p>
+  <p>The first run found 156 violations in a tree that had passed months of my own review.</p>
+
+  <h2 id="severity-is-the-design-decision">Severity is the design decision, not the rule list</h2>
+  <p>Every rule ships with a severity, and the split is deliberate. Errors are the unambiguous mechanical cases, meaning a lowercase complete sentence after a colon, a straight quote in rendered JSX, a nav set that mixes cases. Warnings are every judgment call, including the colon budget and any lowercase-after-colon that might be a legitimate fragment or enumeration.</p>
+  <p>The reasoning is recorded in the source, and it is the part I would keep if I could keep only one line: a linter that forces bad rewrites gets switched off. A tool that fails your build over a defensible sentence teaches you to disable the tool, and then you have neither the rule nor the tool. Running it against the live tree right now returns zero errors and 69 warnings. The gate is clean and the advice is still there, unread until someone wants it, blocking nothing.</p>
+  <p>The gate itself is one pytest case that lints the real source tree and asserts no errors, so a copy violation fails the suite exactly like a broken function would. A companion test asserts the opposite boundary, which is that unapproved drafts are never linted. Shipped copy is governed; work in progress is left alone.</p>
+
+  <h2 id="the-word-lists">The word lists are deliberately not mine</h2>
+  <p>Banned vocabulary is not defined in this linter. It reads the canonical JSON that the shared article validator reads, and if that file is missing it exits loudly rather than falling back to a built-in list.</p>
+  <pre><code># Canonical, shared word lists. Forking a copy into this repo is banned by
+# ~/Projects/CLAUDE.md, so we read the shared file and fail loudly if it moved.</code></pre>
+  <p>A test pins the filename and asserts that real terms resolve through it. This is a rule I hold across every project because I have already been bitten: a sibling brand's forked validator drifted silently, and nobody noticed until the two brands were enforcing different standards while believing they shared one. A loud failure on a missing shared file is better than a quiet success on a stale local copy.</p>
+
+  <h2 id="the-second-rule">The second rule was a limit I couldn't see</h2>
+  <p>The other standard is infrastructural, and it earned its gate the expensive way. Every deployment failed from 6 to 16 August because the hosting plan refuses more than twelve serverless functions per deployment, and it refuses at a step that runs <em>after</em> the build reports "Build Completed." So the build stayed green, the scheduled jobs stayed green, the data pipeline kept committing daily, and production quietly served a ten-day-old build. Nothing anywhere was red.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 740 168" role="img" aria-label="The deploy sequence: build completes green, then the platform rejects at patchBuild, leaving production serving a stale build with no red signal">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="30" width="150" height="52"/>
+        <rect x="186" y="30" width="150" height="52"/>
+        <rect x="366" y="30" width="164" height="52" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="560" y="30" width="174" height="52" stroke-dasharray="4 4"/>
+        <path d="M156 56 H186 M336 56 H366 M530 56 H560"/>
+      </g>
+      <g font-size="13" fill="var(--diagram-ink)">
+        <text x="20" y="52" font-weight="500">push</text>
+        <text x="20" y="70" fill="var(--text-2)" font-size="11">data commits, daily</text>
+        <text x="200" y="52" font-weight="500">build</text>
+        <text x="200" y="70" fill="var(--text-2)" font-size="11">"Build Completed"</text>
+        <text x="380" y="52" font-weight="500">patchBuild</text>
+        <text x="380" y="70" fill="var(--text-2)" font-size="11">rejects on the cap</text>
+        <text x="574" y="52" font-weight="500">production</text>
+        <text x="574" y="70" fill="var(--text-2)" font-size="11">serving the old build</text>
+      </g>
+      <text x="20" y="128" font-size="11" fill="var(--text-2)">Every signal in the first two boxes is green, and the failure lives in the third. Ten days.</text>
+    </svg>
+    <figcaption>The gap between "the build succeeded" and "the deployment happened" is where this hid. Any monitor watching build status, or watching whether fresh data was committed, reported perfect health throughout.</figcaption>
+  </figure>
+
+  <p>The fix is a pull-request check with two jobs, and the reason there are two is worth more than the check itself. A static model reads the route tree and predicts the count in about a second, needs no toolchain, and gates every relevant pull request. A ground-truth job runs a real platform build and counts the function bundles the builder actually emitted, which is slower, exact, and the arbiter whenever the two disagree. When they diverge, the workflow warns that the measurement wins and the model needs updating, rather than quietly trusting the fast answer.</p>
+  <p>Two smaller choices in there matter more than they look. The budget fails at ten rather than twelve, so a model that under-counts by one still trips the check before a real deployment does. And a build that fails because the platform CLI wanted credentials posts a notice naming the exact owner step instead of going red, because a credentials failure is not a signal about the function count and must not read as one. A check that cries wolf gets ignored on the day it is right.</p>
+
+  <p class="claim">A standard that cannot fail a build is a preference, and preferences lose to deadlines.</p>
+
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
+  <p>"How do you hold editorial standards across hundreds of pages" is a real interview question with a bad common answer, which is a style guide, a review step, and hope. Answer engines extract from the rendered page, so the copy that determines how you get quoted is exactly the copy no draft process ever sees: the metadata, the headings, the nav labels, the table cells. Governing drafts and leaving the artifact ungoverned means governing the half that doesn't ship.</p>
+  <p>The transferable pattern is smaller than either tool. Write the rule as prose first, because you need to understand it before you can encode it. Then watch which rules keep getting violated, because those are the ones that will never hold on attention alone, and compile only those into something that blocks. Grade the mechanical cases as errors and everything arguable as advice, or the team will route around the whole apparatus within a month. And point every instance at one canonical definition, so that having the rule in two places doesn't quietly become having two rules.</p>
+  <p>What I don't have is evidence that the warnings ever get read. Sixty-nine of them are sitting in that output right now and I look at them roughly never, which suggests the honest split might be narrower than the one I built.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Both gates are public in the <a href="https://github.com/davidhluther/davessweater">repo</a>, as <code>scripts/copy_lint.py</code> and the function-budget workflow, with their reasoning in the comments rather than in a wiki. 66 of the project's 581 Python tests exist to keep the two gates honest. The copy linter was generalized into my shared cross-project library the same day it shipped.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/indexing-forensics/">The indexing audit on the same site</a>
+    <a href="/case-studies/content-engine/">The draft-stage validator this complements</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -21,7 +21,8 @@ AEO work:
 - [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy, with this site as the worked example
 
 The lab:
-- [The lab](https://davidhluther.github.io/lab/) indexes the five self-built case studies and the shared infrastructure behind them
+- [The lab](https://davidhluther.github.io/lab/) indexes the six self-built case studies and the shared infrastructure behind them
+- [Governance as code](https://davidhluther.github.io/case-studies/governance-as-code/) covers a writing styleguide compiled into a linter that extracts shipped UI copy from JSX, metadata and aria-labels, the error-versus-warning severity design that keeps it switched on, canonical shared word lists that cannot fork, and a CI gate that turns an invisible platform function limit into a failing pull request
 - [Indexing forensics](https://davidhluther.github.io/case-studies/indexing-forensics/) covers a technical SEO investigation into 34 pages Google never discovered, separating a crawling failure from a discovery failure, the sitemap lastmod root cause, and a causal-claim gate that disqualified the author's own fix as the explanation for the recovery
 - [Scoring rubric design](https://davidhluther.github.io/case-studies/scoring-rubric/) covers a 100-point forecast-accuracy rubric revised four times in public across 529 scored days, the measurement pathologies each revision fixed, source-blindness verification, and idempotent re-scoring of all history
 - [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
