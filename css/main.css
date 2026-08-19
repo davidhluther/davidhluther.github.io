@@ -556,3 +556,14 @@ th { font-weight: 600; }
 @media (prefers-reduced-motion: no-preference) {
   a, .study-list h3 a { transition: color 130ms ease; }
 }
+
+/* ---- photos ---- */
+.photo { margin: 1.6rem 0; }
+.photo img {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+  border-radius: 4px;
+}
+.photo figcaption { color: var(--text-2); font-size: 0.85rem; margin-top: 0.55rem; }
