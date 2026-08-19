@@ -49,7 +49,7 @@
   </div>
 
   <h2>The site around it</h2>
-  <p><a href="https://davessweater.com">Dave's Sweater</a> is my satirical local-weather site for Boone, NC, and the public face of an idea I keep applying elsewhere. Forecasts should be accountable. The site's Right Ray / Wrong Ray tracker scores real forecast providers against verified actuals on a 100-point rubric, month after month, in public, and the rubric's recalibrations carry dates and reasons in the code comments. Its consensus forecast ships through a public API and an embeddable widget that loads no analytics, licensed CC BY 4.0. The traffic model extends the accountability discipline to a domain with no ground-truth provider to borrow.</p>
+  <p><a href="https://davessweater.com">Dave's Sweater</a> is my satirical local-weather site for Boone, NC, and the public face of an idea I keep applying elsewhere. Forecasts should be accountable. The site's Right Ray / Wrong Ray tracker scores real forecast providers against verified actuals on a 100-point rubric, month after month, in public, and <a href="/case-studies/scoring-rubric/">that rubric has its own case study</a>, because rebuilding it four times without rigging it was the harder engineering problem. Its consensus forecast ships through a public API and an embeddable widget that loads no analytics, licensed CC BY 4.0. The traffic model extends the accountability discipline to a domain with no ground-truth provider to borrow.</p>
 
   <h2>What the model actually eats</h2>
   <p>"Three factors and a clamp" describes the formula, and it undersells the system. Each factor is fed by its own data family, each with its own capture pipeline, freshness rules, and documented provenance.</p>
@@ -125,7 +125,7 @@ br = tm.brier(prob, observed_jammed)</code></pre>
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team, in evenings. GitHub Actions free tier, a Vercel hobby plan, 24 of TomTom's 2,500 free daily calls, standard-library Python. Monthly cost in API and compute: $0.</p></div>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/case-studies/rag-knowledge-base/">RAG knowledge base</a>
+    <a href="/case-studies/scoring-rubric/">The rubric underneath the scoreboard</a>
     <a href="/#lab">All lab projects</a>
   </nav>
 </article>
