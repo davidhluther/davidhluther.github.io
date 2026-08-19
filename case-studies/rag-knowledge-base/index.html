@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RAG Knowledge Base Case Study | David Luther</title>
-<meta name="description" content="Architecture of a retrieval-augmented generation system over a 15,302-chunk private corpus: token-windowed chunking, 1,024-dimension Voyage embeddings, Postgres pgvector with HNSW, a PL/pgSQL retrieval function, and citation-first design. Built solo by David Luther.">
+<title>A RAG Knowledge Base Over a 15,000-Chunk Private Corpus | David Luther</title>
+<meta name="description" content="Architecture of a retrieval-augmented generation system over a 15,302-chunk private corpus. Token-windowed chunking, 1,024-dimension Voyage embeddings, Postgres pgvector with HNSW, a PL/pgSQL retrieval function, and citation-first design, built solo by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/rag-knowledge-base/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,7 +14,7 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "A RAG knowledge base over a 15,000-chunk private corpus",
+  "headline": "A RAG Knowledge Base Over a 15,000-Chunk Private Corpus",
   "description": "Case study of a solo-built retrieval-augmented generation system: ingestion from video transcripts and slides, token-windowed chunking, batched embeddings with cost caps, pgvector with HNSW indexing, PL/pgSQL retrieval, and a citation-first schema.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/rag-knowledge-base/",
@@ -25,7 +25,7 @@
 </head>
 <body>
 <header class="site">
-  <div class="wrap">
+  <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
       <a href="/#case-studies">Case studies</a>
@@ -36,36 +36,59 @@
   </div>
 </header>
 
-<main class="wrap">
-<article>
-  <p class="kicker">Search engineering &middot; Pigasus Group</p>
-  <h1>A RAG knowledge base over a 15,000-chunk private corpus</h1>
-  <p class="lede">Video lectures and slides in, cited answers out. Every stage idempotent, every cost capped before it's spent, every retrieved passage traceable to its source timestamp.</p>
+<main class="page">
+<article class="grid">
+  <p class="kicker">Case study &middot; Pigasus Group</p>
+  <h1>A RAG Knowledge Base Over a 15,000-Chunk Private Corpus</h1>
+  <p class="lede">Video lectures and slides in, cited answers out. Every stage is idempotent, every cost gets capped before it's spent, and every retrieved passage traces to a source timestamp.</p>
 
   <div class="fact-grid">
     <div><span class="n">15,302</span><span class="l">unique chunks in the corpus</span></div>
     <div><span class="n">1,024</span><span class="l">embedding dimensions (voyage-3-large)</span></div>
-    <div><span class="n">400/60</span><span class="l">token window / overlap chunking</span></div>
+    <div><span class="n">400/60</span><span class="l">token window and overlap</span></div>
     <div><span class="n">60+</span><span class="l">lectures processed incrementally</span></div>
   </div>
 
   <h2>What it is</h2>
-  <p>A retrieval-augmented generation system I designed and built solo over a private corpus of licensed lecture video and slides: ingestion, chunking, embedding, storage, retrieval, and LLM answer synthesis with enforced inline citations. The corpus content is copyrighted, which shaped the architecture in a useful way. The retrieval layer is explicitly the privacy and IP enforcement boundary: it surfaces passages for synthesis and citation, and never republishes them.</p>
+  <p>A retrieval-augmented generation system I designed and built solo over a private corpus of licensed lecture video and slides. Ingestion, chunking, embedding, storage, retrieval, and LLM answer synthesis with enforced inline citations. The corpus content is copyrighted, which shaped the architecture in a useful way. The retrieval layer is the IP enforcement boundary, surfacing passages for synthesis and citation without ever republishing them.</p>
 
   <h2>The ingestion pipeline</h2>
-  <p>Six idempotent stages, each rerunnable without damage:</p>
-  <ol>
-    <li><strong>Transcripts:</strong> parse VTT/SRT/text, clean, and segment, keeping timestamps.</li>
-    <li><strong>Visuals:</strong> scene detection on the video (PySceneDetect), one frame per scene, perceptual-hash dedup so the same slide shown for ten minutes becomes one image.</li>
-    <li><strong>OCR and captioning:</strong> Tesseract for slide text, with an optional Claude-generated caption for diagrams. Dedup upstream means captioning runs once per unique slide, not once per frame.</li>
-    <li><strong>Chunking:</strong> ~400-token sliding windows over transcript segments with a 60-token overlap tail carried into the next window; one chunk per unique slide.</li>
-    <li><strong>Embedding:</strong> batched calls to voyage-3-large (1,024 dimensions), behind a cost gate.</li>
-    <li><strong>Storage:</strong> Postgres with pgvector on Supabase, or a local JSONL store for offline development.</li>
-  </ol>
-  <p>A manifest tracks per-lecture content hashes, so reruns reprocess only what changed. That's what made it practical to process 60+ lectures incrementally across working sessions instead of in one heroic batch job.</p>
 
-  <h2>Retrieval: one SQL function, citation-first</h2>
-  <p>All retrieval flows through a single PL/pgSQL function against an HNSW index. It takes a query embedding, a result count, and a JSONB metadata filter for scoping:</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 760 150" role="img" aria-label="Six-stage ingestion pipeline from transcripts through storage">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="4" y="30" width="110" height="52"/>
+        <rect x="130" y="30" width="110" height="52"/>
+        <rect x="256" y="30" width="110" height="52"/>
+        <rect x="382" y="30" width="110" height="52"/>
+        <rect x="508" y="30" width="110" height="52" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="634" y="30" width="110" height="52"/>
+        <path d="M114 56 H130 M240 56 H256 M366 56 H382 M492 56 H508 M618 56 H634"/>
+      </g>
+      <g font-size="12" fill="var(--diagram-ink)">
+        <text x="16" y="52" font-weight="500">transcripts</text>
+        <text x="16" y="70" fill="var(--text-2)" font-size="10.5">VTT/SRT, timestamps</text>
+        <text x="142" y="52" font-weight="500">visuals</text>
+        <text x="142" y="70" fill="var(--text-2)" font-size="10.5">scene detect, dedup</text>
+        <text x="268" y="52" font-weight="500">OCR</text>
+        <text x="268" y="70" fill="var(--text-2)" font-size="10.5">+ diagram captions</text>
+        <text x="394" y="52" font-weight="500">chunk</text>
+        <text x="394" y="70" fill="var(--text-2)" font-size="10.5">400 tok / 60 overlap</text>
+        <text x="520" y="52" font-weight="500">embed</text>
+        <text x="520" y="70" fill="var(--text-2)" font-size="10.5">batched, cost-capped</text>
+        <text x="646" y="52" font-weight="500">store</text>
+        <text x="646" y="70" fill="var(--text-2)" font-size="10.5">pgvector / JSONL</text>
+      </g>
+      <text x="4" y="122" font-size="10.5" fill="var(--text-2)">A manifest of per-lecture content hashes makes every stage idempotent. Reruns touch only what changed.</text>
+    </svg>
+    <figcaption>The cost gate sits at the embedding stage, the one place the pipeline spends money.</figcaption>
+  </figure>
+
+  <p>Scene detection deserves a word. A slide shown for ten minutes of video becomes one frame after perceptual-hash dedup, and the optional Claude caption for diagrams runs once per unique slide instead of once per frame. Tesseract handles the plain slide text. Cheap, boring, and it cut the captioning bill by an order of magnitude.</p>
+  <p>The manifest is what made the project survivable. Sixty-plus lectures got processed incrementally across working sessions, and a rerun after any failure reprocessed only the lectures whose content hashes changed.</p>
+
+  <h2>Retrieval, citation-first</h2>
+  <p>All retrieval flows through a single PL/pgSQL function against an HNSW index. It takes a query embedding, a result count, and a JSONB metadata filter for scoping.</p>
   <pre><code>create or replace function match_chunks(
   query_embedding vector(1024),
   match_count int default 8,
@@ -84,30 +107,27 @@ as $$
   order by c.embedding &lt;=&gt; query_embedding
   limit match_count;
 $$;</code></pre>
-  <p>Every chunk carries its source timestamp (<code>start_ms</code>) and course/lecture metadata, so retrieval always answers "where did this come from." A later migration joined lecture and course titles directly into the function's return shape, so citations need no client-side joins. Answer synthesis is required to cite inline; an answer that can't point at its passages doesn't ship.</p>
-
-  <h2>Engineering decisions worth stealing</h2>
-  <ul>
-    <li><strong>Cost caps before spend.</strong> The embedding stage projects run cost from token counts and refuses to start a run that would exceed the configured cap. Failing before spending beats failing mid-run.</li>
-    <li><strong>Provider abstraction with provenance.</strong> The embedding provider is one config line (Voyage, OpenAI, or local Ollama), and every stored vector records which model produced it, so a future provider switch is an unambiguous re-embed rather than an archaeology project.</li>
-    <li><strong>Public code, private data.</strong> The pipeline, schema, and docs are structured for a public repo; transcripts, images, and embeddings live outside it, enforced by redundant gitignores and a private database project. Confidentiality as architecture, not as policy.</li>
-    <li><strong>Offline fallback.</strong> The same cached embeddings power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> when the network path isn't available.</li>
-  </ul>
+  <p>Every chunk carries its source timestamp and course metadata, so retrieval always answers "where did this come from." A later migration joined lecture and course titles directly into the function's return shape, killing the client-side joins citations used to need. Answer synthesis is required to cite inline. An answer that can't point at its passages doesn't ship.</p>
 
   <p class="claim">This is the machinery answer engines run on: chunking, embedding, retrieval, synthesis, citation.</p>
 
+  <h2>Decisions worth stealing</h2>
+  <p>The embedding stage projects run cost from token counts and refuses to start a run that would exceed the configured cap. Failing before spending beats failing mid-run, and the cap has caught two runs that would have been expensive mistakes.</p>
+  <p>The embedding provider is one config line (Voyage, OpenAI, or local Ollama), and every stored vector records which model produced it. A future provider switch becomes an unambiguous re-embed instead of an archaeology project. Voyage won on retrieval quality and on a deployment quirk, since it's callable identically from Python during ingest and from a serverless function at query time, where a local Ollama can't be reached.</p>
+  <p>The pipeline, schema, and docs are structured for a public repo while transcripts, images, and embeddings live outside it, enforced by redundant gitignores and a private database project. Confidentiality as architecture rather than policy. The same cached embeddings also power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> for when the network path isn't there.</p>
+
   <h2>Why this matters for AEO</h2>
-  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. That intuition is the difference between AEO as checklist and AEO as engineering discipline.</p>
+  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 15,302 chunks of someone else's prose.</p>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/case-studies/hybrid-retrieval/">&larr; Hybrid retrieval engine</a>
-    <a href="/case-studies/ai-visibility-measurement/">Next: AI-visibility measurement &rarr;</a>
+    <a href="/case-studies/hybrid-retrieval/">Hybrid retrieval engine</a>
+    <a href="/case-studies/ai-visibility-measurement/">Next: AI-visibility measurement</a>
   </nav>
 </article>
 </main>
 
 <footer class="site">
-  <div class="wrap">
+  <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>

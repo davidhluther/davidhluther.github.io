@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Content Engine Built to Earn Citations | David Luther</title>
+<meta name="description" content="Methodology of a production content engine for answer engines: a nine-source buyer-language taxonomy, a TF-IDF internal-linking engine with deferred anchor selection, consolidation-before-fragmentation roadmapping, a redundancy gate, and a mechanically enforced writing validator.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/content-engine/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "A Content Engine Built to Earn Citations",
+  "description": "Case study of content operations methodology for answer engines: buyer-language taxonomy with phrase-level provenance, TF-IDF internal linking, consolidation-first roadmapping, redundancy gating, and machine-enforced writing quality.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/content-engine/",
+  "about": ["Content Strategy", "Answer Engine Optimization", "Internal Linking", "TF-IDF", "Content Operations"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/#case-studies">Case studies</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <p class="kicker">Case study &middot; Corpay methodology</p>
+  <h1>A Content Engine Built to Earn Citations</h1>
+  <p class="lede">A hundred-plus posts through one production pipeline, with the strategy, the linking, the quality bar, and the duplicate-prevention all running as systems instead of judgment calls. The numbers stay internal; the machinery is the story.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">9</span><span class="l">independent sources in the language taxonomy</span></div>
+    <div><span class="n">155+</span><span class="l">buyer phrases, each with provenance</span></div>
+    <div><span class="n">~24</span><span class="l">mechanical checks per draft</span></div>
+    <div><span class="n">3</span><span class="l">systems queried before any brief is written</span></div>
+  </div>
+
+  <h2>Start from the buyer's words, with receipts</h2>
+  <p>Buyer vocabulary is scattered across review sites, community threads, search autocomplete, competitor content, and the phrasing AI assistants themselves use. Each source is individually thin and individually biased, so the taxonomy synthesizes nine of them into one phrase set. Every phrase carries its own provenance, meaning its source, discovery channel, inferred persona, intent stage, and an authority-weighted mention count. Provenance at the phrase level, not the report level, is what lets you ask whether a phrase is real everywhere or an artifact of one community.</p>
+  <p>The persona-by-intent matrix gets read for its empty cells. A cell with no phrases is a buyer segment or funnel stage nobody is speaking to, and those blanks have shaped the roadmap more than the full cells have. Each phrase also gets scored for whether it would plausibly appear in a recorded sales or support conversation, which turns a search artifact into a query set for the contact-center corpus. A different channel entirely, reached through one scoring column.</p>
+
+  <h2>Consolidate before you fragment</h2>
+  <p>A quarter-scale content plan built naively spins up one thin page per keyword variant, which fragments the ranking signal a strong page already earned. Rank data showed each nominated hub already absorbing a large family of near-duplicate variants on a single URL, so the plan sequences consolidation first. Hubs get refreshed into clearly addressable sections that can hold the full head-term family, and only then do spokes get built, only for sub-intents that genuinely earn their own URL.</p>
+  <p>Hubs and spokes serve different masters on purpose. Hubs are built for ranking and internal-link authority. Spokes are built in the definitional, how-to, and checklist formats answer engines actually quote, because an assistant decomposing a comparison question into sub-queries is choosing between candidates, and a fragmented site offers it several weak ones instead of one strong one.</p>
+
+  <h2>The redundancy gate</h2>
+  <p>Content programs at volume commission articles that already exist. Before any brief gets written here, a deterministic script queries three authoritative systems, meaning the live CMS for what's published, the production board for what's in flight, and staged briefs for what's queued, then emits a verdict: new article, refresh an existing URL, hold pending a queue item, or skip.</p>
+  <p>The gate's character shows in its failure handling. A source that couldn't run is reported as incomplete and must be compensated by a manual check before a "new article" verdict is permitted, and a known-stale cache is demoted to a hint that can never clear a topic on its silence. The gate exists because a softer version of it failed once, and that incident is written into the skill so a future maintainer can't loosen the rule without knowing why it was tightened.</p>
+
+  <p class="claim">The content that gets cited is the content that doesn't sell, so vendor neutrality became a fail condition rather than an aspiration.</p>
+
+  <h2>Quality as a machine, not a memo</h2>
+  <p>Every draft passes a Python validator with a severity ladder, where errors block and warnings advise, across roughly two dozen checks. Banned AI-tell phrases, puffery, formulaic transitions, placeholder examples, uncited statistics, repeated statistics, heading defects, casing, punctuation, and summary-ending patterns all get caught mechanically. A second family of checks enforces answer-engine structure, including answer-block length, question-shaped headings above a threshold ratio, answer-first opening sentences, comparison-table presence, and the vendor-neutrality rule above.</p>
+  <p>The architecture matters more than the check list. One universal core walks up from the article being validated to find a per-brand rules file, and with no config, calibrated defaults apply byte for byte, which ended a forked-copy problem where a sibling brand's validator had silently drifted. Unknown config keys are fatal, so a typo in a brand rule fails loudly instead of silently disabling a compliance check. And the rule data is tested against the human-readable styleguide, so the prose doctrine and the executable rules can't separate. This site's own copy was written under the same styleguide, which felt only fair.</p>
+
+  <h2>Internal linking by similarity, applied by humans</h2>
+  <p>A scikit-learn module vectorizes each published post against the candidate target pages (unigrams and bigrams, stopwords removed) and ranks targets by cosine similarity, capped by a per-post link budget and a minimum-similarity floor. Two details separate it from a toy.</p>
+  <p>Anchor selection defers to apply time. The scorer proposes an ordered list of candidate anchor phrases per target, and the applier picks the first phrase that actually occurs in the post body, which decouples "which page should this link to" from "what words can carry the link" and means a link is never inserted with fabricated anchor text. And a degenerate-record guard treats a target with blank title, H1, and meta as absent rather than present-and-empty, because that record would otherwise score zero against every post and silently vanish from the whole link graph. A wrong answer, not an error, which is the worst kind.</p>
+  <p>The whole thing stays a proposal engine. Score, candidate sheet, human approval, then apply into the CMS as rich-text link nodes. Publication state gets detected rather than asserted too. A scheduled job notices genuinely published entries and stamps the real live date and URL, and hand-moving an item to "live" is prohibited because it bypasses detection.</p>
+
+  <h2>What I'd tell you to steal</h2>
+  <p>The taxonomy's empty cells, the consolidation-first sequencing, and the fatal-on-typo config layer travel to any content program. The part I keep coming back to is smaller. Every gate in this engine that works got built after a softer version failed, and carries its own incident history in the file. Whether that discipline survives a team bigger than one is a question I'm still testing.</p>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/ai-visibility-measurement/">AI-visibility measurement</a>
+    <a href="/case-studies/self-grading-forecast/">Next: the self-grading forecast</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+    <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
+  </div>
+</footer>
+</body>
+</html>

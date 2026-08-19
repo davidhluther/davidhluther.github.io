@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI-Visibility Measurement Case Study | David Luther</title>
-<meta name="description" content="How to measure a brand's visibility in AI answers without fooling yourself: a frozen 28-prompt battery run against ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction and provenance disciplines that separate real citation share from measurement artifacts.">
+<title>Measuring AI Visibility Without Fooling Yourself | David Luther</title>
+<meta name="description" content="How to measure a brand's visibility in AI answers without fooling yourself. A frozen 28-prompt battery run against ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction, provenance, and evidence-grading disciplines that separate real citation share from measurement artifacts.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/ai-visibility-measurement/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,8 +14,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Measuring AI visibility without fooling yourself",
-  "description": "Case study of AI-visibility measurement methodology: frozen prompt batteries, hand-run consumer-UI protocol, an API runner with a verified-model-ID gate, prompt-pool noise correction, and AI-traffic analytics forensics.",
+  "headline": "Measuring AI Visibility Without Fooling Yourself",
+  "description": "Case study of AI-visibility measurement methodology: frozen prompt batteries, hand-run consumer-UI protocol, an API runner with a verified-model-ID gate, prompt-pool noise correction, evidence confidence ladders, and AI-traffic analytics forensics.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/ai-visibility-measurement/",
   "about": ["Answer Engine Optimization", "AI Visibility", "Share of Voice", "Measurement Methodology", "Marketing Analytics"],
@@ -25,7 +25,7 @@
 </head>
 <body>
 <header class="site">
-  <div class="wrap">
+  <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
       <a href="/#case-studies">Case studies</a>
@@ -36,30 +36,83 @@
   </div>
 </header>
 
-<main class="wrap">
-<article>
-  <p class="kicker">AEO measurement &middot; Pigasus Group + Corpay methodology</p>
-  <h1>Measuring AI visibility without fooling yourself</h1>
-  <p class="lede">Anyone can paste a prompt into ChatGPT and screenshot the answer. Building an instrument you can defend in front of a CMO is a different job. This is how I do it, twice: once as a solo-built system I own end to end, and once at Fortune 1000 scale.</p>
+<main class="page">
+<article class="grid">
+  <p class="kicker">Case study &middot; Pigasus Group + Corpay methodology</p>
+  <h1>Measuring AI Visibility Without Fooling Yourself</h1>
+  <p class="lede">Anyone can paste a prompt into ChatGPT and screenshot the answer. Building an instrument you can defend in front of a CMO is a different job, and I do it twice: once as a solo-built system I own end to end, and once at Fortune 1000 scale.</p>
 
-  <h2>The Pigasus battery: a frozen instrument</h2>
-  <p>For my consultancy I built an AI-visibility instrument around a frozen 28-prompt battery run monthly against ChatGPT, Claude, Perplexity, and Gemini: 112 answer cells per month. The prompts are organized into six groups that mirror how buyers actually approach a category:</p>
-  <ul>
-    <li><strong>Local discovery:</strong> "is there anyone near me who does X" queries, typos deliberately left in, because the typos are what make a prompt read as a person rather than a search marketer.</li>
-    <li><strong>Problem-first:</strong> symptoms described with no category vocabulary at all, where getting cited matters more than getting named.</li>
-    <li><strong>Category education:</strong> what the category does and costs, before any brand enters the conversation.</li>
-    <li><strong>Continuity and AI-enablement:</strong> the forward-looking questions a category's buyers are starting to ask.</li>
-    <li><strong>Brand and verification:</strong> direct brand lookups, scored as disambiguation tests and deliberately excluded from the headline number, because naming a brand you just typed proves nothing.</li>
-    <li><strong>Controls:</strong> three deliberately unwinnable prompts kept as a baseline tripwire for geo-inference and category literacy.</li>
-  </ul>
-  <p>Prompt IDs are frozen forever once published. Prompts are never edited, only retired in place with a note, so the time series stays comparable month over month. The screening that got from 62 candidate prompts down to 28 is preserved in an appendix, cut by cut, for auditability.</p>
+  <div class="fact-grid">
+    <div><span class="n">28</span><span class="l">frozen prompts, six groups</span></div>
+    <div><span class="n">4</span><span class="l">assistants, consumer UIs</span></div>
+    <div><span class="n">112</span><span class="l">answer cells per month</span></div>
+    <div><span class="n">17</span><span class="l">analysis modules downstream</span></div>
+  </div>
+
+  <h2>The Pigasus battery: A frozen instrument</h2>
+  <p>For my consultancy I built an AI-visibility instrument around a frozen 28-prompt battery, run monthly against ChatGPT, Claude, Perplexity, and Gemini. The prompts mirror how buyers actually approach a category, in six groups.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 180" role="img" aria-label="The battery as a grid: 28 prompts in six groups crossed with four assistants, 112 cells">
+      <g font-size="10.5" fill="var(--text-2)">
+        <text x="86" y="14">LD 01-07</text>
+        <text x="222" y="14">PF 01-05</text>
+        <text x="337" y="14">CE 01-04</text>
+        <text x="436" y="14">CN 01-04</text>
+        <text x="532" y="14">AI 01-03</text>
+        <text x="617" y="14">BV 01-05</text>
+        <text x="4" y="46">ChatGPT</text>
+        <text x="4" y="76">Claude</text>
+        <text x="4" y="106">Perplexity</text>
+        <text x="4" y="136">Gemini</text>
+      </g>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <!-- 28 cols x 4 rows of cells, grouped with gaps -->
+        <g>
+          <!-- row template drawn as rects per group; groups: 7,5,4,4,3,5 -->
+        </g>
+      </g>
+      <g stroke="var(--diagram-ink)" stroke-width="0.8" fill="none">
+        <g id="r1">
+          <rect x="80" y="28" width="126" height="22"/><rect x="216" y="28" width="90" height="22"/><rect x="316" y="28" width="72" height="22"/><rect x="398" y="28" width="72" height="22"/><rect x="480" y="28" width="54" height="22"/><rect x="544" y="28" width="90" height="22"/>
+        </g>
+        <g>
+          <rect x="80" y="58" width="126" height="22"/><rect x="216" y="58" width="90" height="22"/><rect x="316" y="58" width="72" height="22"/><rect x="398" y="58" width="72" height="22"/><rect x="480" y="58" width="54" height="22"/><rect x="544" y="58" width="90" height="22"/>
+        </g>
+        <g>
+          <rect x="80" y="88" width="126" height="22"/><rect x="216" y="88" width="90" height="22"/><rect x="316" y="88" width="72" height="22"/><rect x="398" y="88" width="72" height="22"/><rect x="480" y="88" width="54" height="22"/><rect x="544" y="88" width="90" height="22"/>
+        </g>
+        <g>
+          <rect x="80" y="118" width="126" height="22"/><rect x="216" y="118" width="90" height="22"/><rect x="316" y="118" width="72" height="22"/><rect x="398" y="118" width="72" height="22"/><rect x="480" y="118" width="54" height="22"/><rect x="544" y="118" width="90" height="22"/>
+        </g>
+      </g>
+      <g font-size="9.5" fill="var(--text-2)">
+        <text x="80" y="162">local discovery</text>
+        <text x="216" y="162">problem-first</text>
+        <text x="316" y="162">category ed.</text>
+        <text x="398" y="162">continuity</text>
+        <text x="480" y="162">AI enable.</text>
+        <text x="544" y="162">brand (excluded from headline)</text>
+      </g>
+      <g fill="var(--accent)" opacity="0.85">
+        <rect x="655" y="29.5" width="19" height="19"/>
+        <rect x="655" y="119.5" width="19" height="19"/>
+      </g>
+      <text x="655" y="162" font-size="9.5" fill="var(--text-2)">&#9632; scored per cell</text>
+    </svg>
+    <figcaption>Each month fills 112 cells. Per cell, four things get scored: named or not, at what position, which domains were actually cited, and every competitor offered as an answer.</figcaption>
+  </figure>
+
+  <p>The groups do different jobs. Local discovery asks "is there anyone near me who does X," with typos deliberately left in, because the typos are what make a prompt read as a person rather than a search marketer. Problem-first prompts describe symptoms with no category vocabulary at all, where getting cited matters more than getting named. Category education asks what the category does and costs before any brand enters the conversation. Continuity and AI-enablement carry the forward-looking questions this category's buyers have started asking. Brand-and-verification prompts get scored as disambiguation tests and stay out of the headline number, since naming a brand you just typed proves nothing. Three control prompts are deliberately unwinnable, kept as a tripwire for geo-inference and category literacy.</p>
+  <p>Prompt IDs freeze forever once published. A prompt is never edited, only retired in place with a note, so the series stays comparable month over month. The screening that cut 62 candidate prompts down to 28 is preserved in an appendix, cut by cut.</p>
 
   <h3>Protocol before tooling</h3>
-  <p>The battery of record is run by hand in the consumer apps: one prompt per fresh chat, logged out or on a clean profile, memory and personalization off, no VPN, from the business's home geography, same day each month. Answers are pasted verbatim before scoring, on the principle that your summary of the answer is not the instrument; the answer is. Each run records the model version string, because a silent default-model swap can move a score without anything about the business changing.</p>
-  <p>What gets scored per cell: whether the business was named unprompted, at what position, which domains were actually cited (distinct from businesses merely name-dropped), and every competitor offered as an answer. Misses are classified by type: visibility gap, category-belief gap, or resolved-to-the-wrong-kind-of-answer.</p>
+  <p>The battery of record is run by hand in the consumer apps. One prompt per fresh chat, logged out or on a clean profile, memory and personalization off, no VPN, from the business's home geography, same day each month. Answers get pasted verbatim before scoring, because your summary of the answer is not the instrument; the answer is. Each run records the model version string, since a silent default-model swap can move a score without anything about the business changing.</p>
+  <p>Misses get classified too. A miss is a visibility gap, a category-belief gap, or a resolved-to-the-wrong-kind-of-answer, and those three read very differently in a client conversation.</p>
 
-  <h3>The API runner and its refusal conditions</h3>
-  <p>A Python runner queries the four vendor APIs directly as a supplementary track, filed under a separate tag so API-collected answers can never contaminate the consumer-UI series (the two are different instruments: the API has no browsing layer, no memory, no consumer geo-inference). The runner refuses to run against an unfrozen prompt set, and refuses to spend money on any provider whose model ID hasn't been human-verified against live docs:</p>
+  <h3>The API runner refuses to run</h3>
+  <p>A Python runner queries the four vendor APIs directly as a supplementary track, filed under a separate tag so API-collected answers can never contaminate the consumer-UI series. The two are different instruments. The API has no browsing layer, no memory, and no consumer geo-inference, and pretending otherwise would corrupt the series quietly.</p>
+  <p>The runner's best feature is what it won't do. It refuses to run against an unfrozen prompt set, and it refuses to spend money on any provider whose model ID hasn't been human-verified against live docs.</p>
   <pre><code>class Provider:
     name: str            # short tag used in the raw filename (&lt;name&gt;-api)
     env_keys: list[str]  # env var(s) that hold the API key (first hit wins)
@@ -67,36 +120,41 @@
     verified: bool       # False =&gt; refuse live calls until confirmed vs docs
     docs_url: str        # where to confirm endpoint + model id
     verify_note: str     # what to check before flipping `verified` to True</code></pre>
-  <p>Downstream, a 17-module analysis suite covers mention and share-of-voice math, citation verification (assistants fabricate links; every cited URL gets checked), sentiment and factual-error review, competitive and per-platform variance analysis, and trend reads with confound checks for model-version swaps. A dedicated evidence-review gate assigns every finding a confidence level and blocks synthesis until claims pass. Client separation is architectural: every module is parameterized by an engagement slug, so the same logic runs unmodified across engagements and no client data lives in code.</p>
+  <p>Downstream, a 17-module analysis suite handles mention and share-of-voice math, citation verification (assistants fabricate links, so every cited URL gets checked), sentiment and factual-error review, competitive and per-platform variance, and trend reads with confound checks for model swaps. Client separation is architectural. Every module is parameterized by an engagement slug, the same logic runs unmodified across engagements, and no client data lives in code.</p>
 
   <h2>The same discipline at Fortune 1000 scale</h2>
-  <p>At Corpay I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal; the methodology travels, and the methodology is the interesting part.</p>
+  <p>At Corpay I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal. The methodology is the interesting part anyway.</p>
 
   <h3>Prompt-pool noise correction</h3>
-  <p>AI-visibility platforms blend prompts a human curated with a much larger machine-generated pool inferred from a short niche description. The generated pool drifts toward raw search demand, which for a B2B finance brand means consumer personal-finance questions the brand's buyers never ask. Every metric built on that denominator is diluted, and the dilution masquerades as a finding ("we're invisible in AI") rather than what it is: a measurement artifact.</p>
-  <p>The correction treats pool composition as a named dimension of every metric, with composable filters: restrict to the curated corpus, exclude branded prompts (being mentioned in an answer to "what does [brand] do" proves nothing), and strip off-ICP prompts with a classifier whose blocklist was derived empirically, from watching which off-market companies surfaced as "competitors" in the diluted report. Two rules carry the weight: nothing is replaced (the original series keeps running unchanged, and cleaned figures publish alongside it under a separate key), and every figure must name its pool inline. An unlabeled metric is not citable. The flattering number and the unflattering one ship side by side, because they answer different questions.</p>
+  <p>AI-visibility platforms blend prompts a human curated with a much larger machine-generated pool inferred from a short niche description. The generated pool drifts toward raw search demand, which for a B2B finance brand means consumer personal-finance questions its buyers never ask. Every metric built on that denominator is diluted, and the dilution masquerades as a finding ("we're invisible in AI") rather than what it is, a measurement artifact.</p>
+  <p>The correction treats pool composition as a named dimension of every metric, with composable filters. Restrict to the curated corpus. Exclude branded prompts. Strip off-ICP prompts with a classifier whose blocklist was derived empirically, from watching which off-market companies surfaced as "competitors" in the diluted report. Two rules carry the weight. Nothing gets replaced, so the original series keeps running unchanged and cleaned figures publish alongside it under a separate key. And every figure must name its pool inline, because an unlabeled metric is not citable. The flattering number and the unflattering one ship side by side. They answer different questions, and a reader deserves both.</p>
+
+  <h3>Evidence grading, two axes</h3>
+  <p>Before anything reaches a deliverable, findings pass an evidence gate. Each one lands on a four-rung confidence ladder, from confirmed down through likely and unverified to hypothesis, and a hypothesis is barred from becoming an action item. Causal claims face four extra tests covering timing, magnitude, exclusivity, and mechanism. If you can't narrate the causal chain step by step, you don't get to claim it.</p>
+  <p>Borrowed numbers get a second, orthogonal axis. Confidence grades my finding; a separate A-through-D tier grades the outside study behind any statistic I quote, assigned by reading the primary source rather than by inference. A named research firm quoted inside an aggregator doesn't inherit the firm's tier, and research published by a vendor selling the thing it measured caps at mid-tier regardless of methodology. A "confirmed" finding resting on a bottom-tier statistic isn't confirmed. It's a repeated error.</p>
 
   <h3>AI-traffic forensics</h3>
-  <p>"How much traffic comes from AI assistants" looks like a lookup and is actually a definitional minefield. Enterprise and free analytics stacks disagree materially on the same pages in the same month, because each ships its own undocumented rules for what counts as an AI referrer; a single export can contradict itself across two report paths. The forensic posture: triangulate rather than trust. Build named-referrer cuts by hand so the inclusion list is inspectable, state every metric with its full construction (which referrers, which window, which report path, pulled when), reconcile the platforms side by side and name each definitional gap rather than forcing agreement, and trace circulating legacy figures back to a live report path or record them as unreproducible. "Unverifiable" is a valid, publishable outcome.</p>
-  <p>The pitfalls are worth more than the totals: every AI-traffic number is a floor (assistants that strip referrers land in Direct, and no configuration fixes it); AI Overviews clicks arrive as ordinary organic and are invisible to referrer cuts entirely; and paid-channel misclassification can silently invert a whole narrative between platforms. I proved that last one at Corpay with a controlled experiment rather than an assumption.</p>
+  <p>"How much traffic comes from AI assistants" looks like a lookup and is actually a definitional minefield. Enterprise and free analytics stacks disagree materially on the same pages in the same month, because each ships its own undocumented rules for what counts as an AI referrer, and a single export can contradict itself across two report paths. So the posture is to triangulate rather than trust. Named-referrer cuts get built by hand so the inclusion list is inspectable. Every metric states its full construction, meaning which referrers, which window, which report path, and when it was pulled. Platforms get reconciled side by side with each definitional gap named, and circulating legacy figures get traced back to a live report path or recorded as unreproducible. "Unverifiable" is a valid, publishable outcome.</p>
+  <p>The pitfalls are worth more than the totals. Every AI-traffic number is a floor, since assistants that strip referrers land in Direct and no configuration fixes it. AI Overviews clicks arrive as ordinary organic and stay invisible to referrer cuts entirely. And paid-channel misclassification can silently invert a whole narrative between platforms, which I proved at Corpay with a controlled ad-spend experiment rather than an assumption.</p>
 
-  <h3>Reporting you can't fake</h3>
-  <p>The measurement program runs on a CI/CD pipeline with hard separation between the data layer and the synthesis layer. Scheduled jobs pull vendor APIs and commit raw responses to a cache; narrative generation runs strictly from cache, where zero API spend is guaranteed by the absence of a network session, not by a flag. The LLM that drafts executive narrative is treated as an untrusted component: its model choice was settled by an A/B test in which the cheaper model fabricated a number, and every generated figure passes a mechanical grounding check against source data before anything publishes. A run that fails a gate publishes nothing; a run that concludes "blocked" publishes the verdict, because that's a valid result. The companion job that watches CMS publishing authenticates with a read-only delivery credential, so it is structurally incapable of publishing: humans publish, automation notices.</p>
+  <h3>Reporting an executive can lean on</h3>
+  <p>The reporting layer treats a metric as a record, not a number. Every tile in the executive-facing app carries its label, unit, basis, source, and caveat list. Nulls render as "n/a, see note" and never as zero. While the verified data layer was still being built, the app ran on sample data made unmistakably fake, with implausible values and a full-stage watermark keyed to a flag in the data file, so nothing real-looking could ship by accident.</p>
+  <p>Underneath it, the CI/CD pipeline holds a hard separation between the data layer and the synthesis layer. Scheduled jobs pull vendor APIs and commit raw responses to a cache. Narrative generation runs strictly from cache, where zero API spend is guaranteed by the absence of a network session rather than by a flag. The LLM that drafts executive narrative is treated as an untrusted component, and its model choice was settled by an A/B test in which the cheaper model fabricated a number. Every generated figure passes a mechanical grounding check against source data before anything publishes. The companion job that watches CMS publishing authenticates with a read-only delivery credential, so it is structurally incapable of publishing. Humans publish; automation notices.</p>
 
   <h2>The through-line</h2>
-  <p>Every number carries its provenance: source, window, pull time, and which pool or basis produced it. A figure without that lineage doesn't get cited in a deliverable, no matter how good it looks. AI visibility is a new channel with immature tooling and enormous appetite for headline numbers, which makes measurement honesty the whole game.</p>
+  <p>Every number carries its provenance, meaning its source, its window, its pull time, and which pool or basis produced it. A figure without that lineage doesn't get cited in a deliverable, however good it looks. AI visibility is a young channel with immature tooling and an enormous appetite for headline numbers, which is exactly the environment where measurement honesty is the whole game.</p>
 
   <p class="claim">The instrument you can defend beats the number you wish were true.</p>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/case-studies/rag-knowledge-base/">&larr; RAG knowledge base</a>
-    <a href="/case-studies/self-grading-forecast/">Next: self-grading forecast &rarr;</a>
+    <a href="/case-studies/rag-knowledge-base/">RAG knowledge base</a>
+    <a href="/case-studies/content-engine/">Next: the content engine</a>
   </nav>
 </article>
 </main>
 
 <footer class="site">
-  <div class="wrap">
+  <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>

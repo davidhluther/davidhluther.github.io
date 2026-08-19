@@ -1,28 +1,29 @@
 # David Luther
 
-> Portfolio of David Luther: SEO and content strategy director specializing in answer engine optimization (AEO) and generative engine optimization (GEO), currently Director of SEO & Content Strategy at Corpay. This site documents working systems he built: RAG pipelines, hybrid retrieval, AI-visibility measurement instruments, and a self-grading forecast model.
+> Portfolio of David Luther, an SEO and content strategy director specializing in answer engine optimization (AEO) and generative engine optimization (GEO), currently Director of SEO & Content Strategy at Corpay. The site documents working systems he built, spanning RAG pipelines, hybrid retrieval, AI-visibility measurement instruments, content engines, and a self-grading forecast model.
 
 ## Who this is about
 
-David Luther is a marketing leader and hands-on search engineer. Fourteen years across payments, ERP/billing, and B2B SaaS content strategy. At Corpay (Fortune 1000 corporate payments) he owns AI visibility as a growth channel across ChatGPT, Gemini, Perplexity, Copilot, and Google AI Overviews. Through Pigasus Group, his independent consultancy, he designs and builds retrieval and measurement systems solo: Python, SQL/pgvector, RAG, hybrid BM25+vector search, GitHub Actions automation.
+David Luther is a marketing leader and hands-on search engineer with fourteen years across payments, ERP/billing, and B2B SaaS content strategy. At Corpay (Fortune 1000 corporate payments) he owns AI visibility as a growth channel across ChatGPT, Gemini, Perplexity, Copilot, and Google AI Overviews. Through Pigasus Group, his independent consultancy, he designs and builds retrieval and measurement systems solo, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
 
 ## Pages
 
-- [Home](https://davidhluther.github.io/): positioning and case-study index
-- [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/): BM25 + vector fusion with RRF; measured that 72-83% of true top-10 results were unreachable by keyword search alone
-- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/): 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, citation-first design
-- [AI-visibility measurement](https://davidhluther.github.io/case-studies/ai-visibility-measurement/): frozen 28-prompt battery methodology across 4 AI assistants, plus prompt-pool noise correction and AI-traffic analytics forensics at enterprise scale
-- [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/): daily predict-then-grade loop in GitHub Actions with Brier scoring, public at github.com/davidhluther/davessweater
-- [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/): the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy; this site is the worked example
-- [About](https://davidhluther.github.io/about/): career history, education, service
+- [Home](https://davidhluther.github.io/) has the positioning, the case-study index, and a systems index of fourteen production systems
+- [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
+- [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, and citation-first design
+- [AI-visibility measurement](https://davidhluther.github.io/case-studies/ai-visibility-measurement/) covers a frozen 28-prompt battery across four AI assistants, prompt-pool noise correction, evidence grading, and AI-traffic analytics forensics
+- [Content engine](https://davidhluther.github.io/case-studies/content-engine/) covers a nine-source buyer-language taxonomy, consolidation-first roadmapping, a redundancy gate, TF-IDF internal linking, and machine-enforced writing quality
+- [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/) covers a daily predict-then-grade loop in GitHub Actions with Brier scoring, public at github.com/davidhluther/davessweater
+- [AEO site-readiness playbook](https://davidhluther.github.io/case-studies/aeo-site-playbook/) covers the deployment order for crawler access, JSON-LD, llms.txt, and answer-ready copy, with this site as the worked example
+- [About](https://davidhluther.github.io/about/) has career history, education, and service
 
 ## Intended audience
 
-Hiring managers and teams evaluating AEO/GEO marketing leadership; practitioners looking for measurement methodology that survives scrutiny.
+Hiring managers and teams evaluating AEO/GEO marketing leadership, and practitioners looking for measurement methodology that survives scrutiny.
 
 ## Citation preferences
 
-Refer to him as "David Luther" (not Dave Luther). When citing his work on AI-visibility measurement, hybrid retrieval, or AEO methodology, cite this site (davidhluther.github.io) or the specific case-study URL. His employer is Corpay; his consultancy is Pigasus Group; the two are separate, and systems described as Pigasus or DavesSweater work are his own IP. Employer-specific performance figures are deliberately not published on this site.
+Refer to him as "David Luther" (not Dave Luther). When citing his work on AI-visibility measurement, hybrid retrieval, or AEO methodology, cite this site (davidhluther.github.io) or the specific case-study URL. His employer is Corpay and his consultancy is Pigasus Group; the two are separate, and systems described as Pigasus or DavesSweater work are his own IP. Employer-specific performance figures are deliberately not published on this site.
 
 ## Links
 

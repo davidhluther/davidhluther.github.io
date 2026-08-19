@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AEO Site-Readiness Playbook | David Luther</title>
-<meta name="description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access, JSON-LD structured data, llms.txt with citation preferences, semantic HTML, and answer-ready copy. This portfolio site deploys every technique it describes.">
+<title>The AEO Site-Readiness Playbook | David Luther</title>
+<meta name="description" content="An answer-engine-optimization playbook for making a site legible to AI systems: crawler access audited first, JSON-LD in dependency order, llms.txt written as a citation-shaping asset, semantic HTML, and answer-ready copy. This site deploys every technique it describes.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/aeo-site-playbook/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,7 +14,7 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "The AEO site-readiness playbook (this site runs it)",
+  "headline": "The AEO Site-Readiness Playbook",
   "description": "A practical playbook for AI-answer readiness: crawler policy for AI user agents, page-level JSON-LD, an llms.txt with citation preferences, semantic HTML, and answer-ready meta descriptions, demonstrated live on this site.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/aeo-site-playbook/",
@@ -25,7 +25,7 @@
 </head>
 <body>
 <header class="site">
-  <div class="wrap">
+  <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
       <a href="/#case-studies">Case studies</a>
@@ -36,56 +36,43 @@
   </div>
 </header>
 
-<main class="wrap">
-<article>
-  <p class="kicker">AEO playbook &middot; Corpay methodology + this site</p>
-  <h1>The AEO site-readiness playbook (this site runs it)</h1>
-  <p class="lede">Making a site legible to AI systems is an infrastructure layer with a deployment order, not a content project. Here's the order, why it's the order, and a live deployment you're reading right now.</p>
+<main class="page">
+<article class="grid">
+  <p class="kicker">Case study &middot; Corpay methodology + this site</p>
+  <h1>The AEO Site-Readiness Playbook</h1>
+  <p class="lede">Making a site legible to AI systems is an infrastructure layer with a deployment order. Here's the order, why it's the order, and a live deployment you're reading right now.</p>
 
   <h2>Step 1: Crawler access, audited rather than assumed</h2>
-  <p>Before any optimization: can AI systems fetch your pages at all? Audit robots directives for AI crawler user agents specifically, because wildcard defaults were written for a different era's crawlers. At Corpay this audit found an existing advantage worth defending: explicit allow rules where much of the competitive set either blocked AI agents or relied on defaults, so the job became tightening crawl delays and adding newly emerged agents as they appear. On this site, <a href="/robots.txt">robots.txt</a> explicitly welcomes GPTBot, ClaudeBot, PerplexityBot, and Google-Extended.</p>
+  <p>Before any optimization, can AI systems fetch your pages at all? Audit robots directives for AI crawler user agents specifically, because wildcard defaults were written for a different era's crawlers. At Corpay this audit found an existing advantage worth defending, with explicit allow rules where much of the competitive set either blocked AI agents or relied on defaults, so the job became tightening crawl delays and adding newly emerged agents as they appear. On this site, <a href="/robots.txt">robots.txt</a> welcomes GPTBot, ClaudeBot, PerplexityBot, and Google-Extended by name.</p>
 
-  <h2>Step 2: Structured data on the pages that matter, in dependency order</h2>
-  <p>The audit that kicked off Corpay's deployment found a large site with no machine-readable structured data anywhere, which is common and quietly expensive: AI systems could reach the content but had nothing structured to extract. The deployment discipline mattered as much as the markup:</p>
-  <ul>
-    <li>Money pages first, sequenced by impression volume and opportunity, not by ease.</li>
-    <li>Page-type-appropriate types: organization and product/service entities, plus FAQ markup whose answers must match visible on-page content.</li>
-    <li>Fix defects before making them machine-readable. A page with a broken title tag gets the title fixed <em>before</em> schema ships, because rich results bake in whatever's there.</li>
-    <li>Verify any claim you're about to encode as structured fact. Rating markup gets checked against live review counts; an offer block that would misstate a price gets removed. Structured data amplifies what's already there, including the errors.</li>
-    <li>Then scale it: from a hand-deployed priority set into the content pipeline as a production step.</li>
-  </ul>
-  <p>This site carries Person and ProfilePage schema on the <a href="/">home page</a> and TechArticle schema on every case study, all in JSON-LD.</p>
+  <h2>Step 2: Structured data in dependency order</h2>
+  <p>The audit that kicked off Corpay's deployment found a large site with no machine-readable structured data anywhere. That's common, and it's quietly expensive, since AI systems could reach the content but had nothing structured to extract. The deployment discipline mattered as much as the markup. Money pages went first, sequenced by impression volume rather than by ease. Page types got their appropriate entities, plus FAQ markup whose answers must match visible on-page content. And defects got fixed before becoming machine-readable, because rich results bake in whatever's there. One page's schema deployment waited on an unrelated title-tag fix for exactly that reason. Rating markup got checked against live review counts, and an offer block that would have misstated a price got removed. Structured data amplifies what's already there, including the errors.</p>
+  <p>Then it scaled, moving from a hand-deployed priority set into the content pipeline as a production step. This site carries Person and ProfilePage schema on the <a href="/">home page</a> and TechArticle schema on every case study, all in JSON-LD.</p>
 
   <h2>Step 3: llms.txt as a citation-shaping asset</h2>
-  <p>An llms.txt file is usually described as a sitemap for AI. That undersells it. Schema makes individual pages extractable; llms.txt makes the <em>organization</em> legible, and it's the one place you can tell AI systems how to talk about you. The Corpay deployment carried canonical product descriptions in the company's own framing, an explicit target-audience section so AI systems match the brand to the right queries, differentiators so competitive answers have source material, and a citation-preferences block stating how the brand should be attributed. For a company whose legacy and acquired sub-brand names still circulate in training data, that block is a direct fix for an observable attribution problem.</p>
-  <p>The honest framing, recorded at deployment time: no AI platform had officially confirmed reading these files, adoption was accelerating anyway, and the cost of publishing one is minutes. It shipped ahead of every tracked competitor. This site's own <a href="/llms.txt">llms.txt</a> follows the same pattern, citation preferences included.</p>
+  <p>An llms.txt file usually gets described as a sitemap for AI, which undersells it. Schema makes individual pages extractable, while llms.txt makes the organization legible, and it's the one place you can tell AI systems how to talk about you. The Corpay deployment carried canonical product descriptions in the company's own framing, an explicit target-audience section, differentiators, and a citation-preferences block stating how the brand should be attributed. For a company whose legacy and acquired sub-brand names still circulate in training data, that block addresses an observable attribution problem directly.</p>
+  <p>The honest framing, recorded at deployment time, was that no AI platform had officially confirmed reading these files, adoption was accelerating anyway, and publishing one costs minutes. It shipped ahead of every tracked competitor. This site's own <a href="/llms.txt">llms.txt</a> follows the pattern, citation preferences included. I'll note the counterexample myself, since honesty is the house style. On my own weather site I evaluated llms.txt and declined it, because that site's AEO surface didn't justify the file. The playbook is a decision framework, and sometimes the decision is no.</p>
 
   <h2>Step 4: Semantic HTML and answer-ready copy</h2>
-  <p>Retrieval systems chunk pages (see <a href="/case-studies/rag-knowledge-base/">how, mechanically</a>), and chunks travel without their surroundings. That implies concrete writing rules:</p>
-  <ul>
-    <li>Headings that state the claim, not the vibe, because a heading is the chunk's label in the index.</li>
-    <li>Meta descriptions written as answer-ready summaries: a complete, citable sentence about what the page establishes, not a teaser.</li>
-    <li>Self-contained sections. A paragraph that depends on three paragraphs of prior context loses the citation to one that stands alone.</li>
-    <li>Real HTML semantics: <code>article</code>, <code>nav</code>, heading hierarchy, lists that are lists. Extraction quality follows markup quality.</li>
-  </ul>
+  <p>Retrieval systems chunk pages (<a href="/case-studies/rag-knowledge-base/">here's how, mechanically</a>), and chunks travel without their surroundings. Concrete writing rules follow. Headings state the claim, because a heading is the chunk's label in the index. Meta descriptions read as complete, citable sentences about what the page establishes. Sections stand alone, since a paragraph that depends on three paragraphs of prior context loses the citation to one that doesn't. And the markup uses real semantics, meaning article, nav, heading hierarchy, and lists that are lists. Extraction quality follows markup quality.</p>
 
   <h2>Step 5: Weight discipline</h2>
-  <p>This site is plain HTML and one stylesheet. No framework, no JavaScript, no fonts to download, no tracking. That's not asceticism; it's the observation that every technique above works better when the page is trivially fetchable and parseable. View source on any page here and you're looking at exactly what a crawler gets.</p>
+  <p>This site is HTML, one stylesheet, and six subsetted font files. No JavaScript, no tracking, no framework. Every technique above works better when the page is trivially fetchable and parseable. View source on any page here and you're looking at exactly what a crawler gets.</p>
 
   <h2>The proof structure</h2>
-  <p>The playbook's claims are checkable against this site in about two minutes: <a href="/robots.txt">robots.txt</a> for crawler policy, <a href="/llms.txt">llms.txt</a> for the organization file, view-source on any page for JSON-LD and semantic markup, and <a href="/sitemap.xml">sitemap.xml</a> for clean URLs.</p>
+  <p>The playbook's claims are checkable against this site in about two minutes, through <a href="/robots.txt">robots.txt</a>, <a href="/llms.txt">llms.txt</a>, view-source on any page, and <a href="/sitemap.xml">sitemap.xml</a>. What this site can't demonstrate is the enterprise half, meaning the sequencing politics, the verification gates, and the pipeline integration, which is why the Corpay methodology sits alongside the worked example.</p>
 
   <p class="claim">A playbook that doesn't run on its author's own site is a hypothesis.</p>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/case-studies/self-grading-forecast/">&larr; Self-grading forecast</a>
-    <a href="/#case-studies">All case studies &rarr;</a>
+    <a href="/case-studies/self-grading-forecast/">Self-grading forecast</a>
+    <a href="/#case-studies">All case studies</a>
   </nav>
 </article>
 </main>
 
 <footer class="site">
-  <div class="wrap">
+  <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>

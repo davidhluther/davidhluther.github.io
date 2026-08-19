@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hybrid Retrieval Engine Case Study | David Luther</title>
-<meta name="description" content="How a BM25-plus-vector hybrid search engine with reciprocal rank fusion outperformed keyword search: 72% of true top-10 results were missing at least one literal query word, and 83% were unreachable by plain keyword search. Built by David Luther.">
+<title>A Hybrid Retrieval Engine That Keyword Search Couldn't Match | David Luther</title>
+<meta name="description" content="Case study of a BM25-plus-vector hybrid search engine with reciprocal rank fusion. Measured on realistic queries, 72% of true top-10 results were missing a literal query word and 83% were unreachable by plain keyword search. Built by David Luther.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/hybrid-retrieval/">
 <link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,7 +14,7 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "A hybrid retrieval engine that keyword search couldn't match",
+  "headline": "A Hybrid Retrieval Engine That Keyword Search Couldn't Match",
   "description": "Case study of a BM25-plus-vector hybrid search engine with reciprocal rank fusion, including a composed-query-vector technique that runs fully offline, and measured evidence that 72-83% of true top-10 results were unreachable by keyword search alone.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/hybrid-retrieval/",
@@ -25,7 +25,7 @@
 </head>
 <body>
 <header class="site">
-  <div class="wrap">
+  <div class="page">
     <nav aria-label="Site">
       <a class="brand" href="/">David Luther</a>
       <a href="/#case-studies">Case studies</a>
@@ -36,11 +36,11 @@
   </div>
 </header>
 
-<main class="wrap">
-<article>
-  <p class="kicker">Search engineering &middot; Pigasus Group</p>
-  <h1>A hybrid retrieval engine that keyword search couldn't match</h1>
-  <p class="lede">Three retrieval channels, one rank fusion, and a measured answer to the question every search marketer should be asking: how much does semantic retrieval actually find that keywords miss?</p>
+<main class="page">
+<article class="grid">
+  <p class="kicker">Case study &middot; Pigasus Group</p>
+  <h1>A Hybrid Retrieval Engine That Keyword Search Couldn't Match</h1>
+  <p class="lede">Three retrieval channels and one rank fusion, built to answer a question every search marketer should be asking. How much does semantic retrieval actually find that keywords miss? I measured it, and the number surprised me.</p>
 
   <div class="fact-grid">
     <div><span class="n">3</span><span class="l">retrieval channels fused</span></div>
@@ -50,21 +50,63 @@
   </div>
 
   <h2>Why I built it</h2>
-  <p>My consultancy's knowledge base (see the <a href="/case-studies/rag-knowledge-base/">RAG case study</a>) has an online query path that needs the network twice: once to embed the query, once to hit the vector index. I wanted a search that works with the network off, over embeddings already cached locally, and still reaches passages that share no wording with the query.</p>
-  <p>That constraint forced the interesting design decision. You can run BM25 offline trivially. But vector search normally requires embedding the incoming query, which is an API call. The workaround became the engine's most distinctive feature.</p>
+  <p>My consultancy's knowledge base (the <a href="/case-studies/rag-knowledge-base/">RAG case study</a> covers it) has an online query path that needs the network twice, once to embed the query and once to hit the vector index. I wanted a search that works with the network off, over embeddings already cached locally, and still reaches passages that share no wording with the query.</p>
+  <p>That constraint forced the design. BM25 runs offline trivially. Vector search normally requires embedding the incoming query, and that's an API call. Working around it produced the engine's most distinctive piece.</p>
 
   <h2>The three channels</h2>
-  <h3>L: Lexical</h3>
-  <p>BM25 (k1=1.2, b=0.75) over Porter stems plus adjacent-stem bigrams, widened by a curated synonym layer of 18 domain concept groups before scoring. Bigrams are weighted above unigrams; synonym expansions score at a discount so literal matches always win ties.</p>
 
-  <h3>C: Composed vector</h3>
-  <p>The corpus already holds a 1,024-dimension embedding per chunk, so document vectors need no network. Embedding a <em>new</em> query would. The workaround: compose a query vector inside the corpus's own embedding space by taking each query term's centroid (the mean embedding of every chunk containing that term) and summing those centroids weighted by inverse document frequency. Terms so common their centroids collapse toward the corpus mean are excluded. No API call, and the query lands in exactly the space the documents live in.</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 760 290" role="img" aria-label="Diagram of three retrieval channels feeding reciprocal rank fusion and producing a ranked top-10 list">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="10" y="20" width="215" height="62"/>
+        <rect x="10" y="112" width="215" height="62"/>
+        <rect x="10" y="204" width="215" height="62"/>
+        <rect x="330" y="96" width="180" height="94" stroke="var(--accent)" stroke-width="1.5"/>
+        <path d="M225 51 H285 L330 122"/>
+        <path d="M225 143 H330"/>
+        <path d="M225 235 H285 L330 164"/>
+        <path d="M510 143 H580"/>
+      </g>
+      <g font-size="12" fill="var(--diagram-ink)">
+        <text x="24" y="44" font-weight="500">L &middot; Lexical</text>
+        <text x="24" y="62" fill="var(--text-2)" font-size="11">BM25 + stems + bigrams + synonyms</text>
+        <text x="24" y="136" font-weight="500">C &middot; Composed vector</text>
+        <text x="24" y="154" fill="var(--text-2)" font-size="11">IDF-weighted term centroids</text>
+        <text x="24" y="228" font-weight="500">S &middot; Seed neighborhood</text>
+        <text x="24" y="246" fill="var(--text-2)" font-size="11">neighbors of top lexical hits</text>
+        <text x="344" y="124" font-weight="500">RRF fusion</text>
+        <text x="344" y="142" fill="var(--text-2)" font-size="11">k = 60</text>
+        <text x="344" y="160" fill="var(--text-2)" font-size="11">weights 1.0 / 0.75 / 0.6</text>
+      </g>
+      <g font-size="11" fill="var(--text-2)">
+        <text x="588" y="105">ranked top-10</text>
+        <text x="588" y="127">1&#8201;&#9632; L C</text>
+        <text x="588" y="147">2&#8201;&#9632; C</text>
+        <text x="588" y="167">3&#8201;&#9632; L S</text>
+        <text x="588" y="187">4&#8201;&#9632; C S</text>
+        <text x="588" y="207">&#8942;</text>
+      </g>
+      <g stroke="var(--rule)" stroke-width="1">
+        <line x1="582" y1="112" x2="750" y2="112"/>
+        <line x1="582" y1="132" x2="750" y2="132"/>
+        <line x1="582" y1="152" x2="750" y2="152"/>
+        <line x1="582" y1="172" x2="750" y2="172"/>
+      </g>
+    </svg>
+    <figcaption>Each channel ranks the whole corpus independently. Fusion rewards passages that multiple channels agree on, and every result keeps tags showing which channels found it.</figcaption>
+  </figure>
 
-  <h3>S: Seed neighborhood</h3>
-  <p>The strongest lexical hits become query vectors themselves: every chunk is scored by its best similarity to any of the top-12 lexical seeds. This channel catches "more like the thing keywords did find," which is a different failure mode than the composed channel covers.</p>
+  <h3>L, the lexical channel</h3>
+  <p>BM25 (k1=1.2, b=0.75) over Porter stems plus adjacent-stem bigrams, widened before scoring by a curated synonym layer covering 18 domain concept groups. Bigrams weigh more than unigrams, and synonym expansions score at a discount, so literal matches win ties.</p>
+
+  <h3>C, the composed vector</h3>
+  <p>The corpus already holds a 1,024-dimension embedding per chunk, so document vectors need no network. Embedding a <em>new</em> query would. The workaround composes a query vector inside the corpus's own embedding space, taking each query term's centroid (the mean embedding of every chunk containing that term) and summing those centroids weighted by inverse document frequency. Terms so common their centroids collapse toward the corpus mean get excluded. No API call, and the query lands in exactly the space the documents live in.</p>
+
+  <h3>S, the seed neighborhood</h3>
+  <p>The strongest lexical hits become query vectors themselves, and every chunk is scored by its best similarity to any of the top twelve seeds. This catches "more like the thing keywords did find," which fails differently than the composed channel does. You want channels that fail differently. Agreement between them is the signal fusion exploits.</p>
 
   <h2>Fusion</h2>
-  <p>The three ranked lists merge with reciprocal rank fusion, weighted per channel so lexical evidence leads and vector evidence corroborates:</p>
+  <p>The three ranked lists merge with reciprocal rank fusion, weighted so lexical evidence leads and vector evidence corroborates.</p>
   <pre><code>def _rrf(rank_arrays: dict[str, np.ndarray], n: int) -&gt; np.ndarray:
     fused = np.zeros(n, dtype=np.float32)
     for name, order in rank_arrays.items():
@@ -74,33 +116,30 @@
         ranks[order] = np.arange(1, len(order) + 1, dtype=np.float32)
         fused += w / (RRF_K + ranks)         # RRF_K = 60.0
     return fused</code></pre>
-  <p>Near-duplicate passages collapse at cosine similarity &ge; 0.985, and every result carries tags showing which channel(s) found it, so the ranking is auditable query by query.</p>
+  <p>Near-duplicate passages collapse at cosine similarity of 0.985 and above, which handles course sections that reuse the same recording. Every result carries its channel tags, so any ranking can be audited query by query.</p>
 
   <h2>The measurement</h2>
-  <p>Claims about semantic search usually stop at "it finds things keywords miss." I wanted the number. Against a fixed set of ten realistic client-engagement queries, I scored every top-10 result on two honesty markers:</p>
-  <ul>
-    <li><strong>no-substring:</strong> the passage is missing at least one query word entirely. 72 of 100 top-10 results.</li>
-    <li><strong>beyond-keyword:</strong> the passage does not appear in a plain BM25 top-<em>k</em> for the query as typed, with no synonyms and no vector channels. 83 of 100.</li>
-  </ul>
-  <p>Four of the ten queries had <em>zero</em> passages containing all their words: naive keyword search returns nothing at all for 40% of realistic queries, while the hybrid engine returns ten ranked passages for every one. A 45-check automated test suite covers the stemmer, bigram formation, the expansion layer, cache behavior, ranking, and a semantic-recall case, running against a synthetic fixture so tests touch no real corpus, network, or keys.</p>
+  <p>Claims about semantic search usually stop at "it finds things keywords miss." I wanted the number, so I scored every top-10 result against a fixed set of ten realistic client-engagement queries, on two separate honesty markers. A passage is <em>no-substring</em> when it's missing at least one query word entirely, and that described 72 of 100 results. A passage is <em>beyond-keyword</em> when it doesn't appear in a plain BM25 top-<em>k</em> for the query as typed, with no synonyms and no vector channels, and that described 83 of 100.</p>
+  <p>The finding under the finding is starker. Four of the ten queries had zero passages containing all their words. Naive keyword search returns nothing at all for 40% of realistic queries, while the hybrid engine returns ten ranked passages for every one.</p>
+  <p>A 45-check automated test suite covers the stemmer, bigram formation, the expansion layer, cache behavior, ranking, and a semantic-recall case. It runs against a synthetic fixture, so tests touch no real corpus, no network, and no keys.</p>
 
   <p class="claim">When 83% of what a well-tuned retriever surfaces is unreachable by the literal query string, keyword-era assumptions are quantifiably obsolete.</p>
 
   <h2>Documented limits</h2>
-  <p>The composed-vector channel is a bag-of-centroids approximation: it degrades when query terms are rare, or so common their centroids collapse toward the corpus mean. The seed channel depends on the lexical channel finding at least one usable seed. A query whose every term is absent from the lexicon retrieves nothing useful. These limits are written into the module's documentation, because a search instrument you can't trust the failure modes of isn't an instrument.</p>
+  <p>The composed-vector channel is a bag-of-centroids approximation. It degrades when query terms are rare, or so common their centroids collapse toward the corpus mean. The seed channel depends on the lexical channel finding at least one usable seed, and a query whose every term is absent from the lexicon retrieves nothing useful. These limits are written into the module's documentation. Whether the composed channel should eventually yield to a small local embedding model is an open question I haven't settled; the approximation keeps winning on simplicity.</p>
 
   <h2>Why this matters for AEO</h2>
-  <p>Answer engines are retrieval systems, and content strategy for AI visibility has to target concepts and their neighborhoods, not strings. I make that argument to marketing leadership with confidence because I measured it in a system I built end to end.</p>
+  <p>Answer engines are retrieval systems. I make the concepts-over-strings argument to marketing leadership with some confidence, because I measured it in an engine I built end to end, and the measurement is reproducible from the eval file.</p>
 
   <nav class="next-prev" aria-label="More case studies">
-    <a href="/#case-studies">&larr; All case studies</a>
-    <a href="/case-studies/rag-knowledge-base/">Next: the RAG knowledge base &rarr;</a>
+    <a href="/#case-studies">All case studies</a>
+    <a href="/case-studies/rag-knowledge-base/">Next: the RAG knowledge base</a>
   </nav>
 </article>
 </main>
 
 <footer class="site">
-  <div class="wrap">
+  <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
     <p>David Luther &middot; <a href="https://github.com/davidhluther">GitHub</a> &middot; <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
     <p>Static HTML, no framework, no tracking. <a href="/llms.txt">llms.txt</a> &middot; <a href="/sitemap.xml">sitemap</a></p>
