@@ -96,7 +96,7 @@ body {
 /* ---- the grid ---- */
 
 .page {
-  max-width: 68rem;
+  max-width: 64rem;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
@@ -109,22 +109,22 @@ body {
 
 @media (min-width: 900px) {
   .grid { grid-template-columns: repeat(12, 1fr); }
-  .col-copy { grid-column: 3 / 11; }
+  .col-copy { grid-column: 1 / 10; }
   .col-full { grid-column: 1 / 13; }
   .col-display { grid-column: 1 / 12; }
 }
 
-.measure { max-width: 62ch; }
+.measure { max-width: 72ch; }
 
 @media (min-width: 900px) {
-  article.grid > * { grid-column: 3 / 11; }
-  article.grid > h1 { grid-column: 2 / 12; }
-  article.grid > .lede { grid-column: 3 / 11; }
+  article.grid > * { grid-column: 1 / 11; max-width: 74ch; }
+  article.grid > h1 { grid-column: 1 / 12; max-width: none; }
+  article.grid > .lede { grid-column: 1 / 11; }
   article.grid > .fact-grid, article.grid > .next-prev,
   article.grid > .build-notes, article.grid > table,
-  article.grid > .table-scroll { grid-column: 1 / 13; }
-  article.grid > figure.diagram { grid-column: 2 / 12; }
-  article.grid > .claim { grid-column: 2 / 12; }
+  article.grid > .table-scroll { grid-column: 1 / 13; max-width: none; }
+  article.grid > figure.diagram { grid-column: 1 / 12; max-width: none; }
+  article.grid > .claim { grid-column: 1 / 12; max-width: none; }
 }
 
 /* ---- labels: quiet sans, normal case ---- */
@@ -292,12 +292,7 @@ a.masthead-foot-link:hover .l, a.masthead-foot-link:hover .n { color: var(--acce
   .study-list p { grid-column: 2; }
 }
 
-.study-list .tag {
-  padding-top: 0.42rem;
-  border-left: 2px solid var(--accent);
-  padding-left: 0.55rem;
-  align-self: start;
-}
+.study-list .tag { padding-top: 0.42rem; }
 
 .study-list h3 {
   margin: 0;
@@ -457,8 +452,8 @@ pre code { background: none; padding: 0; font-size: inherit; }
 blockquote {
   margin: 1.5rem 0;
   padding-left: 1.1rem;
-  border-left: 2px solid var(--accent);
   color: var(--text-2);
+  font-style: italic;
 }
 
 .table-scroll { overflow-x: auto; }
