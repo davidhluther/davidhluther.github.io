@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grading Ten Forecasters on a Rubric I Rebuilt Four Times | David Luther</title>
+<meta name="description" content="How a 100-point forecast-accuracy rubric was designed, broken, and rebuilt in public across 529 scored days: ceiling compression that killed discrimination, a metric that rewarded withholding data, a single fact graded twice, and an instrument bias that was flattering to the site's own thesis. Every revision dated, source-blindness verified, and back-applied to all history.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/scoring-rubric/">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Grading Ten Forecasters on a Rubric I Rebuilt Four Times",
+  "description": "Case study in measurement-instrument design: a fixed 100-point forecast-accuracy rubric revised four times in public, with named measurement pathologies (ceiling compression, gaming by omission, double-counting, instrument bias), source-blindness verification on every revision, and idempotent re-scoring of all history.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/scoring-rubric/",
+  "about": ["Measurement Methodology", "Scoring Rubric Design", "Model Evaluation", "Metric Design", "Answer Engine Optimization"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/#aeo">AEO work</a>
+      <a href="/#lab">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+<article class="grid">
+  <h1>Grading Ten Forecasters on a Rubric I Rebuilt Four Times</h1>
+  <p class="lede">The scoreboard is the part people look at. The instrument underneath is the part that took the work, and it has been wrong four times in ways worth writing down. Every fix is dated in the code, checked for whether it favored the story I wanted to tell, and re-applied to all 529 scored days.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">529</span><span class="l">days scored on the longest-running source</span></div>
+    <div><span class="n">11</span><span class="l">graded sources, ten forecasters and a consensus</span></div>
+    <div><span class="n">4</span><span class="l">rubric revisions, each back-applied to all history</span></div>
+    <div><span class="n">100</span><span class="l">fixed points, the one thing never renegotiated</span></div>
+  </div>
+
+  <h2>A contested quantity with checkable ground truth</h2>
+  <p>"Who is the most accurate forecaster around here" is the kind of question everybody has an opinion about and nobody can settle, which makes it a good place to practice building an instrument. <a href="https://davessweater.com">Dave's Sweater</a> is my satirical weather site for Boone, NC, and its Right Ray / Wrong Ray tracker grades ten forecast sources plus a computed consensus against verified actuals, every day, on a fixed 100-point scale. The satire is the voice. The rubric is real, the <a href="https://github.com/davidhluther/davessweater">code is public</a>, and tomorrow tells you whether today's number was any good.</p>
+  <p>Four fields carry the points, with tolerances chosen before anyone had a standing to defend.</p>
+
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Field</th><th>Points</th><th>Full credit</th><th>Penalty beyond it</th></tr></thead>
+    <tbody>
+      <tr><td>High temp</td><td>30</td><td>within 1&deg;F</td><td>-3 pts per &deg;F</td></tr>
+      <tr><td>Low temp</td><td>30</td><td>within 1&deg;F</td><td>-3 pts per &deg;F</td></tr>
+      <tr><td>Wind speed</td><td>20</td><td>within 3 mph</td><td>-2 pts per mph, plus a vagueness tax on ranges</td></tr>
+      <tr><td>Precipitation</td><td>20</td><td>form and amount, snow-aware bands</td><td>amount capped when the form is misnamed, forfeited when omitted</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>A forecaster who says "winds 5 to 15 mph" is scored at the midpoint and then taxed by half the width of the range, because a wide enough range is technically always right and shouldn't pay like a prediction. That rule exists because one source in this market forecasts almost entirely in ranges.</p>
+  <p>Standings as of today, which is context for everything below rather than the point of it:</p>
+
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Source</th><th>Average</th><th>Days scored</th></tr></thead>
+    <tbody>
+      <tr><td>Dave's Sweater Index (the consensus)</td><td>95.7</td><td>54</td></tr>
+      <tr><td>Met.no</td><td>94.4</td><td>54</td></tr>
+      <tr><td>Google Weather</td><td>94.3</td><td>54</td></tr>
+      <tr><td>Open-Meteo</td><td>89.9</td><td>529</td></tr>
+      <tr><td>Apple Weather</td><td>87.5</td><td>163</td></tr>
+      <tr><td>Ray's Weather (the paid local incumbent)</td><td>69.8</td><td>163</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Revision one, when the scale stopped discriminating</h2>
+  <p>The original temperature window gave full credit within 2&deg;F. Modern automated forecasts are good enough that a 2&deg;F window is nearly free money, so temperature saturated roughly 60% of the scale and the automated sources became statistically indistinguishable, all crowded into the 90s. The instrument had stopped answering the question it was built for. Tightening the window to 1&deg;F on 2026-07-26 restored the spread.</p>
+  <p>The interesting part was the slope. The analysis that preceded the change recommended pairing the tighter window with a steeper penalty, 4 points per degree instead of 3, and I overruled it. At the steeper slope the incumbent lands on roughly 40% "Wrong" days instead of 22%, and that is a published claim about a real business in a small town. The math was a coin flip between two defensible settings, the register was not, and the reason for choosing the gentler one is recorded in the source rather than in my memory.</p>
+
+  <h2>Revision two, the metric that paid you to withhold</h2>
+  <p>Coverage-normalized scoring shipped on 2026-06-27. It divided earned points by the points a source was eligible for, which sounds obviously fair and produced a real result: the incumbent rose from 65.3 to 72.7 and the gap to the leaders narrowed from 26.5 points to 19.1.</p>
+  <p>Then it got reverted four days later, because normalizing by availability means a forecaster can outrank a more accurate one by declining to answer the hard field. Precipitation amount is the hard field. Leave it blank and it stops counting against you.</p>
+  <p>The replacement keeps the fairness and removes the loophole. Under the implied-zero rule, forecasting "no precipitation" <em>is</em> a zero-inch amount forecast and gets scored as one, so a source earns amount credit on its dry-forecast days. Name rain or snow with no stated total and the amount is forfeited. The incumbent, who never publishes numeric totals, keeps most of what normalization had given him and sits at 69.8 today. Nobody gains by omission, and I would rather ship a metric and pull it back on principle than defend it because it was mine.</p>
+
+  <h2>Revision three, one fact graded twice</h2>
+  <p>Precipitation type and precipitation amount started as separate 10-point fields, which quietly double-counted. On a dry day, "no rain" and "0.00 inches" are the same claim wearing two hats. Worse, the type boundary sits far below the amount tolerance, so a trace day could score 0 out of 10 on type beside 10 out of 10 on amount. The same claim was graded fully wrong and fully right at the same time, across 147 historical rows.</p>
+  <p>The fix came in two stages, and the gap between them is honest. A partial-credit trace band landed on 2026-07-18, sixteen days after I first flagged the incoherence. The full merge into a single 20-point precipitation field followed on 2026-07-26, alongside the temperature change. On a dry day the entire 20 points now scores the predicted amount against zero. On a wet day it splits into form identification and amount, snow-aware, with the misnamed-form cap and the omission forfeit intact.</p>
+
+  <h2>Revision four, when the bias was mine</h2>
+  <p>Met.no and OpenWeatherMap don't publish a daily low. They publish a sub-daily series, and the daily low is whatever <code>min()</code> returns over it. Capture that series at midday and it no longer covers the pre-dawn hours, so the "low" it yields is really the afternoon minimum, biased warm by 5 to 17&deg;F.</p>
+  <p>Low temperature is 30 of the 100 points. Two sources were being penalized on every scored day for a defect in how I sampled them, not for anything they forecast. The recovery reads the capture-day low from the day-ahead forecast issued the prior morning, whose row spans the full day and reaches the overnight trough the midday capture missed, and forfeits the low outright when no prior capture exists.</p>
+  <pre><code>def _fix_bucket_low(key, date, day):
+    """For bucket-low sources, replace the partial-capture-day low with the
+    day-ahead forecast low; forfeit 'low' when no prior forecast exists.
+    Mutates and returns the day/prediction dict; a no-op for other sources."""</code></pre>
+  <p>Sources that read a provider's own daily minimum were provably unaffected, which is the sentence that makes the fix auditable rather than merely plausible. Note the direction of the error. It was flattering to the site's whole premise, since it made two free rivals look worse than they are, and it took a backfill across all history to give them back points they had earned. Telling "this source is bad" apart from "my instrument is measuring it wrong" is most of the difference between a dashboard and an instrument.</p>
+
+  <h2>The gate that makes the rest of it worth anything</h2>
+  <p>Every number on that site exists to support an argument I have a stake in, which is that a paid local incumbent is outperformed by free services. A rubric change that happened to hurt him would poison all of it. So the repo carries a standing rule, written down in the checklist where the work happens: <em>never ship a scoring change without proving it wasn't tuned against Ray.</em></p>
+  <p>Proof is two mechanical gates. The first counts wins by omission and must return zero. The second checks that any source's drop sits on the same error-versus-magnitude line as the rest of the field, so a change that singles one source out shows up as an outlier instead of a judgment call. When the trace band shipped, it lifted <em>all ten</em> sources, from +0.56 to +1.26 on the average, with the incumbent up 0.56 and Open-Meteo up 1.08. A change that helps everyone it touches is not a change aimed at anyone.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 176" role="img" aria-label="Revision protocol: propose a rubric change, measure per-source deltas against two fairness gates, re-score all history, then publish with the date and the reason">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="34" width="150" height="56"/>
+        <rect x="196" y="34" width="184" height="56" stroke="var(--accent)" stroke-width="1.5"/>
+        <rect x="420" y="34" width="150" height="56"/>
+        <rect x="610" y="34" width="144" height="56"/>
+        <path d="M156 62 H196 M380 62 H420 M570 62 H610"/>
+        <path d="M288 90 V132 H81 V90" stroke-dasharray="4 4"/>
+      </g>
+      <g font-size="13" fill="var(--diagram-ink)">
+        <text x="20" y="58" font-weight="500">propose</text>
+        <text x="20" y="76" fill="var(--text-2)" font-size="11">a rubric change</text>
+        <text x="210" y="58" font-weight="500">two fairness gates</text>
+        <text x="210" y="76" fill="var(--text-2)" font-size="11">zero wins by omission</text>
+        <text x="434" y="58" font-weight="500">re-score</text>
+        <text x="434" y="76" fill="var(--text-2)" font-size="11">all history, all towns</text>
+        <text x="624" y="58" font-weight="500">publish</text>
+        <text x="624" y="76" fill="var(--text-2)" font-size="11">dated, with the reason</text>
+      </g>
+      <text x="100" y="150" font-size="11" fill="var(--text-2)">a gate failure sends the change back, and that has happened</text>
+    </svg>
+    <figcaption>The gates run before the change ships, not after anyone complains. The re-scoring step is why the site never carries a mixed-methodology history: <code>rescore_history.py</code> replays every stored prediction against the current engine, idempotently, across Boone and all seventeen other towns, so the published archive always reflects the rubric in force today. Original predictions and actuals are never touched.</figcaption>
+  </figure>
+
+  <p class="claim">An instrument earns its authority the first time it returns a number you were hoping not to see, and you publish that one too.</p>
+
+  <h2>Why this matters for AEO</h2>
+  <p>AI visibility is the same problem with worse ground truth. A contested quantity, no agreed methodology, vendors shipping incompatible definitions of the same metric, and every practitioner holding a strong incentive to grade their own brand generously. Each pathology above has a direct twin.</p>
+  <p>Ceiling compression is a visibility score that reads 94 for you and 94 for your competitors and has therefore stopped measuring anything. Gaming by omission is a share-of-voice number that improves when you quietly drop the prompts you lose. Double-counting is one citation credited twice because two modules disagree about what a mention is. Instrument bias is the platform's generated prompt pool diluting your denominator, which I handle <a href="/case-studies/ai-visibility-measurement/">on the enterprise side</a> as a named dimension of every metric rather than a correction applied in silence.</p>
+  <p>I built the weather instrument first because the answer arrives the next morning. There is no equivalent oracle for whether ChatGPT should have cited you, so the disciplines have to carry more weight there, not less. What survives the transfer is the protocol rather than the rubric. Date every methodology change, state what it was fixing, prove it wasn't aimed, re-apply it to the whole series, and publish the version that makes you look worse alongside the one that doesn't.</p>
+  <p>Whether the 1&deg;F window is the right window, I still don't know. It's a defensible setting that fixed a specific pathology, and the automated sources are already creeping back toward the ceiling as they improve. The next revision is a matter of when.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Built by me alone with Claude Code, standard-library Python for the scoring engine, GitHub Actions for the daily grading run. The rubric, the scoring code, the fairness checks, and every scored day are public in the <a href="https://github.com/davidhluther/davessweater">repo</a>, and the current methodology is <a href="https://davessweater.com/methodology">published on the site</a> in plain language.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/self-grading-forecast/">The forecast model on the same site</a>
+    <a href="/case-studies/ai-visibility-measurement/">The same discipline, applied to AI visibility</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a></p>
+  </div>
+</footer>
+</body>
+</html>

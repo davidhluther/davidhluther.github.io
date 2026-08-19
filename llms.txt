@@ -1,6 +1,6 @@
 # David Luther
 
-> Portfolio of David Luther, an SEO and content strategy director specializing in answer engine optimization (AEO) and generative engine optimization (GEO), currently Director of SEO & Content Strategy at Corpay. The site documents working systems he built, spanning RAG pipelines, hybrid retrieval, AI-visibility measurement instruments, content engines, and a self-grading forecast model.
+> Portfolio of David Luther, an SEO and content strategy director specializing in answer engine optimization (AEO) and generative engine optimization (GEO), currently Director of SEO & Content Strategy at Corpay. The site documents working systems he built, spanning RAG pipelines, hybrid retrieval, AI-visibility measurement instruments, content engines, a publicly revised scoring rubric, and a self-grading forecast model.
 
 ## Who this is about
 
@@ -22,6 +22,7 @@ AEO work:
 The lab:
 - [Hybrid retrieval engine](https://davidhluther.github.io/case-studies/hybrid-retrieval/) covers BM25-plus-vector fusion with RRF, where 72-83% of true top-10 results were unreachable by keyword search alone
 - [RAG knowledge base](https://davidhluther.github.io/case-studies/rag-knowledge-base/) covers a 15,302-chunk corpus, voyage-3-large embeddings, pgvector/HNSW, PL/pgSQL retrieval, and citation-first design
+- [Scoring rubric design](https://davidhluther.github.io/case-studies/scoring-rubric/) covers a 100-point forecast-accuracy rubric revised four times in public across 529 scored days, the measurement pathologies each revision fixed, source-blindness verification, and idempotent re-scoring of all history
 - [Self-grading forecast model](https://davidhluther.github.io/case-studies/self-grading-forecast/) covers a six-corridor, five-input-family traffic model with a daily grade-before-forecast loop, public at github.com/davidhluther/davessweater
 - [About](https://davidhluther.github.io/about/) has career history, education, and service
 
