@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>The Authority Boundary | David Luther</title>
+<meta name="description" content="A records system for a nonprofit board, built around a structural split between source documents and derived analyses: read-scoped gathering, deterministic assembly, a pipeline that drafts but cannot send, digests that record their own compression loss, and an authority rule that keeps a stale summary from outranking the document it came from.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/authority-boundary/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="The Authority Boundary | David Luther">
+<meta property="og:description" content="A records system for a nonprofit board, built around a structural split between source documents and derived analyses: read-scoped gathering, deterministic assembly, a pipeline that drafts but cannot send, digests that record their own compression loss, and an authority rule that keeps a stale summary from outranking the document it came from.">
+<meta property="og:url" content="https://davidhluther.github.io/case-studies/authority-boundary/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://davidhluther.github.io/images/david-portrait.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1600">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=17">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The Authority Boundary",
+  "datePublished": "2026-08-19",
+  "dateModified": "2026-08-19",
+  "description": "Case study in provenance discipline: a monthly board records pipeline with read-scoped gathering and deterministic assembly, a compose credential that cannot send, a structural split between source documents and derived analyses, summaries kept lossy on purpose, and a digest layer that records what each summary leaves out.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/authority-boundary/",
+  "about": ["Provenance", "Records Management", "Document Automation", "Retrieval", "Grounding", "Citation Integrity"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "The lab", "item": "https://davidhluther.github.io/lab/" },
+    { "@type": "ListItem", "position": 3, "name": "The Authority Boundary", "item": "https://davidhluther.github.io/case-studies/authority-boundary/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/aeo/">AEO work</a>
+      <a href="/lab/">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
+
+<main class="page">
+<article class="grid">
+  <h1>The Authority Boundary</h1>
+  <p class="lede">For five monthly cycles I have run the records system for a nonprofit board I serve on. It gathers the inputs, assembles the read-ahead packet, turns the meeting recording into minutes, and keeps the archive. Generating documents was the easy half. The hard half was deciding, structurally, which document wins when two of them disagree.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">17</span><span class="l">recordings banked as source transcripts</span></div>
+    <div><span class="n">15</span><span class="l">per-meeting digests written against them</span></div>
+    <div><span class="n">8</span><span class="l">automation scripts, about 830 lines</span></div>
+    <div><span class="n">5</span><span class="l">monthly cycles run end to end</span></div>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#the-pipeline-stops">The pipeline stops on purpose</a></li>
+      <li><a href="#the-stale-tracker">The tracker was stale</a></li>
+      <li><a href="#two-trees-one-rule">Two trees, one rule</a></li>
+      <li><a href="#lossy-on-purpose">Summaries stay lossy on purpose</a></li>
+      <li><a href="#the-retrieval-layer">The retrieval layer</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="the-pipeline-stops">The pipeline stops on purpose</h2>
+  <p>A cycle runs across three APIs. Mail supplies the reports that arrive as attachments, drive holds the archive, and the conferencing platform holds the recording. Everything that gathers runs on read-scoped credentials. The one stage that composes runs on a credential of its own, which matters more than it sounds.</p>
+  <p>Minutes come out of the recording through transcription and then a generator that writes the document from code, so the required sections exist because the code emits them rather than because somebody remembered. Assembly works the same way. Files convert to one format, blank pages come out, order is fixed, and any expected input that never arrived gets flagged in the output rather than quietly dropped. The dangerous failure of a document assembler is a packet that looks complete.</p>
+  <p>The last stage composes the outbound message to the board and stops. A person sends it. The compose credential is scoped so the system cannot send even if I told it to, which makes approval a property of the architecture rather than a habit. Habits erode under deadline. A permission that was never granted does not.</p>
+  <p>One build step surprises people. Every artifact's sharing state gets re-verified against its intended audience each cycle instead of being inherited from the cycle before, because updating a file in place preserves whatever permission it already carried. A document can be perfectly correct and quietly readable by the wrong audience, and nothing inside it will tell you.</p>
+  <p>Underneath sit those eight scripts and four task-scoped skills I invoke by name, each usable alone or as part of the full cycle, because some months need only one piece.</p>
+
+  <h2 id="the-stale-tracker">The tracker was stale, and I believed it</h2>
+  <p>The rule that governs all of this came out of my own mistake.</p>
+  <p>A tracker in my working files listed an item as an opportunity still open. The source record showed it had been secured and already spent. Nothing was invented and no model hallucinated anything. The tracker was simply old, and I trusted it because it was the convenient artifact rather than the authoritative one. It answered in two seconds. The document that actually knew sat a folder tree away, unindexed.</p>
+  <p>Every instinct after a miss like that says fix the prompt. The prompt was fine. My system had offered a fast wrong answer alongside a slow right one, and then acted surprised when speed won.</p>
+
+  <h2 id="two-trees-one-rule">Two trees, one rule</h2>
+  <p>Documents that other parties produced live in one tree. Anything I built by inference lives in another. The split is structural rather than editorial, so "where did this come from" gets answered by the path before anyone reads a word.</p>
+  <p>The rule is written into the operating instructions every session reads. Where a derived tracker disagrees with a source document, the source wins, and no claim gets asserted without opening the source. It is short enough to hold in your head, which is most of why it works.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 250" role="img" aria-label="Two document trees. Source documents produced elsewhere are authoritative. Work products built by inference are derived and lossy on purpose. A per-meeting digest sits between them recording what each summary omits, and any disputed claim resolves back against the source tree.">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="30" width="206" height="132"/>
+        <rect x="528" y="30" width="226" height="132"/>
+      </g>
+      <rect x="268" y="60" width="204" height="72" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <path d="M212 96 H260 M472 96 H520"/>
+        <path d="M640 162 V205 H120 V170"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="260,92.5 260,99.5 268,96"/>
+        <polygon points="520,92.5 520,99.5 528,96"/>
+        <polygon points="116.5,170 123.5,170 120,162"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <text x="20" y="54" font-weight="500">sources/</text>
+        <text x="542" y="54" font-weight="500">work-products/</text>
+        <text x="282" y="88" font-weight="500">per-meeting digest</text>
+      </g>
+      <g fill="var(--text-2)">
+        <text class="s" x="20" y="72">authoritative</text>
+        <text class="s" x="20" y="100">recordings and transcripts</text>
+        <text class="s" x="20" y="118">documents others wrote</text>
+        <text class="s" x="20" y="136">external reviews</text>
+        <text class="s" x="542" y="72">derived by inference</text>
+        <text class="s" x="542" y="100">minutes and packets</text>
+        <text class="s" x="542" y="118">trackers and analyses</text>
+        <text class="s" x="542" y="136">lossy on purpose</text>
+        <text class="s" x="282" y="106">what the summary omits</text>
+        <text class="s" x="282" y="124">and where to find it</text>
+        <text class="s" x="218" y="222">any claim in dispute resolves against the source</text>
+      </g>
+    </svg>
+    <figcaption>Authority runs one direction only. The digest layer in the middle is what lets a summary stay short without becoming the only reachable account of what happened, and the return path is the rule every session applies when two files disagree.</figcaption>
+  </figure>
+
+  <h2 id="lossy-on-purpose">Summaries stay lossy on purpose</h2>
+  <p>Minutes are a lossy compression of a meeting, and mine are deliberately not backfilled. When a digest surfaces something the minutes left out, the minutes stay as they are. They carry what their own genre requires and nothing else.</p>
+  <p>This runs against a strong instinct. Material in the source that the summary missed feels like a defect, and enriching the summary feels like the repair. Do that for a year and the summary becomes the document everyone cites, the source stops being opened, and the compression that made the summary useful now hides whatever it dropped. A summary trusted completely is a summary nobody checks.</p>
+
+  <h2 id="the-retrieval-layer">The retrieval layer that makes lossiness safe</h2>
+  <p>Lossy summaries are only safe when the source is genuinely reachable, so the archive carries 17 banked source transcripts, 15 per-meeting digests written against them, and 11 secondary in-meeting chat logs, indexed so a session hunting an answer lands on the authoritative document ahead of my summary of it.</p>
+  <p>The digests are the piece I would rebuild anywhere. Each carries an explicit section listing what is present in the source and absent from the summary, which is a map of the compression loss written while both documents were open.</p>
+  <p>The design target was cost. A rule that makes the correct answer expensive holds only until the first week you are in a hurry, so making the source as cheap to reach as the summary is what lets it survive a deadline.</p>
+
+  <p class="claim">The interesting problem in a document system is not generation. It is knowing which document is allowed to be believed.</p>
+
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
+  <p>All of it is the problem answer engines have, at a different scale. A model assembling an answer chooses between a convenient artifact and an authoritative one, and it makes that choice at retrieval time, from whatever the index puts in front of it. Most grounding failures come from a stale derivative winning a race against its own source rather than from anything invented, which is exactly what my tracker did to me.</p>
+  <p>The transferable parts are the boring ones. Mark which documents in a corpus are allowed to be believed. Refuse to let summaries grow until they replace what they summarize. Build retrieval so the primary document is the cheap one to reach. Citation integrity in an AI answer and provenance discipline in a filing system are the same problem, and neither gets solved by better prompting.</p>
+  <p>The honest limit is that my authority rule is a sentence rather than a check. Nothing stops a future me from filing a source in the wrong tree, and the system would never know. <a href="/case-studies/governance-as-code/">The gates I built on another project</a> exist because a rule that lives only in prose eventually stops holding, and by that standard this one is on borrowed time. I have not written that check yet.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Every figure here states what it counts and was read from the working repo on 19 August 2026 rather than estimated. The organization, its people, and the substance of its business stay off this page by design, which is why the examples describe mechanisms instead of documents. The system itself runs entirely on free tiers, which was a design constraint rather than an accident.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/governance-as-code/">The gates that fail a build</a>
+    <a href="/case-studies/scoring-rubric/">Next: the forecast-accuracy rubric</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>The Lab | David Luther</title>
-<meta name="description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across six case studies whose code is mostly public and whose running costs are effectively zero.">
+<meta name="description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across eight case studies whose code is mostly public and whose running costs are effectively zero.">
 <link rel="canonical" href="https://davidhluther.github.io/lab/">
 <meta property="og:site_name" content="David Luther">
 <meta property="og:title" content="The Lab | David Luther">
-<meta property="og:description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across six case studies whose code is mostly public and whose running costs are effectively zero.">
+<meta property="og:description" content="The lab is where David Luther builds the moving parts of retrieval and measurement systems himself, documented across eight case studies whose code is mostly public and whose running costs are effectively zero.">
 <meta property="og:url" content="https://davidhluther.github.io/lab/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
@@ -27,7 +27,7 @@
   "@id": "https://davidhluther.github.io/lab/#collection",
   "url": "https://davidhluther.github.io/lab/",
   "name": "The Lab",
-  "description": "Index of the self-built systems, with six case studies covering retrieval engines, forecast models, and a publicly revised scoring rubric, plus the smaller standing systems around them.",
+  "description": "Index of the self-built systems, with eight case studies covering retrieval engines, forecast models, a publicly revised scoring rubric, entity resolution in AI answers, and a nonprofit board's records pipeline, plus the smaller standing systems around them.",
   "isPartOf": { "@id": "https://davidhluther.github.io/#website" }
 }
 </script>
@@ -72,6 +72,12 @@
       <p>A styleguide compiled into a linter that reads shipped copy rather than drafts, and a platform limit turned into a PR gate after it froze production for ten days.</p>
     </li>
     <li>
+      <span class="tag">Provenance</span>
+      <h3><a href="/case-studies/authority-boundary/">The Authority Boundary</a></h3>
+      <span class="fig">17<small>banked sources behind the summaries</small></span>
+      <p>A monthly records pipeline for a nonprofit board that drafts but cannot send, and the structural rule that stops a stale summary outranking the document it came from.</p>
+    </li>
+    <li>
       <span class="tag">Measurement</span>
       <h3><a href="/case-studies/scoring-rubric/">Designing a Forecast-Accuracy Rubric</a></h3>
       <span class="fig">529<small>days scored, all re-scored on every revision</small></span>
@@ -82,6 +88,12 @@
       <h3><a href="/case-studies/indexing-forensics/">Technical SEO Forensics</a></h3>
       <span class="fig">18<small>days my own fix arrived too late</small></span>
       <p>Separating a crawling failure from a discovery failure, tracing it to a sitemap that never changed, and then disqualifying my own fix as the cause of the recovery.</p>
+    </li>
+    <li>
+      <span class="tag">Structured data</span>
+      <h3><a href="/case-studies/entity-disambiguation/">Entity Disambiguation</a></h3>
+      <span class="fig">22nd<small>where the site ranked for its own name</small></span>
+      <p>Google's AI answered questions about my consultancy by describing a firm in England, and the repair was stable @id anchors giving every page one entity to point at.</p>
     </li>
     <li>
       <span class="tag">Retrieval</span>
