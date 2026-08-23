@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>A Public Data Panel With a Refusal Boundary | David Luther</title>
+<meta name="description" content="A monthly economic and housing panel for a mountain region, 201 months by 176 columns joined from 25 public series, built around two deliberate failures: 36 fail-closed ingest modules that never corrupt a series file, and an export layer that publishes 13 payloads and refuses internal-only series by id.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/public-data-panel/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="A Public Data Panel With a Refusal Boundary | David Luther">
+<meta property="og:description" content="A monthly economic and housing panel for a mountain region, 201 months by 176 columns joined from 25 public series, built around two deliberate failures: 36 fail-closed ingest modules that never corrupt a series file, and an export layer that publishes 13 payloads and refuses internal-only series by id.">
+<meta property="og:url" content="https://davidhluther.github.io/case-studies/public-data-panel/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://davidhluther.github.io/images/david-portrait.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1600">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=17">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "A Public Data Panel With a Refusal Boundary",
+  "datePublished": "2026-08-23",
+  "dateModified": "2026-08-23",
+  "description": "Case study in data licensing enforced by code: a monthly regional economic panel of 201 months by 176 columns joined from 25 public series, 36 fail-closed ingest modules that leave the previous series file untouched on any error, and an export layer that publishes 13 JSON payloads, carries attributions in the payload, refuses internal-only series by id, and prunes anything it did not write.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/public-data-panel/",
+  "about": ["Data Licensing", "Data Pipelines", "Provenance", "Open Data", "Answer Engine Optimization", "Machine-Readable Data"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "The lab", "item": "https://davidhluther.github.io/lab/" },
+    { "@type": "ListItem", "position": 3, "name": "A Public Data Panel With a Refusal Boundary", "item": "https://davidhluther.github.io/case-studies/public-data-panel/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/aeo/">AEO work</a>
+      <a href="/lab/">The lab</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="340" y="6" width="6" height="8"/><rect x="760" y="6" width="6" height="8"/><rect x="1060" y="6" width="6" height="8"/></g></svg></div>
+
+<main class="page">
+<article class="grid">
+  <h1>A Public Data Panel With a Refusal Boundary</h1>
+  <p class="lede">A monthly economic and housing panel for a mountain region, joined from 25 public series into a grid of 201 months by 176 columns. The join was the easy part. The thinking went into two places I built it to fail on purpose.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">201</span><span class="l">months in the grid, January 2010 to September 2026</span></div>
+    <div><span class="n">176</span><span class="l">columns, each carrying its own license tag</span></div>
+    <div><span class="n">36</span><span class="l">ingest modules that never exit nonzero</span></div>
+    <div><span class="n">13</span><span class="l">payloads the export is allowed to write</span></div>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#what-the-panel-is">What the panel is</a></li>
+      <li><a href="#failing-closed">Failing closed at the front door</a></li>
+      <li><a href="#the-door-out">The door at the other end</a></li>
+      <li><a href="#weather-split">Weather, split in two</a></li>
+      <li><a href="#why-this-matters-for-aeo">Why this matters for AEO</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="what-the-panel-is">What the panel is</h2>
+  <p>One row per month for a rural county and the mountains around it, January 2010 through September 2026. Twenty-five public series joined on the month key and nothing else: park visitation, highway station volumes, alcohol board sales, sales tax receipts, employment, home values, and weather. Almost all are free, so the monthly refresh costs under a dollar.</p>
+  <p>Two rules make the grid trustworthy before any model touches it. A month a source doesn't cover is omitted rather than nulled, so a missing key means no observation and never a zero. And every column carries its own provenance, including the license tag the export layer reads.</p>
+  <p>The sources complete at lags months apart. An early draft named one month at the top and let the rest ride behind it, misattributing three figures. Every figure names its own month now.</p>
+
+  <h2 id="failing-closed">Failing closed at the front door</h2>
+  <p>Thirty-six ingest modules run inside one wrapper with a single rule. On any error, log to stderr and exit 0, leaving the previous series file untouched.</p>
+  <p>That reads like swallowing errors, and the reason it isn't is what the alternatives do. A module that exits nonzero, inside a refresh running 36 in sequence, halts everything at whichever endpoint went down that morning. A half-written file gets joined into the grid by the next assemble as though it were real, which is worse, because it looks like data. Exiting 0 costs freshness and nothing else.</p>
+  <p>The cost is real. This design produces columns that quietly stop advancing, visible in the generated data dictionary and invisible in a stack trace. I traded loud failure for a grid that can't be silently wrong, a trade that only pays if somebody reads the dictionary. The rule came from my <a href="/case-studies/self-grading-forecast/">forecast project</a>.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 280" role="img" aria-label="A left to right pipeline. Public sources covering 25 joined series feed 36 fail-closed ingest modules, where a failed pull exits 0 and leaves the previous file untouched. Those feed the panel grid of 201 months by 176 columns. From the grid, one path crosses the export gate into 13 public payloads with attributions attached, and a second path drops into a box for series refused by id, which stay on the private side of the gate.">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="76" width="160" height="56"/>
+        <rect x="188" y="76" width="176" height="56"/>
+        <rect x="386" y="76" width="148" height="56"/>
+        <rect x="556" y="76" width="198" height="56"/>
+      </g>
+      <rect x="386" y="170" width="148" height="56" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <path d="M545 20 V250" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="0.8">
+        <path d="M166 104 H180 M364 104 H378 M534 104 H548 M460 132 V162"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <polygon points="180,100.5 180,107.5 188,104"/>
+        <polygon points="378,100.5 378,107.5 386,104"/>
+        <polygon points="548,100.5 548,107.5 556,104"/>
+        <polygon points="456.5,162 463.5,162 460,170"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <text x="20" y="102" font-weight="500">public sources</text>
+        <text x="202" y="102" font-weight="500">36 ingest modules</text>
+        <text x="400" y="102" font-weight="500">the panel grid</text>
+        <text x="570" y="102" font-weight="500">13 public payloads</text>
+        <text x="400" y="196" font-weight="500">refused by id</text>
+      </g>
+      <g fill="var(--text-2)">
+        <text class="s" x="20" y="120">25 joined series</text>
+        <text class="s" x="202" y="120">failed pull exits 0</text>
+        <text class="s" x="400" y="120">201 x 176</text>
+        <text class="s" x="570" y="120">attributions attached</text>
+        <text class="s" x="400" y="214">internal-only</text>
+        <text class="s" x="493" y="14">the export gate</text>
+        <text class="s" x="6" y="268">Every published number had a rule in code that let it through.</text>
+      </g>
+    </svg>
+    <figcaption>The two deliberate failures. A source that goes down leaves its series file as it was. A series refused by id never reaches the output directory, whatever its tag says.</figcaption>
+  </figure>
+
+  <h2 id="the-door-out">The door at the other end</h2>
+  <p>The panel lives in a private repo that also holds licensed raw data, so there is one door out. One module writes 13 JSON files, four top level and nine series, into a directory nothing else touches.</p>
+  <p>The gate is a positive allowlist over those license tags. Three clear it. Private-hold doesn't, and neither does any tag a future schema revision invents, because an unrecognized tag is not on the list. A second check refuses a small set of series by id regardless of tag.</p>
+  <p>Attribution travels in the payload. Every series and every tile carries its own string from its source's license block, so a chart detached from its file still carries the obligation. Fifteen ship in the current build. One input comes from a commercial vendor whose terms bar redistribution, so the derived indicator publishes under a generic label and the vendor's name never enters a payload at all.</p>
+  <p>The export also prunes itself, deleting anything in its output directory it did not write, so a dropped file can't linger as a stale artifact. That has a price. A monthly narrative ships inside the artifact, and archiving past issues would need a persisted file outside the prune boundary. The rule that makes the door safe is the rule that makes the archive hard.</p>
+
+  <h2 id="weather-split">Weather, split in two</h2>
+  <p>Weather is the cleanest case. The baseline model wants daily observations, and the best free source carries a non-commercial free tier. So the weather series became two, one feeding the model and refused at the boundary by id, the other public domain station data and the only weather that ships.</p>
+  <p>The refusal keys on the series id rather than on column names, and that is the whole point. The internal series is tagged attribution-required for in-repo bookkeeping, which clears the tag allowlist on its own, so a future file spec naming its columns would ship it. Refusing the id means no spec can.</p>
+  <p>What I didn't plan is that the unpublishable series became a test. Every run compares the two temperature anomaly columns across their overlap and logs the correlation, and anything below 0.9 means one of them broke. Data I have no right to publish validates the data I do.</p>
+
+  <p class="claim">A licensing rule that lives in a reviewer's memory is a rule with an expiry date nobody wrote down.</p>
+
+  <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
+  <p>Publishing structured data an assistant can lift and quote is the same problem this export solves. You publish what you have the right to publish, and something other than the person shipping has to check. A Dataset declaration, a public JSON endpoint, and a JSON-LD block are payloads leaving a building, quoted by machines that never read the terms. That is <a href="/case-studies/aeo-site-playbook/#step-6-publish-the-data">the playbook's publish-the-data step</a> with enforcement.</p>
+  <p>People forget. Whoever read the terms in March has lost them by September, and whoever ships the fourth revision never read them, so the check belongs in the code that writes the file. The same instinct runs through <a href="/case-studies/authority-boundary/">the records pipeline I built for a nonprofit board</a>.</p>
+  <p>I can't tell you the boundary holds forever. A tag can be wrong at its source, and a wrong tag clears an allowlist perfectly. What I can say is that nothing has left without a rule in code that let it out. Two series are still waiting on the far side of that rule, one short a second snapshot, the other short a year of coverage.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> The panel and its export are my consultancy's own code, in a private repo with no remote, because licensed raw data lives there. Every figure was re-read from the built artifacts, including the month and column counts, the ingest directory, the export output, and the 1,182 tests, run by hand because there is no CI. No client appears here, and the vendor goes unnamed for the reason it goes unnamed in the export.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/lab/">All lab projects</a>
+    <a href="/case-studies/governance-as-code/">Next: the governance gates</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+  </div>
+</footer>
+</body>
+</html>
