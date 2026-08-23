@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>Measuring AI Visibility Without Fooling Yourself | David Luther</title>
-<meta name="description" content="How to measure a brand's visibility in AI answers without fooling yourself. A frozen 28-prompt battery run against ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction, provenance, and evidence-grading disciplines that separate real citation share from measurement artifacts.">
+<meta name="description" content="How to measure a brand's visibility in AI answers without fooling yourself. A frozen 28-prompt battery designed for ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction, provenance, and evidence-grading disciplines that separate real citation share from measurement artifacts.">
 <link rel="canonical" href="https://davidhluther.github.io/case-studies/ai-visibility-measurement/">
 <meta property="og:site_name" content="David Luther">
 <meta property="og:title" content="Measuring AI Visibility Without Fooling Yourself | David Luther">
-<meta property="og:description" content="How to measure a brand's visibility in AI answers without fooling yourself. A frozen 28-prompt battery run against ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction, provenance, and evidence-grading disciplines that separate real citation share from measurement artifacts.">
+<meta property="og:description" content="How to measure a brand's visibility in AI answers without fooling yourself. A frozen 28-prompt battery designed for ChatGPT, Claude, Perplexity, and Gemini, plus the noise-correction, provenance, and evidence-grading disciplines that separate real citation share from measurement artifacts.">
 <meta property="og:url" content="https://davidhluther.github.io/case-studies/ai-visibility-measurement/">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
@@ -66,9 +66,9 @@
   <p class="lede">Anyone can paste a prompt into ChatGPT and screenshot the answer. Building an instrument you can defend in front of a CMO is a different job, and I do it twice: once as a solo-built system I own end to end, and once at S&amp;P 500 scale.</p>
 
   <div class="fact-grid">
-    <div><span class="n">28</span><span class="l">questions, asked identically every month</span></div>
+    <div><span class="n">28</span><span class="l">questions, frozen so months stay comparable</span></div>
     <div><span class="n">4</span><span class="l">AI assistants, asked as a real user would</span></div>
-    <div><span class="n">112</span><span class="l">answers scored each month</span></div>
+    <div><span class="n">112</span><span class="l">answers per monthly round</span></div>
     <div><span class="n">17</span><span class="l">analysis tools that read the results</span></div>
   </div>
 
@@ -81,8 +81,8 @@
     </ol>
   </nav>
 
-  <h2 id="the-pigasus-battery">The Pigasus battery: The same 28 questions, every month</h2>
-  <p>For my consultancy I track AI visibility the way you'd run a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and every month all four major assistants, ChatGPT, Claude, Perplexity, and Gemini, get the exact same 28, word for word. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's.</p>
+  <h2 id="the-pigasus-battery">The Pigasus battery, the same 28 questions every round</h2>
+  <p>For my consultancy I built the AI-visibility instrument the way you'd design a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and each monthly round puts the exact same 28, word for word, to all four major assistants, ChatGPT, Claude, Perplexity, and Gemini. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's. The instrument and its protocol are built and frozen; the first collected round is the one I am running now, so what follows is the design and the reasoning, not a series with history behind it yet.</p>
 
   <figure class="diagram">
     <svg viewBox="0 0 760 150" role="img" aria-label="The battery as a grid: 28 questions in six groups crossed with four assistants, 112 answers a month">
@@ -120,11 +120,11 @@
   <p>Prompt IDs freeze forever once published. A prompt is never edited, only retired in place with a note, so the series stays comparable month over month. The screening that cut 62 candidate prompts down to 28 is preserved in an appendix, cut by cut.</p>
 
   <h3>Protocol before tooling</h3>
-  <p>The battery of record is run by hand in the consumer apps. One prompt per fresh chat, logged out or on a clean profile, memory and personalization off, no VPN, from the business's home geography, same day each month. Answers get pasted verbatim before scoring, because your summary of the answer is not the instrument; the answer is. Each run records the model version string, since a silent default-model swap can move a score without anything about the business changing.</p>
+  <p>The battery of record is run by hand in the consumer apps, on this protocol. One prompt per fresh chat, logged out or on a clean profile, memory and personalization off, no VPN, from the business's home geography, same day each month. Answers get pasted verbatim before scoring, because your summary of the answer is not the instrument; the answer is. Each run records the model version string, since a silent default-model swap can move a score without anything about the business changing.</p>
   <p>Misses get classified too. A miss is a visibility gap, a category-belief gap, or a resolved-to-the-wrong-kind-of-answer, and those three read very differently in a client conversation.</p>
 
   <h3>The API runner refuses to run</h3>
-  <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track. Those answers get filed separately and never mix with the app-collected ones, because the API version of an assistant is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
+  <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track, once the provider accounts behind it are funded. Those answers get filed separately and never mix with the app-collected ones, because the API version of an assistant is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
   <p>The runner's best feature is what it won't do. It refuses to run against an unfrozen prompt set, and it refuses to spend money on any provider whose model ID hasn't been human-verified against live docs.</p>
   <pre><code>class Provider:
     name: str            # short tag used in the raw filename (&lt;name&gt;-api)
