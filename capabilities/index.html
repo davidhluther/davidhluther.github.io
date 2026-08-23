@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Capability Index | David Luther</title>
+<meta name="description" content="The complete inventory of systems David Luther has built and runs, 167 capabilities across six workstreams, grouped by discipline, each one traced to a verified ledger row and linked to the case study that goes deeper.">
+<link rel="canonical" href="https://davidhluther.github.io/capabilities/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="Capability Index | David Luther">
+<meta property="og:description" content="The complete inventory of systems David Luther has built and runs, 167 capabilities across six workstreams, grouped by discipline, each one traced to a verified ledger row and linked to the case study that goes deeper.">
+<meta property="og:url" content="https://davidhluther.github.io/capabilities/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://davidhluther.github.io/images/david-portrait.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1600">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=18">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://davidhluther.github.io/capabilities/#collection",
+  "url": "https://davidhluther.github.io/capabilities/",
+  "name": "Capability Index",
+  "description": "A complete inventory of 167 working capabilities across six workstreams, grouped into eleven disciplines covering AI visibility and measurement, evidence and provenance governance, content operations, technical SEO and machine-readable surfaces, data engineering, forecasting instruments, document and records engineering, nonprofit and civic operations, client engagement systems, AI orchestration, and release engineering.",
+  "isPartOf": { "@id": "https://davidhluther.github.io/#website" },
+  "about": ["Answer Engine Optimization", "AI Visibility Measurement", "Data Engineering", "Technical SEO", "Content Operations", "Agent Orchestration"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "Capability Index", "item": "https://davidhluther.github.io/capabilities/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/aeo/">AEO work</a>
+      <a href="/lab/">The lab</a>
+      <a href="/capabilities/" aria-current="page">Capabilities</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="200" y="6" width="6" height="8"/><rect x="620" y="6" width="6" height="8"/><rect x="1040" y="6" width="6" height="8"/></g></svg></div>
+
+<main class="page">
+<article class="grid">
+  <h1>Capability Index</h1>
+  <p class="lede">This is the breadth layer. The <a href="/aeo/">fifteen case studies</a> pick a handful of these systems apart and show the reasoning, the wrong turns, and the corrections; this page is the whole list, grouped by discipline so you can scan it in a couple of minutes. Everything below is running or shipped. Anything sitting behind a gate is labeled where it sits, and the handful of things that are planned rather than built are named at the bottom instead of quietly padding the count.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">167</span><span class="l">capabilities, each one traced to a verified ledger row</span></div>
+    <div><span class="n">6</span><span class="l">workstreams, from a public weather site to an enterprise channel</span></div>
+    <div><span class="n">1,765</span><span class="l">automated tests behind the forecast site and the data panel</span></div>
+    <div><span class="n">14</span><span class="l">years working in search</span></div>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#ai-visibility">AI visibility and measurement</a></li>
+      <li><a href="#evidence">Evidence, provenance, and governance</a></li>
+      <li><a href="#content-ops">Content operations and editorial systems</a></li>
+      <li><a href="#technical-seo">Technical SEO and machine-readable surfaces</a></li>
+      <li><a href="#data-engineering">Data engineering and public data products</a></li>
+      <li><a href="#forecasting">Forecasting and scoring instruments</a></li>
+      <li><a href="#records">Document and records engineering</a></li>
+      <li><a href="#civic">Nonprofit and civic operations</a></li>
+      <li><a href="#client-systems">Client engagement and business intelligence</a></li>
+      <li><a href="#orchestration">AI orchestration and agent operations</a></li>
+      <li><a href="#delivery">Delivery, release, and front-end engineering</a></li>
+      <li><a href="#not-here">What is not on this page</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="ai-visibility">AI visibility and measurement</h2>
+  <p class="sys-intro">Measuring how AI assistants describe a brand, then defending the number in a room full of people who want it to be higher. Employer rows stay at methodology altitude, so every count here describes a system rather than a result.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Frozen prompt battery <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>The same 28 questions go to four assistants every month, word for word, with a run header and per-assistant checklists. A staged first-month script fails closed until the prompt sets are signed off. The kit is live and month one is not yet collected.</dd>
+    </div>
+    <div>
+      <dt>Four-provider battery runner <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>An API runner reads the frozen prompt set, writes verbatim answers into a raw directory, and then stops. It never scores, never writes the month file, and never touches anything outside that directory.</dd>
+    </div>
+    <div>
+      <dt>Model-ID verification gate <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>Every provider carries a verified flag and a dated verification note, and an unverified provider refuses to fire without an explicit override, so no run spends money on a model identifier nobody checked.</dd>
+    </div>
+    <div>
+      <dt>API and interface answers kept apart <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>Answers collected through an API are filed under a distinct provider tag so they can never be scored beside the hand-run interface battery. The two are different instruments pointed at the same question.</dd>
+    </div>
+    <div>
+      <dt>Prompt-pool filtering <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>Custom and blended pools with branded prompts excluded and a noise filter on top, methodology documented and covered by tests, because a generated pool drifts toward whatever the most people search for.</dd>
+    </div>
+    <div>
+      <dt>Share-of-voice noise audits <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>Materiality thresholds running from cosmetic to crisis, plus a brand-disambiguation preflight, under a hard rule that no share figure ships without a reference to its own noise-audit file.</dd>
+    </div>
+    <div>
+      <dt>One declared reporting basis <span>Internal</span></dt>
+      <dd>A single non-branded prompt set is declared the reporting basis and the retired one survives only as a labeled overlay, so two numbers can never quietly answer the same question.</dd>
+    </div>
+    <div>
+      <dt>Weekly-basis measurement discipline <span><a href="/case-studies/ai-visibility-measurement/">AI-visibility case study</a></span></dt>
+      <dd>Headline figures are the previous full week's mean, assistants that sweep monthly are test-guarded out of the weeks they did not run, and AI Overviews get a three-state disclosure rather than being called unmeasured.</dd>
+    </div>
+    <div>
+      <dt>Executive AI-visibility dashboard <span>Internal</span></dt>
+      <dd>A password-gated application built on a fixed presentation stage, with per-assistant source lists, two multi-select pickers whose state deep-links, and a mobile layout that keeps the same stage rather than reflowing it.</dd>
+    </div>
+    <div>
+      <dt>Additivity invariant as a build gate <span>Internal</span></dt>
+      <dd>The combined view has to equal the exact sum of the single views, enforced as an acceptance test that fails the build on violation instead of as a note in a review.</dd>
+    </div>
+    <div>
+      <dt>Deck export of a live selection <span>Internal</span></dt>
+      <dd>Any dashboard selection exports as an editable deck with native charts, figures asserted equal to the on-screen stage, and the caveats carried in the speaker notes where they cannot be cropped out.</dd>
+    </div>
+    <div>
+      <dt>Cross-source analytics reconciliation <span>Internal</span></dt>
+      <dd>A three-source reconciliation of enterprise analytics against Search Console and GA4 that established the enterprise suite's organic channel was omitting one search engine entirely, alongside an analysis of where AI traffic gets measured wrong.</dd>
+    </div>
+    <div>
+      <dt>Second-engine webmaster client <span>Internal, staged</span></dt>
+      <dd>Indexation and search-performance pulls from the second search engine's webmaster tools, which is what surfaced the omission above. Built and working on a branch, not yet merged.</dd>
+    </div>
+    <div>
+      <dt>Monthly report in three render surfaces <span>Internal</span></dt>
+      <dd>One pipeline renders the monthly report as markdown, as a document, and as a leadership deck from the same artifacts, with the industry-update section restricted to figures that already cleared the evidence gate.</dd>
+    </div>
+    <div>
+      <dt>Competitive intelligence sweeps <span>Internal</span></dt>
+      <dd>Full competitor sweeps, per-competitor deep dives, and a backlink-gap export, run against a written playbook rather than reassembled from scratch each quarter.</dd>
+    </div>
+    <div>
+      <dt>Community-forum listening <span>Internal</span></dt>
+      <dd>Pain-point research and brand sentiment mined from public forum threads and folded into one unified brand-visibility report rather than left sitting as a separate deck.</dd>
+    </div>
+    <div>
+      <dt>Measurement-stack data clients <span>Internal</span></dt>
+      <dd>Service-account clients for GA4, Search Console, an SEO data provider, a spreadsheet writer, and Drive, so every report in the program reads through the same authenticated plumbing.</dd>
+    </div>
+    <div>
+      <dt>34-skill analysis engine <span><a href="/case-studies/aeo-operating-system/">AEO operating system case study</a></span></dt>
+      <dd>The analysis layer is 34 client-parameterized skills with no brand name inside any of them, invoked as audit, fix, and report commands.</dd>
+    </div>
+  </dl>
+
+  <h2 id="evidence">Evidence, provenance, and governance</h2>
+  <p class="sys-intro">The rules that decide whether a number is allowed to leave the building. Most of these exist because something got through once.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Evidence-review gate <span><a href="/case-studies/evidence-engineering/">Evidence engineering case study</a></span></dt>
+      <dd>Every finding takes a rung on a Confirmed, Likely, Unverified, and Hypothesis ladder, and the gate emits a JSON blockers array that downstream orchestrators read before they render anything.</dd>
+    </div>
+    <div>
+      <dt>Source-tier ladder <span><a href="/case-studies/evidence-engineering/">Evidence engineering case study</a></span></dt>
+      <dd>An A through D external-source ladder where tier D blocks outright and tier C as sole support also blocks, with the tier travelling attached to the figure all the way into the finished deliverable, plus a standing blocklist of known-bad statistics.</dd>
+    </div>
+    <div>
+      <dt>Citability envelope <span><a href="/case-studies/evidence-engineering/">Evidence engineering case study</a></span></dt>
+      <dd>A per-finding envelope where a number is citable only when the envelope permits it and the finding is graded Confirmed or Likely, and where an attempted data pull is recorded even when it comes back empty.</dd>
+    </div>
+    <div>
+      <dt>Baselines behind a freshness gate <span>Internal</span></dt>
+      <dd>Shared baseline files sit behind a 30-day freshness gate, and the baseline date is stamped into every output built on top of them.</dd>
+    </div>
+    <div>
+      <dt>Copy lint that blocks the test suite <span><a href="/case-studies/governance-as-code/">Governance as code case study</a></span></dt>
+      <dd>A styleguide compiled into a linter that pulls user-facing strings out of components, metadata, and aria-labels, reads its banned-vocabulary list from a shared canonical file, and fails the build rather than filing a comment.</dd>
+    </div>
+    <div>
+      <dt>Twenty-check article validator <span><a href="/case-studies/governance-as-code/">Governance as code case study</a></span></dt>
+      <dd>A Python validator with 20 checks over drafts, reading a canonical word-list JSON that is symlinked instead of copied, with a drift test that fails if a brand tries to fork it.</dd>
+    </div>
+    <div>
+      <dt>Copy gate at commit time <span><a href="https://github.com/davidhluther/copy-lint">copy-lint repo</a></span></dt>
+      <dd>A pre-commit hook runs the shared copy lint over staged prose only, mirrored into a second brand's repository so both gates read the same rules from the same file.</dd>
+    </div>
+    <div>
+      <dt>Styleguide validator as a ship gate <span>Internal</span></dt>
+      <dd>Client deliverables call the shared validator as a subprocess against the canonical copy, so the rule set gets enforced without ever being forked into the project that uses it.</dd>
+    </div>
+    <div>
+      <dt>Structural authority boundary <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Source documents and derived analyses live in separate trees with the rule written into both readme files, so a stale summary cannot outrank the document it came from.</dd>
+    </div>
+    <div>
+      <dt>Trap documentation as a habit <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>The monthly refresh ritual is written down in order with each module's traps recorded beside it, including the ones that make a green run meaningless.</dd>
+    </div>
+    <div>
+      <dt>Open-defect register <span>Internal</span></dt>
+      <dd>Active and resolved defects tracked in one file with the resolving commit linked, so a defect outlives the session that found it.</dd>
+    </div>
+    <div>
+      <dt>Redaction before the exception is raised <span>Internal</span></dt>
+      <dd>Performance audits strip the API key out of every exception before it is raised, so a failed audit cannot print a credential into a client document.</dd>
+    </div>
+  </dl>
+
+  <h2 id="content-ops">Content operations and editorial systems</h2>
+  <p class="sys-intro">Getting words from a strategy brief to a live page without a person retyping anything, and without the pipeline ever being able to publish on its own.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Brief production as a single door <span><a href="/case-studies/aeo-operating-system/">AEO operating system case study</a></span></dt>
+      <dd>One brief command is the pipeline's only brief producer, covering keyword, refresh, and batch modes, and it returns a redundancy verdict, three analysis lenses, verified statistics, and a cost report.</dd>
+    </div>
+    <div>
+      <dt>Redundancy gate before a brief exists <span><a href="https://github.com/davidhluther/topic-screen">topic-screen repo</a></span></dt>
+      <dd>A topic screen matches a proposal against the claims existing pages already make rather than against their filenames, so a near-duplicate gets caught before anybody writes it.</dd>
+    </div>
+    <div>
+      <dt>Buyer-language taxonomy <span><a href="/case-studies/content-engine/">Content engine case study</a></span></dt>
+      <dd>Review mining, autocomplete and related-question expansion, and competitor-content mapping synthesized into one taxonomy instead of four disconnected research files nobody opens twice.</dd>
+    </div>
+    <div>
+      <dt>Draft, validate, and finalize pipeline <span><a href="/case-studies/content-engine/">Content engine case study</a></span></dt>
+      <dd>Twelve skills take a strategy brief through drafting, validation, and a final article, with the brief as read-only input so the strategy and production repositories cannot drift apart.</dd>
+    </div>
+    <div>
+      <dt>Draft-bundle publishing <span><a href="/case-studies/content-engine/">Content engine case study</a></span></dt>
+      <dd>The publisher assembles a three-entry linked draft bundle for human review with dual-dialect FAQ backfill, a CTA embed, publish-order enforcement, and a live-page verification step. It never publishes and never uploads assets. 74 tests hold that line.</dd>
+    </div>
+    <div>
+      <dt>Production queue with stamped states <span>Internal</span></dt>
+      <dd>A queue walks an item from planned through production, drafting, and review-ready, stamping each transition, running strictly sequentially inside a human session, and stopping short of publication every time.</dd>
+    </div>
+    <div>
+      <dt>Live-item detection on a read-only token <span>Internal</span></dt>
+      <dd>A daily job detects newly live items and moves their cards, holding a read-only delivery token so the job is structurally incapable of publishing anything, which is a stronger promise than a policy.</dd>
+    </div>
+    <div>
+      <dt>Internal-linking pipeline <span><a href="/case-studies/content-engine/">Content engine case study</a></span></dt>
+      <dd>A site crawl becomes a link graph, the graph proposes candidates, and candidates apply as drafts only, behind a rollback test, a URL-existence gate, and a cap of two product links per page.</dd>
+    </div>
+    <div>
+      <dt>Wave production and link hygiene <span>Internal</span></dt>
+      <dd>Articles produced in waves get broken-link repair, redirect-hop collapse, phantom-URL retargeting, and canonical repoints applied before anybody calls them final.</dd>
+    </div>
+    <div>
+      <dt>Long-form production with a statistics audit <span>Internal</span></dt>
+      <dd>Whitepaper and ebook production runs a full statistics audit, a subject-matter currency pass, and an AI-style pass before the document counts as finished.</dd>
+    </div>
+    <div>
+      <dt>Derivative and distribution kit <span>Internal</span></dt>
+      <dd>A finished whitepaper generates a five-layer derivative kit whose claim spine is resynced to the source's verified statistic basis, so a social post cannot outrun the paper's own evidence.</dd>
+    </div>
+    <div>
+      <dt>Downstream asset production <span>Internal</span></dt>
+      <dd>One final article yields a document, a long-form social article and short post variants, hero imagery, an infographic brief, and CTA injection, all of it from shared canonical skills.</dd>
+    </div>
+    <div>
+      <dt>Weekly index of live pages <span>Internal</span></dt>
+      <dd>A weekly refresh rebuilds the index of live URLs that internal linking targets, so a proposed link never points at a page that stopped existing.</dd>
+    </div>
+    <div>
+      <dt>A second brand on the same rails <span>Internal</span></dt>
+      <dd>A second brand's ten content skills were converged onto the shared canonical skills with its compliance layer preserved verbatim, its brand rules moved into JSON, and the same commit-time copy gate installed.</dd>
+    </div>
+    <div>
+      <dt>Native post engine and resources hub <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A Markdown-backed post engine and a four-category resources hub, where publishing an article means committing a file and nothing else.</dd>
+    </div>
+    <div>
+      <dt>Monthly report-card franchise <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A new monthly report card is a Markdown file rather than a code change, because the route generates from whichever months exist on disk.</dd>
+    </div>
+    <div>
+      <dt>Git-backed content editor in production <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A content editor route ships to production so an editor can work without a local checkout, with remote editing held behind a one-time setup step.</dd>
+    </div>
+  </dl>
+
+  <h2 id="technical-seo">Technical SEO and machine-readable surfaces</h2>
+  <p class="sys-intro">Everything an answer engine has to be able to fetch, parse, and attribute. This is the half of AEO that looks like plumbing.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Public JSON API <span><a href="/case-studies/aeo-site-playbook/">Site-readiness case study</a></span></dt>
+      <dd>Five endpoints behind one function, with CORS preflight, a JSON 404 that names the real endpoints, and the license and attribution stamped into every payload.</dd>
+    </div>
+    <div>
+      <dt>Prerendered feeds <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>One static RSS feed per town and horizon plus a verdict feed, prerendered so a feed reader never wakes a serverless function.</dd>
+    </div>
+    <div>
+      <dt>Embeddable widget <span><a href="/case-studies/aeo-site-playbook/">Site-readiness case study</a></span></dt>
+      <dd>A one-line script swaps itself for a self-sizing iframe that is framable on third-party pages, with the framing exception scoped to that single route.</dd>
+    </div>
+    <div>
+      <dt>Human-readable data documentation <span><a href="https://davessweater.com/api">davessweater.com</a></span></dt>
+      <dd>A plain documentation page for the API and the datasets, so the endpoints are discoverable without reading the repository first.</dd>
+    </div>
+    <div>
+      <dt>Open datasets under a public license <span><a href="/case-studies/aeo-site-playbook/">Site-readiness case study</a></span></dt>
+      <dd>The underlying data ships under CC BY 4.0 with the attribution string echoed inside API responses, so a chart detached from its source still carries the obligation.</dd>
+    </div>
+    <div>
+      <dt>Public syndication of an owned dataset <span><a href="https://pigasus.group">pigasus.group</a></span></dt>
+      <dd>A regional dataset publishes as a JSON headline payload, per-series JSON, and an RSS feed, so a third party can consume it without scraping a page.</dd>
+    </div>
+    <div>
+      <dt>Sitemap driven by real data dates <span><a href="/case-studies/indexing-forensics/">Indexing forensics case study</a></span></dt>
+      <dd>Sitemap lastmod values come from actual data dates rather than build time, with robots rules alongside, written after a frozen lastmod turned out to be a discovery failure.</dd>
+    </div>
+    <div>
+      <dt>Redirect map generated from content <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Legacy URL rules, including per-post redirects generated from frontmatter, so a slug change never needs a hand-edited config file.</dd>
+    </div>
+    <div>
+      <dt>Union page inventory <span>Internal</span></dt>
+      <dd>A read-only CMS export joined with a sitemap, Search Console, and a crawl into one inventory with delta tabs, because no single source knows every live page.</dd>
+    </div>
+    <div>
+      <dt>Fix specs for a development agency <span>Internal</span></dt>
+      <dd>Audit findings package themselves into task documents a third-party development team can implement without reading the audit they came from.</dd>
+    </div>
+    <div>
+      <dt>Tracking-parameter-safe auditing <span>Internal</span></dt>
+      <dd>Tracking parameters get stripped before performance auditing and HTML fetch, because the performance API returns a 403 on a campaign-tagged URL.</dd>
+    </div>
+    <div>
+      <dt>Brand-collision screening <span><a href="/case-studies/entity-disambiguation/">Entity disambiguation case study</a></span></dt>
+      <dd>Brand-root extraction, a category-term query pass, and a fuzzy anchor gate detect when a brand name is colliding with another organization in search results.</dd>
+    </div>
+  </dl>
+
+  <h2 id="data-engineering">Data engineering and public data products</h2>
+  <p class="sys-intro">Joining public series into something a model can use, then deciding what is allowed back out. The refusal side turned out to be the interesting engineering.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Monthly regional panel <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>201 months by 176 columns, January 2010 through September 2026, joined from 25 public series on the month key alone, with per-column provenance.</dd>
+    </div>
+    <div>
+      <dt>Fail-closed ingest <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>36 ingest modules where a failed pull leaves the previous series file untouched and never exits nonzero, so a source outage costs freshness rather than correctness. The whole refresh runs for under a dollar a month.</dd>
+    </div>
+    <div>
+      <dt>Reading a sibling project as an API <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>Three series are read out of another project's committed JSON through git rather than by calling that project's vendors, so the upstream never sees the traffic and never gets written to.</dd>
+    </div>
+    <div>
+      <dt>Browser capture through a firewall challenge <span>Internal</span></dt>
+      <dd>One real browser session a month drives a state transport portal past its firewall challenge and banks current-year daily station volumes, merged as a freshness layer under the certified annual data rather than replacing it.</dd>
+    </div>
+    <div>
+      <dt>The data bank <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>12 sources pulled, license-tagged, and documented while being structurally unable to join the panel, held apart by directory separation rather than by a flag somebody could flip.</dd>
+    </div>
+    <div>
+      <dt>License-gated export <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>13 JSON payloads leave through one door, attributions travel inside the data, internal-only series are refused by id whatever their tag says, and one vendor's name never enters a payload at all.</dd>
+    </div>
+    <div>
+      <dt>Self-pruning export <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>The export deletes anything in its output directory it did not write itself, so a dropped file cannot linger as a stale artifact somebody later quotes.</dd>
+    </div>
+    <div>
+      <dt>Weather split in two <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>The series feeding the model is refused at the export boundary by id while a public-domain station series is the only weather that ships, and the two cross-validate each other on every run.</dd>
+    </div>
+    <div>
+      <dt>Per-market benchmark columns <span>Internal</span></dt>
+      <dd>Lodging exports carry rate, revenue per available room, and active-listing counts for each market rather than one blended aggregate, 40 series in the current build.</dd>
+    </div>
+    <div>
+      <dt>Narrative generated inside the export <span><a href="/case-studies/public-data-panel/">Public data panel case study</a></span></dt>
+      <dd>A monthly regional narrative is generated inside the export and gated on the shared copy lint before it ships, with every figure naming its own month because the sources complete months apart.</dd>
+    </div>
+    <div>
+      <dt>Events registry <span>Internal</span></dt>
+      <dd>A provenance-flagged registry of 276 regional events from 2010 through 2025, backfilled so the panel can control for the weekends that move everything.</dd>
+    </div>
+    <div>
+      <dt>Two-county employment series <span>Internal</span></dt>
+      <dd>Tourism employment is pulled for two counties rather than one because the ski resorts sit across the county line, alongside a monthly employment series for the same footprint.</dd>
+    </div>
+    <div>
+      <dt>Two spending reads kept separate <span>Internal</span></dt>
+      <dd>Tax distributions and gross collections are ingested as separate series and never summed, because they answer two different questions and their sum answers neither.</dd>
+    </div>
+    <div>
+      <dt>Labor-flow detail joined <span>Internal</span></dt>
+      <dd>Quarterly hire and separation detail joins the panel one API call per industry per year, because a multi-industry request comes back silently empty.</dd>
+    </div>
+    <div>
+      <dt>Baseline model refit on every refresh <span>Internal</span></dt>
+      <dd>The baseline model refits whenever the panel refreshes, published with a written account of what it can and cannot predict rather than an accuracy number alone.</dd>
+    </div>
+    <div>
+      <dt>Monthly forecast with a grade sheet <span><a href="/case-studies/self-grading-forecast/">Self-grading forecast case study</a></span></dt>
+      <dd>Nowcasts and forecasts come off the fitted model with a grade sheet attached and a history that accumulates, 20 entries so far.</dd>
+    </div>
+    <div>
+      <dt>Daily busyness model <span>Internal</span></dt>
+      <dd>Daily visitation at one traffic station with a six-week projection, out-of-sample R-squared of 0.43 on calendar features alone and 0.48 with weather added, a day-of-week by season interaction kept, and a snow-lag feature rejected.</dd>
+    </div>
+    <div>
+      <dt>Review velocity captured as movement <span>Internal</span></dt>
+      <dd>Public review counts are captured as change only and cumulative counts stay unpublished, because in a small market a level identifies a business and a movement does not.</dd>
+    </div>
+    <div>
+      <dt>Dashboard contract and interpretive frame <span>Internal</span></dt>
+      <dd>A written contract for what the dashboard may show, plus a standing frame for the four overlapping population calendars a mountain county actually runs on.</dd>
+    </div>
+    <div>
+      <dt>Public regional dashboard <span><a href="https://pigasus.group/high-country">pigasus.group</a></span></dt>
+      <dd>The export feeds a public dashboard rather than sitting in a repository, which gives the licensing rules somewhere to be tested in the open.</dd>
+    </div>
+    <div>
+      <dt>In-run capture health <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A drop guard, rolling drift detection, and an automatic backfill sweep run inside the capture job, so a partial capture gets caught in the run that produced it.</dd>
+    </div>
+    <div>
+      <dt>River gauges without borrowing <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>River gauge readings appear only for towns that have a gauge, with no nearest-gauge substitution, because a borrowed reading is a wrong reading wearing the right label.</dd>
+    </div>
+  </dl>
+
+  <h2 id="forecasting">Forecasting and scoring instruments</h2>
+  <p class="sys-intro">Predicting something, then building the instrument that says whether the prediction was any good. The second half is where the design problems live.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Multi-source daily capture <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Ten forecaster slots captured on a scheduled job every morning, covering national services, government feeds, and one local incumbent.</dd>
+    </div>
+    <div>
+      <dt>Hundred-point accuracy rubric <span><a href="/case-studies/scoring-rubric/">Scoring rubric case study</a></span></dt>
+      <dd>A 100-point scale scores every captured forecast against verified actuals, with a running season scoreboard published in public rather than kept in a spreadsheet.</dd>
+    </div>
+    <div>
+      <dt>Rubric revision with full re-scoring <span><a href="/case-studies/scoring-rubric/">Scoring rubric case study</a></span></dt>
+      <dd>A merged 20-point precipitation field and a one-degree full-credit temperature band shipped with all history re-scored, because a rubric change that only applies going forward is two rubrics.</dd>
+    </div>
+    <div>
+      <dt>Partial credit inside a tolerance band <span><a href="/case-studies/scoring-rubric/">Scoring rubric case study</a></span></dt>
+      <dd>A forecast that called no precipitation still earns 6 of 10 when the actual amount lands inside the tolerance band, which removed a case where near-identical forecasts scored 0 and 10.</dd>
+    </div>
+    <div>
+      <dt>Capture-day low recovery <span><a href="/case-studies/scoring-rubric/">Scoring rubric case study</a></span></dt>
+      <dd>Truncated sub-daily series get their capture-day low reconstructed, because a source whose low is really an afternoon minimum reads several degrees warm and scores unfairly well.</dd>
+    </div>
+    <div>
+      <dt>Consensus index scored as a competitor <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>The consensus of eight automated forecasters is published as its own entrant and scored by the same rubric, so the aggregate has to beat its parts in public.</dd>
+    </div>
+    <div>
+      <dt>Lead-time accuracy decay <span><a href="/case-studies/scoring-rubric/">Scoring rubric case study</a></span></dt>
+      <dd>A five-day strip and a decay chart report accuracy per horizon, because a single blended accuracy number hides which day the forecast actually falls apart.</dd>
+    </div>
+    <div>
+      <dt>Precipitation chance as a median <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Chance of precipitation is the median of every source that publishes one rather than a mean, so a single outlier cannot drag the consensus.</dd>
+    </div>
+    <div>
+      <dt>Per-town capture and scoring <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>18 towns each get their own capture, scoring, forecast page, and scoreboard out of one parameterized pipeline.</dd>
+    </div>
+    <div>
+      <dt>Predict-then-grade traffic loop <span><a href="/case-studies/self-grading-forecast/">Self-grading forecast case study</a></span></dt>
+      <dd>A six-corridor traffic model grades yesterday before forecasting today, four runs a day. The dataset lives in a private companion repository because the upstream terms cover neither storage nor redistribution.</dd>
+    </div>
+    <div>
+      <dt>Winter road conditions <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A road-condition forecast alongside live closures, incidents, and parkway alerts, because the useful question in a mountain winter is whether the road is open.</dd>
+    </div>
+    <div>
+      <dt>Event planning reports <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Event-specific planning reports, including a dusk and fireworks report with a terrain sightline checker and a geocoder proxy that stores nothing.</dd>
+    </div>
+    <div>
+      <dt>Drivers and index forecast engine <span>Internal</span></dt>
+      <dd>A bespoke demand index per client built from one chosen driver, fitted with ordinary least squares and Monte Carlo simulation under explicit horizon, draw, and seed controls.</dd>
+    </div>
+    <div>
+      <dt>Internal driver library <span>Internal</span></dt>
+      <dd>12 registered drivers plus a composite that fits overlapping drivers in one regression, so two lifts come out net of each other instead of being counted twice. The library stays internal and is never offered as a menu.</dd>
+    </div>
+    <div>
+      <dt>Live weather driver <span>Internal</span></dt>
+      <dd>One driver consumes the public multi-source forecast artifact from the forecast project across several locations, with no keys and no live fetch of its own.</dd>
+    </div>
+  </dl>
+
+  <h2 id="records">Document and records engineering</h2>
+  <p class="sys-intro">Turning documents into things that can be searched, cited, and rebuilt. A lot of this started because somebody's institutional memory was one laptop away from vanishing.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Branded PDF from markdown <span>Internal</span></dt>
+      <dd>Markdown renders to a board-grade PDF with a repeating header and footer that reserve their own space, a watermark on interior pages only, and the organization's mark on the cover. Caller-supplied SVG charts substitute into named markers, and an unmatched marker renders as nothing.</dd>
+    </div>
+    <div>
+      <dt>Excel companion workbook <span>Internal</span></dt>
+      <dd>Every board-grade PDF ships with a workbook carrying live formulas rather than cached values, a financial-model color convention, and a three-statement pro forma whose balance check zeroes out.</dd>
+    </div>
+    <div>
+      <dt>Column-aware PDF extraction <span>Internal</span></dt>
+      <dd>Multi-column PDFs convert to markdown with every heading validated against the document's own contents list, used to bank 10 parts of federal regulation and 1.1 MB of text.</dd>
+    </div>
+    <div>
+      <dt>Long-document banking with image extraction <span>Internal</span></dt>
+      <dd>One enormous base64-inlined markdown file splits into greppable text and a separate images tree, 365 files, so the text stays searchable and the images stay out of version control.</dd>
+    </div>
+    <div>
+      <dt>Caption-based transcription of public video <span>Internal</span></dt>
+      <dd>Published captions become timestamped markdown so a claim can be quoted to a timestamp, 8 transcripts and roughly 80,000 words.</dd>
+    </div>
+    <div>
+      <dt>Speech transcription and banking <span>Internal</span></dt>
+      <dd>Meeting recordings transcribe locally with Whisper and land in the source tree with their provenance recorded, including one recording over three hours long.</dd>
+    </div>
+    <div>
+      <dt>Packet assembly from mixed formats <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>A month's folder of documents, spreadsheets, PDFs, and images converts and merges into one packet in checklist order, with nothing reordered by filename.</dd>
+    </div>
+    <div>
+      <dt>Transcript bank with provenance <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Every recoverable meeting is banked as a searchable record, 15 meetings and 11 chat logs, each carrying where it came from.</dd>
+    </div>
+    <div>
+      <dt>Per-meeting retrieval layer <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Each meeting gets a digest of decisions, figures, and commitments, plus an explicit section for what is in the transcript but not in the minutes, and a one-row index across all 15.</dd>
+    </div>
+    <div>
+      <dt>Greppable sidecar for every binary <span>Internal</span></dt>
+      <dd>Every binary source document gets a plain-text sidecar beside it, so one search over the tree reaches inside PDFs and spreadsheets alike.</dd>
+    </div>
+    <div>
+      <dt>Document-set index with a removal manifest <span>Internal</span></dt>
+      <dd>A banked organizational drive carries an index of what is there, 77 files, and a manifest of name, size, and checksum for anything deliberately not retained.</dd>
+    </div>
+    <div>
+      <dt>Large-drive mirroring that finishes <span>Internal</span></dt>
+      <dd>A shared drive of 784 documents mirrors by walking the tree directly with per-file download, skip-existing, a failure list, and a full manifest, after the standard tool aborted partway through.</dd>
+    </div>
+    <div>
+      <dt>Artifact push to Drive <span>Internal</span></dt>
+      <dd>Finished artifacts push to Drive as native documents and sheets, updating the same file in place so a shared link never breaks, reusing an existing OAuth client instead of forking credentials, and targeting a personal Drive only.</dd>
+    </div>
+    <div>
+      <dt>Native spreadsheet updated in place <span>Internal</span></dt>
+      <dd>A native spreadsheet exports and updates in place rather than being replaced, so a link already circulated to a board stays valid.</dd>
+    </div>
+    <div>
+      <dt>Self-contained reference page as a deliverable <span>Internal</span></dt>
+      <dd>A study reference ships as one self-contained HTML file in the repository and as a private web page, because the person reading it is working from a phone.</dd>
+    </div>
+  </dl>
+
+  <h2 id="civic">Nonprofit and civic operations</h2>
+  <p class="sys-intro">Systems for organizations that measure their budgets in bake sales. Patterns and mechanisms only here, with no financials, no deliberations, and no names.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Monthly board packet from one instruction <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>One instruction gathers staff reports, generates the prior meeting's minutes, combines the packet, uploads it, and writes the board email as a draft.</dd>
+    </div>
+    <div>
+      <dt>Minutes in house style from a transcript <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Board minutes generate from a meeting transcript in the organization's own document style and land in the following month's folder, where they wait for approval.</dd>
+    </div>
+    <div>
+      <dt>Read-scoped gathering from mail <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Staff reports and board mail are pulled through a read-scoped mail client, so the gathering step cannot alter the mailbox it reads.</dd>
+    </div>
+    <div>
+      <dt>A pipeline that drafts but cannot send <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>The board email is created as a draft carrying document links rather than attachments, and nothing in the pipeline holds a credential that could send it.</dd>
+    </div>
+    <div>
+      <dt>Sharing state re-verified every cycle <span><a href="/case-studies/authority-boundary/">Authority boundary case study</a></span></dt>
+      <dd>Files upload, update, and download in a link-shared folder with every file's sharing state verified on each run rather than assumed from last month.</dd>
+    </div>
+    <div>
+      <dt>Financial source index <span>Internal</span></dt>
+      <dd>Banked statements, committee minutes, and the annual audit sit behind one index that names the gotchas and points at the originals, so a strategy session starts from a source rather than from somebody's summary.</dd>
+    </div>
+    <div>
+      <dt>Regenerable funder mine <span>Internal</span></dt>
+      <dd>Public IRS master-file records and grant schedules mine down to a full state grantmaker universe of 2,779 organizations and a geography-led qualified cut of 329, regenerable rather than hand-collected.</dd>
+    </div>
+    <div>
+      <dt>Cross-workstream reuse without re-mining <span>Internal</span></dt>
+      <dd>A second workstream re-tiers those results read-only under its own lens into paired markdown and CSV prospect lists, instead of running the mine again against the same public data.</dd>
+    </div>
+    <div>
+      <dt>Priority triage for a solo operator <span>Internal</span></dt>
+      <dd>28 funders triaged as the ones to work first, each with an ask angle and a size drawn from what that funder actually granted comparable organizations.</dd>
+    </div>
+    <div>
+      <dt>Grants pipeline with a live counterpart <span>Internal</span></dt>
+      <dd>The grants tracker keeps a cloud counterpart in sync in place, with the file identifiers recorded so a session never has to guess which copy is current.</dd>
+    </div>
+    <div>
+      <dt>Giving-channels package <span>Internal</span></dt>
+      <dd>Four branded giving pages, four donor ask templates, matching-gift copy, and a per-channel setup runbook, built as a front door rather than as a memo recommending one.</dd>
+    </div>
+    <div>
+      <dt>Revenue-diversification strategy set <span>Internal</span></dt>
+      <dd>Strategy documents for revenue beyond grants, grounded in the organization's own current statements rather than in sector averages.</dd>
+    </div>
+    <div>
+      <dt>Financial time-series extraction <span>Internal</span></dt>
+      <dd>52 monthly accounting exports spanning nearly three years collapse into one consolidated time series a volunteer treasurer can read in a sitting.</dd>
+    </div>
+    <div>
+      <dt>Reusable treasurer report <span>Internal</span></dt>
+      <dd>A monthly treasurer-report template pairs with that time series, so the monthly report is a fill rather than a rebuild.</dd>
+    </div>
+    <div>
+      <dt>Meeting-packet review workflow <span>Internal</span></dt>
+      <dd>Agendas and packets are banked before a meeting with a dated preparation memo, and a first-hand outcome record is banked afterward.</dd>
+    </div>
+    <div>
+      <dt>Public-comment banking <span>Internal</span></dt>
+      <dd>Written public comments are preserved exactly as circulated, alongside a dated summary memo that never replaces them.</dd>
+    </div>
+    <div>
+      <dt>Credential tracking against source certificates <span>Internal</span></dt>
+      <dd>Certifications track against the banked certificate files themselves, 17 of them, rather than against a list somebody typed from memory.</dd>
+    </div>
+  </dl>
+
+  <h2 id="client-systems">Client engagement and business intelligence</h2>
+  <p class="sys-intro">The consultancy stack, from a first outside-in audit through the monthly and quarterly deliverables that follow. Organizations here are described by what they are, never by who they are.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Competitor discovery from a name and a city <span>Internal</span></dt>
+      <dd>Places text search with per-category radius rules and review thresholds, model-assisted ranking, and an interactive human selection step before anything gets audited.</dd>
+    </div>
+    <div>
+      <dt>Twelve category profiles <span>Internal</span></dt>
+      <dd>12 business-category profiles drive search types, radius, thresholds, audit dimensions, and the deliverable template, so a new vertical is a YAML file rather than a fork.</dd>
+    </div>
+    <div>
+      <dt>Full outside-in assessment <span>Internal</span></dt>
+      <dd>A target and its competitors audit across business profile, reviews, site technology and performance, structured data, local search, imagery, and positioning in a single run.</dd>
+    </div>
+    <div>
+      <dt>Scorecard rendered from cached artifacts <span>Internal</span></dt>
+      <dd>The deliverable renders in markdown and as a document from cached audit artifacts, so a wording change never re-runs a pipeline that costs money.</dd>
+    </div>
+    <div>
+      <dt>Deterministic executive summary <span>Internal</span></dt>
+      <dd>Six rules generate the summary headlines, severity-ordered and capped at five, so the top of the document is reproducible instead of improvised.</dd>
+    </div>
+    <div>
+      <dt>Per-prospect cost accounting <span>Internal</span></dt>
+      <dd>Every API call is logged with a cost estimate to a per-prospect file, with a reporting command over it, because a fixed-fee audit needs a known unit cost.</dd>
+    </div>
+    <div>
+      <dt>Capped external data pull <span>Internal</span></dt>
+      <dd>A sanctioned pull path against a licensed SEO data provider is capped per prospect and reuses a read-only client rather than forking credentials into a second place.</dd>
+    </div>
+    <div>
+      <dt>Per-engagement identity <span>Internal</span></dt>
+      <dd>One configuration file supplies display name and logo to every renderer. A missing logo is a hard error at intake.</dd>
+    </div>
+    <div>
+      <dt>Live brand assets rather than copies <span>Internal</span></dt>
+      <dd>Palette and assets resolve from the brand repository at build time instead of being copied, so a brand refresh reaches every deliverable at once.</dd>
+    </div>
+    <div>
+      <dt>Monthly owner's scorecard <span>Internal</span></dt>
+      <dd>A one-page monthly business-intelligence deliverable built from a month's figures, with per-vertical section pruning so a client never reads a section that does not apply.</dd>
+    </div>
+    <div>
+      <dt>Continuity kit <span>Internal</span></dt>
+      <dd>A scored audit of what breaks when one person is unavailable, plus four runbook templates covering access, money, operations, and the shape of the engagement.</dd>
+    </div>
+    <div>
+      <dt>Monthly advisory letter <span>Internal</span></dt>
+      <dd>A monthly advisory letter and the shared financial-metric library that both it and the scorecard read, so two documents cannot disagree about a margin.</dd>
+    </div>
+    <div>
+      <dt>Pricing what-if <span>Internal</span></dt>
+      <dd>Break-even volume tolerance under a price move, computed symmetrically on the loss side and the gain side, because owners ask both questions.</dd>
+    </div>
+    <div>
+      <dt>Quarterly business review <span>Internal</span></dt>
+      <dd>Cost to serve, break-even, the fixed and variable split, working capital, headcount, customer lifetime value, rebooking cadence, and a light trend read, where a missing input renders as a worked what-if rather than as a fabricated number.</dd>
+    </div>
+    <div>
+      <dt>Twelve-month roadmap <span>Internal</span></dt>
+      <dd>Authored targets where the client supplied them and a per-vertical scaffold otherwise, with placeholders that render as to set instead of as invented figures.</dd>
+    </div>
+    <div>
+      <dt>Expected-value decision joins <span>Internal</span></dt>
+      <dd>An expected-value backbone joins flagged decisions to their consequences, alongside a separate bundling and tier advisory module.</dd>
+    </div>
+    <div>
+      <dt>Cross-domain joins into deliverables <span>Internal</span></dt>
+      <dd>Capacity and throughput, turnover cost, and positioning and segmentation join into the competitive scorecard rather than living as three analyses nobody reconciles.</dd>
+    </div>
+    <div>
+      <dt>Pitch package for a membership organization <span>Internal</span></dt>
+      <dd>A one-page capability brief and a send-ready outreach email for a local membership organization, built and then held, because sending is the owner's decision and not the pipeline's.</dd>
+    </div>
+  </dl>
+
+  <h2 id="orchestration">AI orchestration and agent operations</h2>
+  <p class="sys-intro">How six workstreams stay coherent when the sessions running them share no memory. Most of these rules are scar tissue.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Chartered workstreams under one router <span><a href="/case-studies/six-domains/">Six domains case study</a></span></dt>
+      <dd>A root session names the workstream a topic belongs to and dispatches a brief into it rather than working inline, across six workstreams with one routing table.</dd>
+    </div>
+    <div>
+      <dt>Three-tier skill architecture <span><a href="/case-studies/aeo-operating-system/">AEO operating system case study</a></span></dt>
+      <dd>Analytical skills write JSON artifacts, orchestrators read those artifacts and render documents, and a third tier holds shared infrastructure, so a rendering change never reaches into analysis.</dd>
+    </div>
+    <div>
+      <dt>Self-contained handoff briefs <span><a href="/case-studies/six-domains/">Six domains case study</a></span></dt>
+      <dd>Domain primers and written handoffs open with a verify-first list and are outranked by the source tree, so a receiving session inherits facts rather than a previous session's assumptions.</dd>
+    </div>
+    <div>
+      <dt>Session-close convention <span><a href="/case-studies/six-domains/">Six domains case study</a></span></dt>
+      <dd>Each workstream closes by writing one status file addressed to a reader with no conversation context, and that file corrects itself rather than growing an append-only tail.</dd>
+    </div>
+    <div>
+      <dt>Scheduled unattended data refresh <span><a href="/case-studies/aeo-operating-system/">AEO operating system case study</a></span></dt>
+      <dd>A biweekly scheduled job runs six analysis scripts live and commits its cache, deciding success from entries on disk rather than from exit codes, which lie when a gate skips the work.</dd>
+    </div>
+    <div>
+      <dt>Chained synthesis job <span><a href="/case-studies/aeo-operating-system/">AEO operating system case study</a></span></dt>
+      <dd>A second job chains off the first, regenerating from cache, gating model narration, rebuilding a digest, publishing atomically, and syncing, all while spending zero paid data units by construction.</dd>
+    </div>
+    <div>
+      <dt>Two-stage tracker sync <span>Internal</span></dt>
+      <dd>A vetted two-stage flow moves work from a log into the project tracker and then into an executive workbook, with the tracker as system of record and every write scoped to a single tab.</dd>
+    </div>
+    <div>
+      <dt>Skills installed by symlink <span>Internal</span></dt>
+      <dd>Workflow skills are symlinked from their repository into the user-level skills directory, so the runnable copy and the version-controlled copy are the same file rather than two that drift.</dd>
+    </div>
+    <div>
+      <dt>Per-workstream capability ledgers <span><a href="/case-studies/six-domains/">Six domains case study</a></span></dt>
+      <dd>Each workstream keeps a ledger recording what is live, what is staged behind a named gate, and what was decided against and why. This page was assembled from six of them, and a row whose proof does not resolve is not a row.</dd>
+    </div>
+  </dl>
+
+  <h2 id="delivery">Delivery, release, and front-end engineering</h2>
+  <p class="sys-intro">Shipping, and finding out when shipping quietly stopped working. Two production outages wrote most of this section.</p>
+  <dl class="sys-list">
+    <div>
+      <dt>Function-budget CI gate <span><a href="/case-studies/governance-as-code/">Governance as code case study</a></span></dt>
+      <dd>Every pull request gets a fast static model of the serverless function budget plus a real build as ground truth, with no secrets required, so a platform cap fails a pull request instead of freezing production.</dd>
+    </div>
+    <div>
+      <dt>Function-tracing payload fix <span><a href="/case-studies/governance-as-code/">Governance as code case study</a></span></dt>
+      <dd>Summing the bytes inside each function's file map found the real cause of a deploy outage after two plausible diagnoses were wrong, cutting the payload from 246 to about 59 MiB and the function count from 10 to 4.</dd>
+    </div>
+    <div>
+      <dt>Share cards as build-time images <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Share images render to static PNGs at build time for every town, post, and monthly card, with route-level cards for the fixed pages, so social imagery costs zero serverless functions.</dd>
+    </div>
+    <div>
+      <dt>Freshness sentinel <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>An independent read-only job checks that scheduled work actually happened, which is how a cron that had silently stopped running got caught, with a backstop that treats an unmounted private store as a failure rather than a skip.</dd>
+    </div>
+    <div>
+      <dt>Named type scale <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>One named type scale replaced the ad-hoc size and weight combinations scattered through the interface.</dd>
+    </div>
+    <div>
+      <dt>Persistent town selection <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A header picker's town selection follows the reader across pages, so somebody who picked a town once does not pick it again on the next page.</dd>
+    </div>
+    <div>
+      <dt>Security headers with a scoped exception <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>Site-wide security headers, with the framing exception narrowed to the one route that is meant to be embedded on other people's pages.</dd>
+    </div>
+    <div>
+      <dt>Analytics behind one opt-out <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>The whole analytics stack sits behind a single opt-out cookie that excludes the owner's own traffic, so the numbers are not quietly measuring me.</dd>
+    </div>
+    <div>
+      <dt>Feed-driven storefront <span><a href="https://github.com/davidhluther/davessweater">davessweater repo</a></span></dt>
+      <dd>A merchant RSS feed drives the storefront with variants deduplicated by group, after the vendor's own API stayed blocked and never came back.</dd>
+    </div>
+    <div>
+      <dt>Five public calculators <span><a href="https://pigasus.group">pigasus.group</a></span></dt>
+      <dd>Five public calculators on the consultancy site, each one ending in a number a small business owner can act on rather than a lead form.</dd>
+    </div>
+    <div>
+      <dt>Capture layer and benchmark store <span><a href="https://pigasus.group">pigasus.group</a></span></dt>
+      <dd>Tool submissions land in a managed database that also backs the anonymized benchmark store the calculators read from.</dd>
+    </div>
+    <div>
+      <dt>Transactional email with a verified domain <span><a href="https://pigasus.group">pigasus.group</a></span></dt>
+      <dd>A verified sending domain with SPF, MX, and DKIM records in place delivers a pro-forma document from all five tools, with delivery confirmed end to end.</dd>
+    </div>
+  </dl>
+
+  <h2 id="not-here">What is not on this page</h2>
+  <p>Employer performance numbers are absent on purpose. Traffic, rankings, citation share, and revenue live in my resume, so every Corpay figure above counts a system or a method instead. Client, prospect, and membership-organization work appears by what the organization is rather than by who it is, which is why you will read "a local membership organization" and never a name. Nonprofit and civic rows stay at the level of pattern, so no budget figure, board discussion, or named person appears anywhere below.</p>
+  <p>Three things above are labeled rather than counted as finished. The second-engine webmaster client works on a branch that has not merged. The hand-run prompt battery has a live kit and an uncollected first month. And the executive dashboard has been in daily use since August while its code sits on an unmerged branch, which is a real gap between deployed and landed.</p>
+  <p>A few things were left off entirely, and naming them seems fairer than letting the count quietly absorb them. A screenshot upload endpoint exists but has not run in months, and the only copy of one briefing page sits outside any repository, a single cleanup away from gone. The data-boundary policy for clinical work is still a stub. Three companion posts are committed and date-gated to September, and a second prompt-battery track is blocked on provider accounts that do not exist yet. None of those are capabilities today, whatever the file tree suggests.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> Every row here came out of a per-workstream capability ledger, and each ledger was verified against its own repository on 23 August 2026, with roughly 60 proof pointers independently re-checked through git, the filesystem, live HTTP, and test collection. Counts in this page are the ones that resolved. Where a ledger claimed something the proof did not support, the row is either labeled or absent. This site's own source is <a href="https://github.com/davidhluther/davidhluther.github.io">public on GitHub</a>.</p></div>
+
+  <nav class="next-prev" aria-label="More on this site">
+    <a href="/aeo/">The AEO work</a>
+    <a href="/lab/">The lab</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+  </div>
+</footer>
+</body>
+</html>

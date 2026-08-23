@@ -8,7 +8,10 @@ David Luther is a marketing leader and hands-on search engineer with fourteen ye
 
 ## Pages
 
-The site is organized in two sections. "The AEO work" covers the enterprise program, and "The lab" covers self-built systems with public code.
+The site is organized in two sections. "The AEO work" covers the enterprise program, and "The lab" covers self-built systems with public code. A third page, the capability index, flattens both sections into one inventory.
+
+Inventory:
+- [Capability index](https://davidhluther.github.io/capabilities/) covers the complete breadth-layer inventory of 167 working capabilities across six workstreams, grouped into eleven disciplines and linked into the case studies, with employer performance figures and client identities deliberately withheld
 
 AEO work:
 - [The AEO work](https://davidhluther.github.io/aeo/) indexes the six enterprise case studies and the shared infrastructure behind them

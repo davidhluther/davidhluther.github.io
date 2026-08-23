@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://davidhluther.github.io/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-23</lastmod>
   </url>
   <url>
     <loc>https://davidhluther.github.io/aeo/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-23</lastmod>
   </url>
   <url>
     <loc>https://davidhluther.github.io/lab/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-23</lastmod>
   </url>
   <url>
     <loc>https://davidhluther.github.io/case-studies/hybrid-retrieval/</loc>
@@ -70,6 +70,10 @@
   </url>
   <url>
     <loc>https://davidhluther.github.io/case-studies/public-data-panel/</loc>
+    <lastmod>2026-08-23</lastmod>
+  </url>
+  <url>
+    <loc>https://davidhluther.github.io/capabilities/</loc>
     <lastmod>2026-08-23</lastmod>
   </url>
   <url>
