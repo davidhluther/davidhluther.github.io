@@ -124,7 +124,7 @@
   <p>The battery of record is run by hand in the consumer apps. One prompt per fresh chat, logged out or on a clean profile, memory and personalization off, no VPN, from the business's home geography, same day each month. Answers get pasted verbatim before scoring, because your summary of the answer is not the instrument; the answer is. Each run records the model version string, since a silent default-model swap can move a score without anything about the business changing.</p>
   <p>Misses get classified too. A miss is a visibility gap, a category-belief gap, or a resolved-to-the-wrong-kind-of-answer, and those three read very differently in a client conversation.</p>
 
-  <h3>The API runner refuses to run</h3>
+  <h3 id="the-api-runner-refuses">The API runner refuses to run</h3>
   <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track. Those answers get filed separately and never mix with the app-collected ones, because the API version of a model is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
   <p>The runner's best feature is what it won't do. It refuses to run against an unfrozen prompt set, and it refuses to spend money on any provider whose model ID hasn't been human-verified against live docs.</p>
   <pre><code>class Provider:
@@ -139,7 +139,7 @@
   <h2 id="the-same-discipline">The same discipline at S&amp;P 500 scale</h2>
   <p>In my day job I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal. The methodology is the interesting part anyway.</p>
 
-  <h3>Prompt-pool noise correction</h3>
+  <h3 id="prompt-pool-noise-correction">Prompt-pool noise correction</h3>
   <p>The commercial AI-visibility platforms don't just track the questions you wrote. They auto-generate hundreds more from a short description of your business and blend everything into one pool. Those generated questions drift toward whatever people search for most, which for a B2B finance brand means consumer personal-finance questions its actual buyers never ask. Every metric built on that blended pool comes out diluted, and the dilution masquerades as a finding ("we're invisible in AI") rather than what it is, a measurement artifact.</p>
   <p>The correction treats pool composition as a named dimension of every metric, with composable filters. Restrict to the curated corpus. Exclude branded prompts. Strip off-ICP prompts with a classifier whose blocklist was derived empirically, from watching which off-market companies surfaced as "competitors" in the diluted report. The artifact class is memorable once you've seen it. A blended pool can surface an off-ICP consumer-finance incumbent as a top cited brand in a B2B payments category purely through pool noise, on prompts its buyers would never type. Two rules carry the weight. Nothing gets replaced, so the original series keeps running unchanged and cleaned figures publish alongside it under a separate key. And every figure must name its pool inline, because an unlabeled metric is not citable. The flattering number and the unflattering one ship side by side. They answer different questions, and a reader deserves both.</p>
 
