@@ -68,7 +68,7 @@
 
   <div class="fact-grid">
     <div><span class="n">28</span><span class="l">questions, asked identically every month</span></div>
-    <div><span class="n">4</span><span class="l">AI assistants, asked as a real user would</span></div>
+    <div><span class="n">4</span><span class="l">AI models, asked as a real user would</span></div>
     <div><span class="n">112</span><span class="l">answers scored each month</span></div>
     <div><span class="n">17</span><span class="l">analysis tools that read the results</span></div>
   </div>
@@ -83,10 +83,10 @@
   </nav>
 
   <h2 id="the-pigasus-battery">The Pigasus battery, the same 28 questions every month</h2>
-  <p>For my consultancy I track AI visibility the way you'd run a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and every month all four major assistants, ChatGPT, Claude, Perplexity, and Gemini, get the exact same 28, word for word. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's.</p>
+  <p>For my consultancy I track AI visibility the way you'd run a proper monthly survey. I wrote 28 questions that sound like real buyers, split into six groups, and every month all four major models, ChatGPT, Claude, Perplexity, and Gemini, get the exact same 28, word for word. That fixed set is the battery, and it stays fixed because the moment you reword a question, this month's answers stop being comparable to last month's.</p>
 
   <figure class="diagram">
-    <svg viewBox="0 0 760 150" role="img" aria-label="The battery as a grid: 28 questions in six groups crossed with four assistants, 112 answers a month">
+    <svg viewBox="0 0 760 150" role="img" aria-label="The battery as a grid: 28 questions in six groups crossed with four models, 112 answers a month">
       <g fill="var(--text-2)">
         <text x="90" y="14">LD 01-07</text>
         <text x="247" y="14">PF 01-05</text>
@@ -125,7 +125,7 @@
   <p>Misses get classified too. A miss is a visibility gap, a category-belief gap, or a resolved-to-the-wrong-kind-of-answer, and those three read very differently in a client conversation.</p>
 
   <h3>The API runner refuses to run</h3>
-  <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track. Those answers get filed separately and never mix with the app-collected ones, because the API version of an assistant is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
+  <p>A Python script asks the same questions again through the four companies' developer APIs, as a second track. Those answers get filed separately and never mix with the app-collected ones, because the API version of a model is a different animal. It has no web browsing, no memory of you, and no idea where you're asking from, and pretending it's the same measurement would corrupt the record quietly.</p>
   <p>The runner's best feature is what it won't do. It refuses to run against an unfrozen prompt set, and it refuses to spend money on any provider whose model ID hasn't been human-verified against live docs.</p>
   <pre><code>class Provider:
     name: str            # short tag used in the raw filename (&lt;name&gt;-api)
@@ -134,7 +134,7 @@
     verified: bool       # False =&gt; refuse live calls until confirmed vs docs
     docs_url: str        # where to confirm endpoint + model id
     verify_note: str     # what to check before flipping `verified` to True</code></pre>
-  <p>Downstream, a 17-module analysis suite handles mention and share-of-voice math, citation verification (assistants fabricate links, so every cited URL gets checked), sentiment and factual-error review, competitive and per-platform variance, and trend reads with confound checks for model swaps. Client separation is architectural. Every module is parameterized by an engagement slug, the same logic runs unmodified across engagements, and no client data lives in code.</p>
+  <p>Downstream, a 17-module analysis suite handles mention and share-of-voice math, citation verification (models fabricate links, so every cited URL gets checked), sentiment and factual-error review, competitive and per-platform variance, and trend reads with confound checks for model swaps. Client separation is architectural. Every module is parameterized by an engagement slug, the same logic runs unmodified across engagements, and no client data lives in code.</p>
 
   <h2 id="the-same-discipline">The same discipline at S&amp;P 500 scale</h2>
   <p>In my day job I own AI visibility as a growth channel for a corporate payments platform. The numbers stay internal. The methodology is the interesting part anyway.</p>
@@ -148,9 +148,9 @@
   <p>Borrowed numbers get a second, orthogonal axis. Confidence grades my finding; a separate A-through-D tier grades the outside study behind any statistic I quote, assigned by reading the primary source rather than by inference. A named research firm quoted inside an aggregator doesn't inherit the firm's tier, and research published by a vendor selling the thing it measured caps at mid-tier regardless of methodology. A "confirmed" finding resting on a bottom-tier statistic isn't confirmed. It's a repeated error.</p>
 
   <h3>AI-traffic forensics</h3>
-  <p>"How much traffic comes from AI assistants" looks like a lookup and is actually a definitional minefield. Enterprise and free analytics stacks disagree materially on the same pages in the same month, because each ships its own undocumented rules for what counts as an AI referrer, and a single export can contradict itself across two report paths. So the posture is to triangulate rather than trust. Named-referrer cuts get built by hand so the inclusion list is inspectable. Every metric states its full construction, meaning which referrers, which window, which report path, and when it was pulled. Platforms get reconciled side by side with each definitional gap named, and circulating legacy figures get traced back to a live report path or recorded as unreproducible. "Unverifiable" is a valid, publishable outcome.</p>
-  <p>The pitfalls are worth more than the totals. Every AI-traffic number is a floor, since assistants that strip referrers land in Direct and no configuration fixes it. AI Overviews clicks arrive as ordinary organic and stay invisible to referrer cuts entirely. And paid-channel misclassification can silently invert a whole narrative between platforms, which I proved with a controlled experiment rather than an assumption.</p>
-  <p>The design was to buy a known quantity of AI-assistant ad clicks as ground truth, then watch where the analytics stack put them. None of them showed up in the enterprise platform's AI channel, a second platform caught only part of the organic side, and the gap between purchased truth and recorded truth is what re-derived the channel definitions.</p>
+  <p>"How much traffic comes from AI models" looks like a lookup and is actually a definitional minefield. Enterprise and free analytics stacks disagree materially on the same pages in the same month, because each ships its own undocumented rules for what counts as an AI referrer, and a single export can contradict itself across two report paths. So the posture is to triangulate rather than trust. Named-referrer cuts get built by hand so the inclusion list is inspectable. Every metric states its full construction, meaning which referrers, which window, which report path, and when it was pulled. Platforms get reconciled side by side with each definitional gap named, and circulating legacy figures get traced back to a live report path or recorded as unreproducible. "Unverifiable" is a valid, publishable outcome.</p>
+  <p>The pitfalls are worth more than the totals. Every AI-traffic number is a floor, since some AI apps strip the referrer and land in Direct, and no configuration fixes it. AI Overviews clicks arrive as ordinary organic and stay invisible to referrer cuts entirely. And paid-channel misclassification can silently invert a whole narrative between platforms, which I proved with a controlled experiment rather than an assumption.</p>
+  <p>The design was to buy a known quantity of ad clicks from inside AI products as ground truth, then watch where the analytics stack put them. None of them showed up in the enterprise platform's AI channel, a second platform caught only part of the organic side, and the gap between purchased truth and recorded truth is what re-derived the channel definitions.</p>
 
   <h3>Reporting an executive can lean on</h3>
   <p>The reporting layer treats a metric as a record, not a number. Every tile in the executive-facing app carries its label, unit, basis, source, and caveat list. Nulls render as "n/a, see note" and never as zero. While the verified data layer was still being built, the app ran on sample data made unmistakably fake, with implausible values and a full-stage watermark keyed to a flag in the data file, so nothing real-looking could ship by accident.</p>

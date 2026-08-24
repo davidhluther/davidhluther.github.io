@@ -161,7 +161,7 @@ $$;</code></pre>
   <p>The pipeline, schema, and docs are structured for a public repo while transcripts, images, and embeddings live outside it, enforced by redundant gitignores and a private database project. Confidentiality as architecture rather than policy. The same cached embeddings also power a fully offline <a href="/case-studies/hybrid-retrieval/">hybrid search engine</a> for when the network path isn't there.</p>
 
   <h2 id="why-this-matters-for-aeo">Why this matters for AEO</h2>
-  <p>Having built each stage myself, I can reason concretely about why an AI assistant cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 23,615 chunks of someone else's prose.</p>
+  <p>Having built each stage myself, I can reason concretely about why an AI model cites one page over another, what makes content chunk-friendly and citation-worthy, and where retrieval actually breaks. If you want to know what a 400-token window with a 60-token overlap does to your carefully crafted page intro, I can tell you exactly, because I've watched it happen to 23,615 chunks of someone else's prose.</p>
 
   <div class="build-notes"><p><strong>Build notes.</strong> Designed and built by me alone, with Claude Code as the engineering team. Python, Tesseract, and Postgres/pgvector on a managed database's free tier. Embedding is the only real spend, and every run is gated by a hard pre-run cost cap.</p></div>
 
