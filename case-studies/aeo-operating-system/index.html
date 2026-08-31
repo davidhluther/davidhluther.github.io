@@ -26,7 +26,7 @@
   "@type": "TechArticle",
   "headline": "Running AEO as an Operating System",
   "datePublished": "2026-08-19",
-  "dateModified": "2026-08-19",
+  "dateModified": "2026-08-26",
   "description": "Case study of AEO program operations at enterprise scale: pipeline where every stage writes a dated file the next stage readss, parameterized analysis engines, findings graded before they ship, cost accounting, executive strategic framing, and organizational enablement.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/aeo-operating-system/",
@@ -151,6 +151,7 @@
   <h2 id="cost-as-a-required-output">Every run has to say what it cost</h2>
   <p>The vendor data this runs on is sold in units, and I treat units like cash. Before any large pull the pipeline checks the balance, every file records the units that step burned, and every run ends with a mandatory cost report, calls per endpoint times the published cost per row. An expensive habit shows up on the run that introduced it, not six weeks later on the invoice.</p>
   <p>One written-down lesson is my own. I fanned several briefs out in parallel, exhausted the unit ceiling, and the two fixes sit in the file beside the mistake. The pipeline signs in with the metered account rather than my subscription login, on purpose, so I can tell its spend from mine.</p>
+  <p>For all that metering, the full envelope is the part people don't believe. The channel runs on two research licenses, Ahrefs and Screaming Frog, the free tiers of the analytics stack, and AI agents under one operator's direction. No headcount was added, and the media budget for the channel sat unspent while the measured results accrued. A channel that produces on research-tool money is a different conversation with leadership than one that opens by asking for budget.</p>
 
   <h2 id="the-executive-layer">The reports leadership sees</h2>
   <p>A program that can't be explained upward dies, so the reporting got the same engineering as the data. The weekly leadership dashboard pulls each source on its own, and week-over-week changes come from a stored copy of last week rather than a recalculation, so an outage can't manufacture a change that never happened. One set of numbers renders three ways, a spreadsheet for analysts, a live app for looking things up, and a flat file that survives a paste into a slide.</p>

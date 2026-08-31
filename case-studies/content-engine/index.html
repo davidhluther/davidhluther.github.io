@@ -26,7 +26,7 @@
   "@type": "TechArticle",
   "headline": "A Content Engine Built to Earn Citations",
   "datePublished": "2026-08-19",
-  "dateModified": "2026-08-19",
+  "dateModified": "2026-08-26",
   "description": "Case study of content operations methodology for answer engines: buyer-language taxonomy with phrase-level provenance, TF-IDF internal linking, consolidation-first roadmapping, redundancy gating, and machine-enforced writing quality.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/content-engine/",
@@ -102,6 +102,7 @@
   <h2 id="quality-as-a-machine">Quality as a machine, not a memo</h2>
   <p>Every draft passes a Python validator with a severity ladder, where errors block and warnings advise, across roughly two dozen checks. Banned AI-tell phrases, puffery, formulaic transitions, placeholder examples, uncited statistics, repeated statistics, heading defects, casing, punctuation, and summary-ending patterns all get caught mechanically. A second family of checks enforces answer-engine structure, including answer-block length, question-shaped headings above a threshold ratio, answer-first opening sentences, comparison-table presence, and the vendor-neutrality rule above. The same discipline has a counterpart on the other side of the pipeline, since a draft validator cannot see metadata or aria-labels, and <a href="/case-studies/governance-as-code/">linting the shipped artifact</a> is a separate job.</p>
   <p>The checks are commit-time and unsentimental. In one wave, a single named AI-tell pattern class got caught 29 times out of 30 appearances, and every instance was rewritten rather than waived. The colon and heading disciplines are enforced by hook, a change made after prose-only rules demonstrably failed to hold, and the factual-claims register screens semantically because a paraphrased statistic ("roughly a third") once slipped past a numeric grep. That last discovery grew into the <a href="/case-studies/evidence-engineering/">evidence pipeline's</a> semantic pass.</p>
+  <p>The bar doesn't relax when the audience gets senior. An executive results narrative went through six directed revisions in one working session, a story-first reframe, a basis correction, and a supersession when fresher exports landed among them. Every revision landed as a style-validated commit on one pull request. The same validator that gates a product explainer gated each pass of a document headed for the leadership team.</p>
   <p>The architecture matters more than the check list. One universal core walks up from the article being validated to find a per-brand rules file, and with no config, calibrated defaults apply byte for byte, which ended a forked-copy problem where a sibling brand's validator had silently drifted. Unknown config keys are fatal, so a typo in a brand rule fails loudly instead of silently disabling a compliance check. And the rule data is tested against the human-readable styleguide, so the prose doctrine and the executable rules can't separate. This site's own copy was written under the same styleguide, which felt only fair.</p>
 
   <h2 id="internal-linking-by-similarity">Internal linking by similarity, applied by humans</h2>

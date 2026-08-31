@@ -26,7 +26,7 @@
   "@type": "TechArticle",
   "headline": "Measuring AI Visibility Without Fooling Yourself",
   "datePublished": "2026-08-19",
-  "dateModified": "2026-08-19",
+  "dateModified": "2026-08-26",
   "description": "Case study of AI-visibility measurement methodology: frozen prompt batteries, hand-run consumer-UI protocol, an API runner with a verified-model-ID gate, prompt-pool noise correction, evidence confidence ladders, and AI-traffic analytics forensics.",
   "author": { "@id": "https://davidhluther.github.io/#person" },
   "url": "https://davidhluther.github.io/case-studies/ai-visibility-measurement/",
@@ -152,12 +152,16 @@
   <p>The pitfalls are worth more than the totals. Every AI-traffic number is a floor, since some AI apps strip the referrer and land in Direct, and no configuration fixes it. AI Overviews clicks arrive as ordinary organic and stay invisible to referrer cuts entirely. And paid-channel misclassification can silently invert a whole narrative between platforms, which I proved with a controlled experiment rather than an assumption.</p>
   <p>The design was to buy a known quantity of ad clicks from inside AI products as ground truth, then watch where the analytics stack put them. None of them showed up in the enterprise platform's AI channel, a second platform caught only part of the organic side, and the gap between purchased truth and recorded truth is what re-derived the channel definitions.</p>
 
+  <h3>What the traffic does after it lands</h3>
+  <p>Once the counting was honest, the pattern inside the clean segment turned out to matter more than its size. The AI-referral cut converts at the top of the channel table, and it lands on product pages rather than on the articles that earn the citations. Read together, those two facts describe a division of labor. Owned content earns the citation upstream, the model's answer does the qualifying before the click ever happens, and the visitor who arrives is already close to a decision. The conversion multiple stays internal like every number here, but the shape carries the strategy anyway. Write to be cited where the buyer asks, and let the product pages receive the click.</p>
+
   <h3>Reporting an executive can lean on</h3>
   <p>The reporting layer treats a metric as a record, not a number. Every tile in the executive-facing app carries its label, unit, basis, source, and caveat list. Nulls render as "n/a, see note" and never as zero. While the verified data layer was still being built, the app ran on sample data made unmistakably fake, with implausible values and a full-stage watermark keyed to a flag in the data file, so nothing real-looking could ship by accident.</p>
   <p>Underneath it, the CI/CD pipeline holds a hard separation between the data layer and the synthesis layer. Scheduled jobs pull vendor APIs and commit raw responses to a cache. Narrative generation runs strictly from cache, where zero API spend is guaranteed by the absence of a network session rather than by a flag. The LLM that drafts executive narrative is treated as an untrusted component, and its model choice was settled by an A/B test in which the cheaper model fabricated a number. Every generated figure passes a mechanical grounding check against source data before anything publishes. The companion job that watches CMS publishing authenticates with a read-only delivery credential, so it is structurally incapable of publishing. Humans publish; automation notices.</p>
 
   <h3>Basis governance, or "why did this number change"</h3>
   <p>Every metric carries its basis, meaning which engine set, which prompt pool, and which data route produced it. When a headline number moved, the answer wasn't a shrug or a re-run. It was a bridge table walking the value across each basis in sequence, built three times for three different audiences and then made a permanent methodology page, because the third time you explain a number's movement you're describing a missing artifact. Additivity is enforced as a build-failing acceptance test, so any rollup that doesn't equal the sum of its parts refuses to ship, and nulls render as nulls with stated reasons rather than being synthesized to fill an axis.</p>
+  <p>Retirement is part of the same governance. When fresh exports from the source platform landed mid-build and superseded a series that had been reconciled from agency decks, the old series was retired outright, and the open dispute over its numbers retired with it. Blending the two would have made a series that answered for neither.</p>
 
   <h3>Citations and mentions are different assets</h3>
   <p>Being cited (your page linked in the answer) and being named (your brand in the answer text) get measured as separate metrics here, because they respond to different levers. Owned content moves citation. Syndication and third-party placement move naming. The gap between the two curves is where strategy lives, since a brand that gets named without being cited is riding other people's pages, and one that gets cited without being named has an attribution problem. Most tooling collapses these into one "visibility" number, which throws away the diagnosis.</p>
