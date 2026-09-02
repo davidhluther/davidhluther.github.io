@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Triangulating the AI Traffic Analytics Can't See | David Luther</title>
+<meta name="description" content="Measuring the AI-model traffic that arrives referrer-stripped as Direct: a landing-page proxy whose 5.5x estimate was cut to 2x by a negative control and then retracted in full after a falsification battery, the same-day cross-team retraction, a measured replacement roadmap, phantom paid-session triangulation, and a canonical lead event that fixed a 2-3x undercount.">
+<link rel="canonical" href="https://davidhluther.github.io/case-studies/ai-traffic-triangulation/">
+<meta property="og:site_name" content="David Luther">
+<meta property="og:title" content="Triangulating the AI Traffic Analytics Can't See | David Luther">
+<meta property="og:description" content="Measuring the AI-model traffic that arrives referrer-stripped as Direct: a landing-page proxy whose 5.5x estimate was cut to 2x by a negative control and then retracted in full after a falsification battery, the same-day cross-team retraction, a measured replacement roadmap, phantom paid-session triangulation, and a canonical lead event that fixed a 2-3x undercount.">
+<meta property="og:url" content="https://davidhluther.github.io/case-studies/ai-traffic-triangulation/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://davidhluther.github.io/images/david-portrait.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1600">
+<link rel="preload" href="/fonts/ibmplexsans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexserif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibmplexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css?v=18">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Triangulating the AI Traffic Analytics Can't See",
+  "datePublished": "2026-09-04",
+  "dateModified": "2026-09-04",
+  "description": "Case study of dark-AI traffic measurement under falsification discipline: a landing-page proxy estimate red-teamed, cut by a negative control, killed by a second falsification battery, retracted publicly the same day, and replaced with a measurement-based roadmap; plus phantom paid-session triangulation and a canonical lead event guarded by regression tripwires.",
+  "author": { "@id": "https://davidhluther.github.io/#person" },
+  "url": "https://davidhluther.github.io/case-studies/ai-traffic-triangulation/",
+  "about": ["Answer Engine Optimization", "AI Traffic Attribution", "Dark Traffic", "Measurement Methodology", "Marketing Analytics"],
+  "isPartOf": { "@id": "https://davidhluther.github.io/#profilepage" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "David Luther", "item": "https://davidhluther.github.io/" },
+    { "@type": "ListItem", "position": 2, "name": "The AEO work", "item": "https://davidhluther.github.io/aeo/" },
+    { "@type": "ListItem", "position": 3, "name": "Triangulating the AI Traffic Analytics Can't See", "item": "https://davidhluther.github.io/case-studies/ai-traffic-triangulation/" }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="page">
+    <nav aria-label="Site">
+      <a class="brand" href="/">David Luther</a>
+      <a href="/aeo/">AEO work</a>
+      <a href="/lab/">The lab</a>
+      <a href="/capabilities/">Capabilities</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/davidhluther">GitHub</a>
+    </nav>
+  </div>
+</header>
+<div class="page page-mark" aria-hidden="true"><svg viewBox="0 0 1400 20" preserveAspectRatio="xMidYMid slice"><defs><pattern id="tick" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0.5 6 V14" stroke="var(--rule)" stroke-width="1"/></pattern></defs><rect width="1400" height="20" fill="url(#tick)"/><g fill="var(--accent)"><rect x="300" y="6" width="6" height="8"/><rect x="520" y="6" width="6" height="8"/><rect x="900" y="6" width="6" height="8"/></g></svg></div>
+
+<main class="page">
+<article class="grid">
+  <h1>Triangulating the AI Traffic Analytics Can't See</h1>
+  <p class="lede">Some AI apps strip the referrer when a visitor clicks through from an answer, so analytics files the visit under Direct. Every vendor's "AI traffic" number is a floor, and an unknown share of the channel hides below it. In my day job, at S&amp;P 500 scale, I built the instrument meant to measure that hidden share. Its most important output so far is a number I killed.</p>
+
+  <div class="fact-grid">
+    <div><span class="n">5.5x</span><span class="l">the first dark-AI estimate, retracted in full</span></div>
+    <div><span class="n">~20x</span><span class="l">margin that proved the negative control conservative</span></div>
+    <div><span class="n">2&ndash;3x</span><span class="l">actual lead volume against what was reported</span></div>
+    <div><span class="n">~2x</span><span class="l">two enterprise platforms apart on one month's floor</span></div>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <span class="toc-label">On this page</span>
+    <ol>
+      <li><a href="#two-floors">Two floors that disagree</a></li>
+      <li><a href="#the-battery">A proxy, and the battery built to kill it</a></li>
+      <li><a href="#the-retraction">Retract in public, replace with measurement</a></li>
+      <li><a href="#phantom-sessions">Thousands of sessions, a few hundred clicks</a></li>
+      <li><a href="#leads">The same discipline for leads</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="two-floors">Two floors that disagree</h2>
+  <p>The question sounds like a lookup. How much traffic do AI models send us? In one month, the two enterprise analytics platforms watching the same site answered it roughly 2x apart, and both answers were undercounts by construction, because a visit that arrives without a referrer can't be classified as anything except Direct no matter how carefully the channel definitions get tuned. <a href="/case-studies/ai-visibility-measurement/">The measurement study</a> covers the reconciliation posture for the observed channels. This one is about the attempt to measure what they structurally cannot see, and about what that attempt earned by failing honestly.</p>
+  <p>The floor itself came first. A third instrument, a client-side analytics tool with its own AI-platform channel and its own bot accounting, agreed with the other two on the order of magnitude, which meant the observed floor was real and instrument-independent. Once the channel definitions were corrected, the attributed floor roughly doubled, and that corrected floor remains the only AI-traffic figure the program publishes as observed fact.</p>
+
+  <h2 id="the-battery">A proxy, and the battery built to kill it</h2>
+  <p>The first instrument for the hidden share was a landing-page proxy, referrer-less strangers arriving on answer-shaped content, the specific product and explainer URLs a model would hand someone alongside a citation. The first cut said true AI traffic ran about 5.5x what the channels attributed. It was exactly the number a team judged on AI growth wants to be true, which is why it wasn't allowed to leave the building without a fight.</p>
+  <p>The fight was designed, not hoped for. I red-teamed the method across eight attack vectors, incentive contamination included, and wrote falsification tests rather than confirmation ones. A negative control, a page class that email drives heavily and AI engines don't cite, cut the estimate to roughly 2x. When a stakeholder challenged the control itself, it validated as conservative two independent ways, absorbing real AI traffic at under one percent of sessions while running about 20x more email-driven than the target class.</p>
+  <p>The second battery killed the method outright. Engagement forensics showed the suspect cohort behaving like automation rather than readers, under half engaged with sessions near seventeen seconds, where verified AI visitors run near ninety percent engaged at about two minutes. The decisive test, a cited-versus-uncited natural experiment across two months at thousands of sessions per month, came back null, and a landing-mix analysis showed the cohort structurally missing most of the pages where attributed AI traffic actually lands. A prior-month replication anti-correlated with AI growth. The verdict on the record is the one that survives audit. The multiplier is unsupported, the cohort is predominantly automation, and a small genuine residue can't be excluded.</p>
+
+  <h2 id="the-retraction">Retract in public, replace with measurement</h2>
+  <figure class="diagram">
+    <svg viewBox="0 0 760 200" role="img" aria-label="The estimate's path through its own gauntlet: a 5.5x first cut is reduced to roughly 2x by a negative control, then retracted in full when the falsification battery returns automation forensics, a null natural experiment, a landing-mix mismatch, and a reversed replication. Only the attributed floor ships.">
+      <g fill="none" stroke="var(--diagram-ink)" stroke-width="1">
+        <rect x="6" y="72" width="120" height="56"/>
+        <rect x="166" y="72" width="150" height="56"/>
+        <rect x="340" y="30" width="200" height="140"/>
+        <rect x="580" y="72" width="174" height="56"/>
+        <path d="M126 100 H160"/>
+        <path d="M316 100 H334"/>
+      </g>
+      <g stroke="var(--accent)" stroke-width="1" fill="none">
+        <path d="M540 100 H568"/>
+      </g>
+      <g fill="var(--accent)">
+        <path d="M568 95 L580 100 L570 105 Z"/>
+      </g>
+      <g fill="var(--diagram-ink)">
+        <path d="M160 95 L170 100 L162 105 Z"/>
+        <path d="M334 95 L344 100 L336 105 Z"/>
+        <text x="18" y="94">First cut</text>
+        <text x="178" y="94">Negative control</text>
+        <text x="352" y="52">Falsification battery</text>
+        <text x="592" y="94">Retracted in full</text>
+      </g>
+      <g fill="var(--text-2)">
+        <text class="s" x="18" y="112">5.5x attributed</text>
+        <text class="s" x="178" y="112">cut to roughly 2x</text>
+        <text class="s" x="352" y="76">engagement forensics</text>
+        <text class="s" x="352" y="94">cited-vs-uncited null</text>
+        <text class="s" x="352" y="112">landing mix mismatched</text>
+        <text class="s" x="352" y="130">replication reversed</text>
+        <text class="s" x="352" y="148">cohort looks automated</text>
+        <text class="s" x="592" y="112">only the floor ships</text>
+      </g>
+    </svg>
+    <figcaption>The estimate's path through its own gauntlet. Every gate was built to break the number rather than confirm it, and the last one did. What ships is the corrected attributed floor and a replacement built on measurement rather than inference.</figcaption>
+  </figure>
+  <p>Every multiplier came out of every document the same day, including a cross-team shared-methodology file, so no sibling team could inherit the broken method. That part matters as much as the battery. A retraction that stays private isn't a retraction, it's a doubt, and the next person to find the number treats it as a finding.</p>
+  <p>The replacement roadmap trades inference for measurement: a per-platform leakage coefficient read from the platforms' own campaign-tagged-but-referrer-less clicks in raw event data, lead-weighted analysis because bots don't submit demo forms, session-replay sampling, a self-reported "how did you hear about us" field, and server-log user-agent analysis. The falsification battery itself became permanent weekly infrastructure, and every sub-series in that weekly pass records its own status, banking nulls and a reason on failure rather than a zero or a carried-forward value. As of this writing the leakage coefficient hasn't reported its first number yet, and that is the honest state of the art.</p>
+
+  <h2 id="phantom-sessions">Thousands of sessions, a few hundred clicks</h2>
+  <p>The same triangulation posture catches the opposite error, traffic analytics saw that never happened. A paid pilot on an AI platform showed thousands of sessions just as a budget-scaling conversation was starting. The ad platform's own ledger recorded a few hundred clicks and zero conversions, roughly a fifth of what analytics claimed. A second analytics platform's referrer table actually fell during the test month, which is impossible if thousands of real clicks had arrived. The gap traced to attribution mechanics, last-non-direct credit re-counting every return visit as a new attributed session, plus a misspelled tracking parameter silently mis-attributing spend.</p>
+  <p>No budget scaled on phantom reach, and the channel taxonomy gained permanent paid and organic fencing so a paid test can never again contaminate the organic trend reported upward.</p>
+
+  <h2 id="leads">The same discipline for leads</h2>
+  <p>The lead side had the same disease in a different form. Conversion tracking was bound to a stale hand-maintained page list, roughly ninety converting pages with about twenty tracked, and the single highest-intent page was counted by a broken counter that tallied page loads as conversions, 4x overstated. One phantom event traced archaeologically to a forgotten no-code wizard rule living in no container anyone maintained. True lead volume turned out to be 2 to 3 times what was being reported.</p>
+  <p>The replacement is structural rather than a patched list. One canonical event binds to the form platform's success callback, covering every form across two domains automatically, staged behind human publish gates, with the first organic production fire verified 24 minutes after deploy and zero test pollution. It ships with tripwires. A zero week trips one, so does a week-over-week drop past 50%, and so does drift against the legacy basis outside a 0.8-to-1.2 band, which means a tag-manager regression surfaces in days rather than in a quarterly report nobody can reconcile. Each week the pass also states plainly what share of actual leads the legacy basis would have captured, so the old undercount stays visible instead of quietly becoming the denominator of somebody's conversion rate.</p>
+
+  <p class="claim">Killing your own best number is what makes the rest of them credible.</p>
+
+  <div class="build-notes"><p><strong>Build notes.</strong> The instrument runs as a weekly banked series inside the measurement pass from <a href="/case-studies/aeo-operating-system/">the operating system</a>, Python against the analytics exports, every sub-series carrying its own status field. The falsification standard comes from <a href="/case-studies/evidence-engineering/">the evidence pipeline</a>, where a hypothesis is barred from becoming an action item. Absolute volumes stay internal like every number in the day-job program; the ratios here are the shape of the finding, and the retraction is on the internal record in the same words it appears here.</p></div>
+
+  <nav class="next-prev" aria-label="More case studies">
+    <a href="/case-studies/ai-visibility-measurement/">Measuring AI Visibility Without Fooling Yourself</a>
+    <a href="/case-studies/attribution-extract-layer/">Next: the attribution extract layer</a>
+  </nav>
+</article>
+</main>
+
+<footer class="site">
+  <div class="page">
+    <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+  </div>
+</footer>
+</body>
+</html>
