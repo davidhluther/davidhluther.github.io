@@ -1,6 +1,6 @@
 # David Luther
 
-> Portfolio of David Luther, an SEO and content strategy director specializing in answer engine optimization (AEO) and generative engine optimization (GEO), currently Director of SEO & Content Strategy in corporate payments. The site documents working systems he built, spanning RAG pipelines, hybrid retrieval, AI-visibility measurement instruments, content engines, a publicly revised scoring rubric, and a self-grading forecast model.
+> Portfolio of David Luther, a marketing and communications leader with fourteen years in brand, content, media relations, and AI visibility. He leads brand and content for an S&P 500 payments company with an internal team and four agencies, and serves on his town's planning commission and two nonprofit boards. The site presents six business cases, then the working systems behind them, spanning AEO and generative engine optimization, RAG pipelines, hybrid retrieval, AI-visibility measurement, a publicly revised scoring rubric, and a self-grading forecast model.
 
 ## Who this is about
 
@@ -15,7 +15,7 @@ Inventory:
 
 AEO work:
 - [The AEO work](https://davidhluther.github.io/aeo/) indexes the eight enterprise case studies and the shared infrastructure behind them
-- [Home](https://davidhluther.github.io/) has the positioning and links into both sections
+- [Home](https://davidhluther.github.io/) has the positioning, six business cases (AI visibility, reputation, AI governance, measurement, team operations, and public data), leadership and service, and links into both sections
 - [Six domains, one operating system](https://davidhluther.github.io/case-studies/six-domains/) covers the chartered multi-agent hierarchy, post-incident rules, a security-vetting pipeline for third-party agent skills, structural confidentiality walls, and the cross-project improvement loop
 - [Evidence engineering](https://davidhluther.github.io/case-studies/evidence-engineering/) covers primary-source verification with measured newsletter drift, a standing baseline with a retraction table, and an A-to-D provenance ladder that travels with every figure
 - [Running AEO as an operating system](https://davidhluther.github.io/case-studies/aeo-operating-system/) covers the dated-artifact pipeline, a 34-skill analysis engine reusable across brands, evidence grading, cost accounting, executive reporting, and agent orchestration
