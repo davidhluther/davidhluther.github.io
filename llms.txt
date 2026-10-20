@@ -4,7 +4,7 @@
 
 ## Who this is about
 
-David Luther is a marketing and communications leader with 14 years across payments, ERP, and B2B software, and an MBA from UNC Kenan-Flagler (2026). In his day job at an S&P 500 payments company he leads brand strategy, content, public relations, and AI search, led the national Keep Business Moving rebrand, represents marketing on the AI Center of Excellence, and wrote the company's AI-use guidance. Through Pigasus Group (pigasus.group), his consultancy helping local nonprofits and small businesses get found, he designs and builds retrieval and measurement systems solo, testing every method before it reaches a client engagement, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
+David Luther is a marketing and communications leader with 14 years across payments, ERP, and B2B software, and an MBA from UNC Kenan-Flagler (2026). In his day job at an S&P 500 payments company he leads brand strategy, content, public relations, and AI search, led the national Keep Business Moving rebrand, represents marketing on the AI Center of Excellence, and wrote the company's AI-use guidance. Through Pigasus Group (pigasus.group), which gives High Country small businesses pro bono help with marketing, business systems, and practical uses of AI, he designs and builds retrieval and measurement systems solo, testing every method before it reaches a client engagement, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
 
 ## Pages
 
