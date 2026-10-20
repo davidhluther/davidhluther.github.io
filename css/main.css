@@ -1,6 +1,8 @@
-/* davidhluther.github.io: the Instrument system, v4.
+/* davidhluther.github.io: the Instrument system, v5.
    Swiss grid discipline on an engineering-document voice. IBM Plex
-   throughout (self-hosted latin subsets), one drafting-ink accent,
+   throughout (self-hosted latin subsets), the Pigasus Group palette
+   (warm paper ground, deep pine accent; amber is not used here because
+   Pigasus reserves it for conversion buttons and this site has none),
    structure from a 12-column grid, hairline rules, and tabular figures.
    Mono is reserved for numerals and code. Zero JavaScript. */
 
@@ -48,36 +50,25 @@
 }
 
 :root {
-  --bg: #f5f6f3;
-  --surface: #e2e5db;
-  --text: #191c1e;
-  --text-2: #545b60;
-  --accent: #2b50b4;
-  --accent-2: #1f3d8f;
-  --rule: #bfc3ba;
-  --rule-strong: color-mix(in srgb, var(--accent) 32%, transparent);
-  --diagram-ink: #191c1e;
+  /* Colors from pigasus.group (DESIGN.md, light theme). Light is the ground
+     for every visitor; Pigasus deliberately does not read
+     prefers-color-scheme, and this site follows that ruling. */
+  --bg: #FAFAF8;
+  --surface: #F3F2EE;
+  --text: #1A1D1E;
+  --text-2: #5F6B6A;
+  --accent: #3B6B5A;
+  --accent-2: #2D5247;
+  --rule: #E5E3DD;
+  --rule-strong: color-mix(in srgb, var(--accent) 22%, transparent);
+  --diagram-ink: #1A1D1E;
   --sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
   --serif: "IBM Plex Serif", Georgia, serif;
   --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --type-display: clamp(2.1rem, 5.4vw, 4.1rem);
   --type-title: clamp(1.7rem, 3.6vw, 2.5rem);
   --type-section: clamp(1.28rem, 2vw, 1.55rem);
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #151719;
-    --surface: #24282c;
-    --text: #e6e7e3;
-    --text-2: #a0a6ab;
-    --accent: #94adf2;
-    --accent-2: #b3c4f7;
-    --rule: #3f464b;
-    --rule-strong: color-mix(in srgb, var(--accent) 40%, transparent);
-    --diagram-ink: #e6e7e3;
-  }
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
