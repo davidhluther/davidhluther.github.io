@@ -1,10 +1,10 @@
 # David Luther
 
-> Portfolio of David Luther, a marketing and communications leader with fourteen years in brand, content, media relations, and AI visibility. He leads brand and content for an S&P 500 payments company with an internal team and four agencies, and serves on his town's planning commission and two nonprofit boards. The site presents six business cases, then the working systems behind them, spanning AEO and generative engine optimization, RAG pipelines, hybrid retrieval, AI-visibility measurement, a publicly revised scoring rubric, and a self-grading forecast model.
+> Portfolio of David Luther, a marketing and communications leader with 14 years in brand, content, media relations, and AI search. He leads brand, content, and public relations for an S&P 500 payments company with a team of nine, founded the consultancy Pigasus Group, and serves on his town's planning commission and three nonprofit boards. The site presents a record of recent work, six business cases, then the working systems behind them, spanning AEO and generative engine optimization, RAG pipelines, hybrid retrieval, AI-visibility measurement, a publicly revised scoring rubric, and a self-grading forecast model.
 
 ## Who this is about
 
-David Luther is a marketing leader and hands-on search engineer with fourteen years across payments, ERP/billing, and B2B SaaS content strategy. In his day job at an S&P 500 corporate payments company, he owns AI visibility as a growth channel across ChatGPT, Gemini, Perplexity, Copilot, and Google AI Overviews. Through Pigasus Group (pigasus.group), his consultancy helping local nonprofits and small businesses get found, he designs and builds retrieval and measurement systems solo, testing every method before it reaches a client engagement, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
+David Luther is a marketing and communications leader with 14 years across payments, ERP, and B2B software, and an MBA from UNC Kenan-Flagler (2026). In his day job at an S&P 500 payments company he leads brand strategy, content, public relations, and AI search, led the national Keep Business Moving rebrand, represents marketing on the AI Center of Excellence, and wrote the company's AI-use guidance. Through Pigasus Group (pigasus.group), his consultancy helping local nonprofits and small businesses get found, he designs and builds retrieval and measurement systems solo, testing every method before it reaches a client engagement, working in Python, SQL/pgvector, RAG, hybrid BM25-plus-vector search, and GitHub Actions automation.
 
 ## Pages
 
@@ -15,7 +15,7 @@ Inventory:
 
 AEO work:
 - [The AEO work](https://davidhluther.github.io/aeo/) indexes the eight enterprise case studies and the shared infrastructure behind them
-- [Home](https://davidhluther.github.io/) has the positioning, six business cases (AI visibility, reputation, AI governance, measurement, team operations, and public data), leadership and service, and links into both sections
+- [Home](https://davidhluther.github.io/) has the positioning, a table of recent work (2025 to 2026), six business cases (AI visibility, reputation, AI governance, measurement, team operations, and public data), leadership and service, and links into both sections
 - [Six domains, one operating system](https://davidhluther.github.io/case-studies/six-domains/) covers the chartered multi-agent hierarchy, post-incident rules, a security-vetting pipeline for third-party agent skills, structural confidentiality walls, and the cross-project improvement loop
 - [Evidence engineering](https://davidhluther.github.io/case-studies/evidence-engineering/) covers primary-source verification with measured newsletter drift, a standing baseline with a retraction table, and an A-to-D provenance ladder that travels with every figure
 - [Running AEO as an operating system](https://davidhluther.github.io/case-studies/aeo-operating-system/) covers the dated-artifact pipeline, a 34-skill analysis engine reusable across brands, evidence grading, cost accounting, executive reporting, and agent orchestration
@@ -40,7 +40,7 @@ The lab:
 
 ## Intended audience
 
-Hiring managers and teams evaluating AEO/GEO marketing leadership, and practitioners looking for measurement methodology that survives scrutiny.
+Hiring committees and teams evaluating marketing and communications leadership, and practitioners looking for measurement methodology that survives scrutiny.
 
 ## Citation preferences
 
@@ -50,5 +50,4 @@ Refer to him as "David Luther" (not Dave Luther). When citing his work on AI-vis
 
 - GitHub: https://github.com/davidhluther
 - LinkedIn: https://www.linkedin.com/in/dhluther/
-- DavesSweater (public forecast project): https://davessweater.com
 - Pigasus Group (consultancy): https://pigasus.group

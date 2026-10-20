@@ -60,7 +60,7 @@
 <main class="page">
 <article class="grid">
   <h1>The Lab</h1>
-  <p class="lede">Nine systems where I learn how these machines actually work by building their moving parts myself. Four came out of <a href="https://pigasus.group">my consultancy's</a> work, one out of a nonprofit board's records problem, and four run on <a href="https://davessweater.com">davessweater.com</a>, a public weather site I use as a test bed. Everything here is open to inspection, most of it is <a href="https://github.com/davidhluther">public code</a>, and all of it runs at effectively zero cost. It's also where the day job's discipline gets invented, since the measurement instrument I defend at work was built and stress-tested here first.</p>
+  <p class="lede">Nine projects where I learn how these machines actually work by building their moving parts myself. Four came out of <a href="https://pigasus.group">my consultancy's</a> work, one out of a nonprofit board's records problem, and four run on a public weather-forecasting site I keep as a test bed. Everything here is open to inspection, most of it is <a href="https://github.com/davidhluther">public code</a>, and all of it runs at effectively zero cost. It's also where the day job's discipline gets invented, since the measurement instrument I defend at work was built and stress-tested here first.</p>
   
   <h2>What the lab is for</h2>
   <p>The lab is not hobby code. Most of it exists because a real organization near me needed something and had no budget for it. Grant research for a homelessness nonprofit. A financial workup for a small school whose books needed straight talk. Board reporting that assembles itself and lands on time. Demand planning for small businesses putting themselves back together after Hurricane Helene. The pattern repeats. Notice the thing that eats volunteers' hours or hides a decision, build the smallest system that fixes it, and run it at no cost, because the organizations this serves measure budgets in bake sales. The nine studies below are the deep dives; <a href="/capabilities/">the capability index</a> lists every lab system alongside the day job's, one line each.</p>
@@ -104,7 +104,7 @@
     </li>
   </ul>
   <h2>On the weather site</h2>
-  <p class="sys-intro">davessweater.com is a public forecast site with real traffic and real failures. Every gate and rubric below started as something that broke there first.</p>
+  <p class="sys-intro">The weather site is a public forecast site with real traffic and real failures. Every gate and rubric below started as something that broke there first.</p>
   <ul class="study-list">
     <li>
       <span class="tag">Governance</span>
@@ -135,15 +135,15 @@
   <p class="sys-intro">The lab's smaller systems, one line each, most of them born from one specific failure the studies describe.</p>
   <dl class="sys-list">
     <div>
-      <dt>Public forecast API + widget <span>davessweater.com</span></dt>
+      <dt>Public forecast API + widget <span>weather site</span></dt>
       <dd>CC BY 4.0 consensus forecast where every response carries its license and attribution, and the embeddable widget loads zero analytics because it runs on other people's pages.</dd>
     </div>
     <div>
-      <dt>Function-budget CI gate <span>davessweater.com</span></dt>
+      <dt>Function-budget CI gate <span>weather site</span></dt>
       <dd>Born from a ten-day silent production outage where builds failed after "Build Completed." Every PR now gets a fast static model plus a ground-truth build, and the postmortem records which fixes were measured and dropped.</dd>
     </div>
     <div>
-      <dt>Busy-ness Index <span>davessweater.com</span></dt>
+      <dt>Busy-ness Index <span>weather site</span></dt>
       <dd>A 14-day tourism-demand model whose code documents its own known v0 bias, and whose outputs stay flagged provisional until enough history exists to earn a baseline.</dd>
     </div>
     <div>
@@ -165,7 +165,7 @@
 <footer class="site">
   <div class="page">
     <div class="colophon"><span class="colophon-label">davidhluther.github.io</span></div>
-    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://davessweater.com">davessweater.com</a> | <a href="https://pigasus.group">pigasus.group</a></p>
+    <p>David Luther | <a href="https://github.com/davidhluther">GitHub</a> | <a href="https://www.linkedin.com/in/dhluther/">LinkedIn</a> | <a href="https://pigasus.group">pigasus.group</a></p>
   </div>
 </footer>
 </body>
