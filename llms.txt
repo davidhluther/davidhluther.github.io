@@ -8,13 +8,13 @@ David Luther is a marketing and communications leader with 14 years across payme
 
 ## Pages
 
-The site is organized in two sections. "The AEO work" covers the enterprise program, and "The lab" covers self-built systems with public code. A third page, the capability index, flattens both sections into one inventory.
+The site is organized in two sections. "The discoverability work" covers the enterprise organic and AI search program, and "The lab" covers self-built systems with public code. A third page, the capability index, flattens both sections into one inventory.
 
 Inventory:
 - [Capability index](https://davidhluther.github.io/capabilities/) covers the complete breadth-layer inventory of 167 working capabilities across six workstreams, grouped into eleven disciplines and linked into the case studies, with employer performance figures and client identities deliberately withheld
 
-AEO work:
-- [The AEO work](https://davidhluther.github.io/aeo/) indexes the eight enterprise case studies and the shared infrastructure behind them
+Discoverability work:
+- [The discoverability work](https://davidhluther.github.io/aeo/) indexes the eight enterprise case studies and the shared infrastructure behind them
 - [Home](https://davidhluther.github.io/) has the positioning, a table of recent work (2025 to 2026), six business cases (AI visibility, reputation, AI governance, measurement, team operations, and public data), leadership and service, and links into both sections
 - [Six domains, one operating system](https://davidhluther.github.io/case-studies/six-domains/) covers the chartered multi-agent hierarchy, post-incident rules, a security-vetting pipeline for third-party agent skills, structural confidentiality walls, and the cross-project improvement loop
 - [Evidence engineering](https://davidhluther.github.io/case-studies/evidence-engineering/) covers primary-source verification with measured newsletter drift, a standing baseline with a retraction table, and an A-to-D provenance ladder that travels with every figure
