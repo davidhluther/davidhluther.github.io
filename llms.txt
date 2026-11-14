@@ -1,6 +1,6 @@
 # David Luther
 
-> Portfolio of David Luther, a marketing and communications leader with 14 years in brand, content, media relations, and AI search. He leads brand, content, and public relations for an S&P 500 payments company with a team of nine, founded the consultancy Pigasus Group, and serves on his town's planning commission and three nonprofit boards. The site presents a record of recent work, six business cases, then the working systems behind them, spanning AEO and generative engine optimization, RAG pipelines, hybrid retrieval, AI-visibility measurement, a publicly revised scoring rubric, and a self-grading forecast model.
+> Portfolio of David Luther, a marketing and communications leader with 14 years in brand, growth, content, and media relations. He leads brand, content, and public relations for an S&P 500 payments company with a team of nine, founded the consultancy Pigasus Group, and serves on his town's planning commission and three nonprofit boards. The site presents a record of recent work, six business cases, then the working systems behind them, spanning AEO and generative engine optimization, RAG pipelines, hybrid retrieval, AI-visibility measurement, a publicly revised scoring rubric, and a self-grading forecast model.
 
 ## Who this is about
 
